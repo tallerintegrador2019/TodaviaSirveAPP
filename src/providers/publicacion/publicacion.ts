@@ -21,7 +21,6 @@ export class PublicacionProvider {
 
   obtenerPublicacion(id){
     return this.http.get("http://localhost:55081/api/Publicacion/id")
-    console.log(id);
   }
 
 }
