@@ -11,12 +11,14 @@
   <h3>Datos de un servidor externo</h3>
 
   <ion-list>
-    <button ion-item *ngFor = "let publicacion of publicaciones">
-      {{publicacion.nombre}}
+    <button ion-item *ngFor="let publicacion of publicaciones" (click)="irADetalle(publicacion)">
+      <ion-avatar item-start>
+        <img src="http://lorempixel.com/g/200/200/">
+      </ion-avatar>
+      <h2>{{publicacion.nombre}}</h2>
       <p>{{publicacion.descripcion}}</p>
     </button>
   </ion-list>
-
 
 
   <button ion-button secondary menuToggle>Toggle Menu</button>

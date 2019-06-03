@@ -15,8 +15,13 @@ export class PublicacionProvider {
     console.log('Hello PublicacionProvider Provider');
   }
 
-  obtenerDatos(){
+  obtenerTodasPublicaciones(){
     return this.http.get("http://localhost:55081/api/Publicacion")
+  }
+
+  obtenerPublicacion(id){
+    return this.http.get("http://localhost:55081/api/Publicacion/id")
+    console.log(id);
   }
 
 }
