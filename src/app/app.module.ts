@@ -6,6 +6,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { DetallePageModule } from "../pages/detalle/detalle.module";
+import { BuscarPageModule } from "../pages/buscar/buscar.module";
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -17,19 +18,20 @@ import { HttpClientModule } from "@angular/common/http";
   declarations: [
     MyApp,
     HomePage,
-    ListPage,
+    ListPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
-    DetallePageModule
+    DetallePageModule,
+    BuscarPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage,
+    ListPage
   ],
   providers: [
     StatusBar,

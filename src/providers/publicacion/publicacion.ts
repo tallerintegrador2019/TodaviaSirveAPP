@@ -1,6 +1,7 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Component, NgModule } from '@angular/core';
 import { ReturnStatement } from '@angular/compiler';
+import 'rxjs/add/operator/map';
 
 /*
   Generated class for the PublicacionProvider provider.
@@ -20,7 +21,12 @@ export class PublicacionProvider {
   }
 
   obtenerPublicacion(id){
-    return this.http.get("http://localhost:55081/api/Publicacion/id")
+    return this.http.get("http://localhost:55081/api/Publicacion/" + id)
   }
 
-}
+  buscarPublicacion(nombre: string){
+    return this.http.get("http://localhost:55081/api/Publicacion/Buscar/" + nombre)
+  }
+
+
+} 

@@ -1,0 +1,25 @@
+
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Buscador</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-searchbar [(ngModel)]="nombre" (ionInput)="buscarPublicacion()"></ion-searchbar>
+
+  <ion-list>
+    <button ion-item *ngFor="let publicacion of publicaciones | async">
+      <ion-avatar item-start>
+        <img src="http://lorempixel.com/g/200/200/">
+      </ion-avatar>
+      <h2>{{publicacion.nombre}}</h2>
+      <p>{{publicacion.descripcion}}</p>
+    </button>
+  </ion-list>
+
+</ion-content>
