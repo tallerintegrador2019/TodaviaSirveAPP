@@ -8,18 +8,18 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Datos de un servidor externo</h3>
+  <h4>Publicaciones recientes</h4>
+  <hr/>
 
   <ion-list>
     <button ion-item *ngFor="let publicacion of publicaciones" (click)="irADetalle(publicacion)">
       <ion-avatar item-start>
-        <img src="http://lorempixel.com/g/200/200/">
+        <img src="{{prefixURL}}{{publicacion.imagen}}">
       </ion-avatar>
-      <h2>{{publicacion.nombre}}</h2>
+      <h2>{{publicacion.titulo}}</h2>
       <p>{{publicacion.descripcion}}</p>
     </button>
   </ion-list>
 
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
 </ion-content>

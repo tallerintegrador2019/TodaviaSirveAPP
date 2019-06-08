@@ -10,14 +10,14 @@
 
 <ion-content padding>
 
-  <ion-searchbar [(ngModel)]="nombre" (ionInput)="buscarPublicacion()"></ion-searchbar>
+  <ion-searchbar [(ngModel)]="titulo" (ionInput)="buscarPublicacion()"></ion-searchbar>
 
   <ion-list>
     <button ion-item *ngFor="let publicacion of publicaciones | async">
       <ion-avatar item-start>
-        <img src="http://lorempixel.com/g/200/200/">
+        <img src="{{prefixURL}}{{publicacion.imagen}}">
       </ion-avatar>
-      <h2>{{publicacion.nombre}}</h2>
+      <h2>{{publicacion.titulo}}</h2>
       <p>{{publicacion.descripcion}}</p>
     </button>
   </ion-list>

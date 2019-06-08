@@ -10,8 +10,9 @@ import { PublicacionProvider } from "../../providers/publicacion/publicacion";
 })
 export class BuscarPage {
 
-  publicaciones;
-  nombre: any;
+  publicaciones: any;
+  prefixURL: string = "http://localhost:55081/" ;
+  titulo: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public publicacionService: PublicacionProvider) {
   }
@@ -20,7 +21,7 @@ export class BuscarPage {
   }
 
   buscarPublicacion(){
-    this.publicaciones = this.publicacionService.buscarPublicacion(this.nombre)    
+    this.publicaciones = this.publicacionService.buscarPublicacion(this.titulo)    
   }
 
 
