@@ -12,15 +12,15 @@ export class PublicacionProvider {
   }
 
   obtenerTodasPublicaciones(){
-    return this.http.get("http://localhost:55081/api/Publicacion")
+    return this.http.get("https://todaviasirve.azurewebsites.net/api/Publicacion")
   }
 
   obtenerPublicacion(id){
-    return this.http.get("http://localhost:55081/api/Publicacion/" + id)
+    return this.http.get("https://todaviasirve.azurewebsites.net/api/Publicacion/" + id)
   }
 
   buscarPublicacion(titulo: string){
-    return this.http.get("http://localhost:55081/api/Publicacion/Buscar/" + titulo)
+    return this.http.get("https://todaviasirve.azurewebsites.net/api/Publicacion/Buscar/" + titulo)
   }
 
 

@@ -11,7 +11,7 @@ import { PublicacionProvider } from "../../providers/publicacion/publicacion";
 export class BuscarPage {
 
   publicaciones: any;
-  prefixURL: string = "http://localhost:55081/" ;
+  prefixURL: string = "https://todaviasirve.azurewebsites.net/Content/Images/" ;
   titulo: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public publicacionService: PublicacionProvider) {

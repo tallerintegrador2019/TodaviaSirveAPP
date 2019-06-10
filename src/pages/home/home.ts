@@ -10,7 +10,7 @@ import { DetallePage } from '../detalle/detalle';
 export class HomePage {
 
   publicaciones: any;
-  prefixURL: string = "http://localhost:55081/" ;
+  prefixURL: string = "https://todaviasirve.azurewebsites.net/Content/Images/" ;
   
   constructor(public navCtrl: NavController, public publicacion: PublicacionProvider) {
   
