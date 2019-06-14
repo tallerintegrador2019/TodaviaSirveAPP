@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { PublicacionProvider } from "../../providers/publicacion/publicacion";
 
 
 @IonicPage()
@@ -11,8 +10,10 @@ import { PublicacionProvider } from "../../providers/publicacion/publicacion";
 export class DetallePage {
 
   publicacion
+  imagenURL: string = "https://todaviasirve.azurewebsites.net/Content/Images/" ;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public publicacionService: PublicacionProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.publicacion = navParams.get("publi");
   }
 
   ionViewDidLoad() {

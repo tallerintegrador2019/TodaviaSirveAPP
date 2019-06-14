@@ -25,8 +25,8 @@ export class HomePage {
 
   }
 
-  irADetalle(){
-    this.navCtrl.push(DetallePage);
+  irADetalle(publi){
+    this.navCtrl.push(DetallePage, {publi});
    }
     
 

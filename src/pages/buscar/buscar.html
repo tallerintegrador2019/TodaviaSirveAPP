@@ -13,7 +13,7 @@
   <ion-searchbar [(ngModel)]="titulo" (ionInput)="buscarPublicacion()"></ion-searchbar>
 
   <ion-list>
-    <button ion-item *ngFor="let publicacion of publicaciones | async">
+    <button ion-item *ngFor="let publicacion of publicaciones | async" (click)="irADetalle(publicacion)">
       <ion-avatar item-start>
         <img src="{{prefixURL}}{{publicacion.imagen}}">
       </ion-avatar>
