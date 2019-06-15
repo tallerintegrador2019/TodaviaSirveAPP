@@ -15,10 +15,10 @@
   <ion-list>
     <button ion-item *ngFor="let publicacion of publicaciones | async" (click)="irADetalle(publicacion)">
       <ion-avatar item-start>
-        <img src="{{prefixURL}}{{publicacion.imagen}}">
+        <img src="{{prefixURL}}{{publicacion.imagenPortada}}">
       </ion-avatar>
       <h2>{{publicacion.titulo}}</h2>
-      <p>{{publicacion.descripcion}}</p>
+      <p>{{publicacion.subtitulo}}</p>
     </button>
   </ion-list>
 
