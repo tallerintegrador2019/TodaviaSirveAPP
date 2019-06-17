@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { YtProvider } from "../../providers/yt/yt";
 
 @IonicPage()
 @Component({
@@ -10,14 +11,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class DetallePage {
 
   publicacion
-  imagenURL: string = "https://todaviasirve.azurewebsites.net/Content/Images/" ;
+  imagenURL: string = "https://todaviasirve.azurewebsites.net/Content/Images/";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  /* datoBuscado: any; */
+  videosEncontrados: any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public ytProvider: YtProvider) {
     this.publicacion = navParams.get("publi");
+
+    this.ytProvider.obtenerVideos(this.publicacion.titulo).subscribe(res => this.videosEncontrados = res['items']);
   }
 
   ionViewDidLoad() {
 
   }
 
-}
+} // cierre DetallePage

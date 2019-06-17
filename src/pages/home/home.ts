@@ -3,6 +3,8 @@ import { NavController } from 'ionic-angular';
 import { PublicacionProvider } from "../../providers/publicacion/publicacion";
 import { DetallePage } from '../detalle/detalle';
 
+
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -18,17 +20,15 @@ export class HomePage {
 
   ionViewDidLoad(){
     this.publicacion.obtenerTodasPublicaciones()
-    .subscribe(
-      (data) => { this.publicaciones = data; },
-      (error) => { console.log(error); }
-    )
-
+      .subscribe(
+        (data) => { this.publicaciones = data; },
+        (error) => { console.log(error); }
+      )
   }
 
   irADetalle(publi){
     this.navCtrl.push(DetallePage, {publi});
    }
-    
 
 
 } // cierre clase HomePage

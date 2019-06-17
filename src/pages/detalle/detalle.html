@@ -18,13 +18,14 @@
       <h2>{{publicacion.titulo}}</h2>
       <p>{{publicacion.descripcion}}</p>
     </ion-item>
-  
+
     <img src="{{imagenURL}}{{publicacion.imagenPortada}}">
-  
+
     <ion-card-content>
-      <p>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy.</p>
+      <p>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a
+        DeLorean?! Whoa. This is heavy.</p>
     </ion-card-content>
-  
+
     <ion-row>
       <ion-col>
         <button ion-button icon-start clear small>
@@ -44,12 +45,22 @@
         </ion-note>
       </ion-col>
     </ion-row>
-  
+
   </ion-card>
 
+  <h4 class="titulo">Videos Relacionados</h4>
+  <hr/>
+  <ion-list>
+    <button ion-item *ngFor="let item of videosEncontrados">
+      <ion-avatar item-start>
+        <img src="{{item.snippet.thumbnails.medium.url}}">
+      </ion-avatar>
+      <p>{{item.snippet.title}}</p>
+    </button>
+  </ion-list>
 
-
-
+  <h4 class="titulo">Imagenes Relacionadas</h4>
+  <hr/>
 
 
 </ion-content>

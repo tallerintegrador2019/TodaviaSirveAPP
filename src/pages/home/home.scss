@@ -1,8 +1,26 @@
 page-home {
+    
 
-    .titulo{
-        padding-left: 20px;
+    .carrusel{
+        height: auto;
+        width: auto;
+        background-color: black
     }
 
+    .todaviasirve{
+        font-family: 'Berlin Sans FB', sans-serif;
+    }
+
+    .tituloSlide{
+        font-size: 15px;
+        display: inline;
+        color: white;
+        font-style: italic;      
+    }
+
+    .imgSlider{
+        height: 230px;
+        width: 100%;
+    }
 }
 

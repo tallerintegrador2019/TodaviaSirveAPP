@@ -3,13 +3,23 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>todavía<strong>sirve</strong></ion-title>
+    <ion-title class="todaviasirve">todavía<strong>sirve</strong></ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
+
+    <ion-list>
+  <ion-slides *ngIf="publicaciones" autoplay="4000" loop="true" speed="2000" class="carrusel">
+    <ion-slide *ngFor="let publicacion of publicaciones" (click)="irADetalle(publicacion)">
+        <p class="tituloSlide">{{publicacion.titulo}}</p>
+      <img class="imgSlider" src="{{prefixURL}}{{publicacion.imagenPortada}}">
+    </ion-slide>
+  </ion-slides>
+  </ion-list>
+
   <h4 class="titulo">Publicaciones recientes</h4>
-  <hr/>
+  <hr />
 
   <ion-list>
     <button ion-item *ngFor="let publicacion of publicaciones" (click)="irADetalle(publicacion)">
