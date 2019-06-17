@@ -13,13 +13,14 @@ export class DetallePage {
   publicacion
   imagenURL: string = "https://todaviasirve.azurewebsites.net/Content/Images/";
 
-  /* datoBuscado: any; */
   videosEncontrados: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public ytProvider: YtProvider) {
     this.publicacion = navParams.get("publi");
 
     this.ytProvider.obtenerVideos(this.publicacion.titulo).subscribe(res => this.videosEncontrados = res['items']);
+  
+
   }
 
   ionViewDidLoad() {
