@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PublicacionProvider } from "../../providers/publicacion/publicacion";
 import { DetallePage } from '../detalle/detalle';
+import { NodeData } from '@angular/core/src/view';
 
 
 @IonicPage()
