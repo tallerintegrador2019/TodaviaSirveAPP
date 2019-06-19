@@ -7,6 +7,8 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { DetallePageModule } from "../pages/detalle/detalle.module";
 import { BuscarPageModule } from "../pages/buscar/buscar.module";
+import { AboutPageModule } from "../pages/about/about.module";
+import { RegistrarPageModule } from "../pages/registrar/registrar.module";
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -26,7 +28,9 @@ import { YtProvider } from '../providers/yt/yt';
     IonicModule.forRoot(MyApp),
     HttpClientModule,
     DetallePageModule,
-    BuscarPageModule
+    BuscarPageModule,
+    AboutPageModule,
+    RegistrarPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

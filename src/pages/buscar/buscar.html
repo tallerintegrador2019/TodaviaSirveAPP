@@ -1,16 +1,16 @@
 
 <ion-header>
-  <ion-navbar color="primary">
+  <ion-navbar color="verdeTodavia">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Buscador</ion-title>
+    <ion-title>Buscador de transformaciones</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 
-  <ion-searchbar [(ngModel)]="titulo" (ionInput)="buscarPublicacion()"></ion-searchbar>
+  <ion-searchbar [(ngModel)]="titulo" (ionInput)="buscarPublicacion()" placeholder="Ingresa un elemento..."></ion-searchbar>
 
   <ion-list>
     <button ion-item *ngFor="let publicacion of publicaciones | async" (click)="irADetalle(publicacion)">

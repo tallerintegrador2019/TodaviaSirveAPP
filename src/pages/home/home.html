@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar color="primary">
+  <ion-navbar color="verdeTodavia">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -9,14 +9,25 @@
 
 <ion-content>
 
-    <ion-list>
-  <ion-slides *ngIf="publicaciones" autoplay="4000" loop="true" speed="2000" class="carrusel">
-    <ion-slide *ngFor="let publicacion of publicaciones" (click)="irADetalle(publicacion)">
-        <p class="tituloSlide">{{publicacion.titulo}}</p>
-      <img class="imgSlider" src="{{prefixURL}}{{publicacion.imagenPortada}}">
-    </ion-slide>
-  </ion-slides>
-  </ion-list>
+  <ion-card>
+
+    <ion-slides *ngIf="publicaciones" autoplay="4000" loop="true" speed="2000">
+      <ion-slide *ngFor="let publicacion of publicaciones" (click)="irADetalle(publicacion)">
+
+        <ion-item>
+          <ion-avatar item-start>
+            <img src="http://lorempixel.com/200/200/people" alt="foto_usuario">
+          </ion-avatar>
+          <h2>{{publicacion.titulo}}</h2>
+          <p>{{publicacion.subtitulo}}</p>
+        </ion-item>
+
+        <img class="imgSlider" src="{{prefixURL}}{{publicacion.imagenPortada}}">
+      
+      </ion-slide>
+    </ion-slides>
+
+  </ion-card> 
 
   <h4 class="titulo">Publicaciones recientes</h4>
   <hr />

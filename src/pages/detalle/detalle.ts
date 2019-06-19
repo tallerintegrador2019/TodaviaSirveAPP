@@ -18,7 +18,7 @@ export class DetallePage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public ytProvider: YtProvider) {
     this.publicacion = navParams.get("publi");
 
-    this.ytProvider.obtenerVideos(this.publicacion.titulo).subscribe(res => this.videosEncontrados = res['items']);
+ /*    this.ytProvider.obtenerVideos(this.publicacion.titulo).subscribe(res => this.videosEncontrados = res['items']); */
   
 
   }

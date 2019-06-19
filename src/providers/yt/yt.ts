@@ -8,7 +8,6 @@ export class YtProvider {
   cantVideos = 1;  // es la cantidad de videos que quieren que se devuelvan
 
   constructor(public http: HttpClient) {
-    console.log('Hello YtProvider Provider');
   }
 
   obtenerVideos(dato: string){

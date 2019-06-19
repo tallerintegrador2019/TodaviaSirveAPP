@@ -1,5 +1,4 @@
 page-home {
-    
 
     .carrusel{
         height: auto;
@@ -11,14 +10,16 @@ page-home {
     }
 
     .tituloSlide{
-        font-size: 15px;
-        display: inline;
-        font-style: italic;      
+        font-size: 20px;
+        margin: 10px;
+        font-family: 'Berlin Sans FB', sans-serif;  
+        color: green
     }
 
     .imgSlider{
         height: 320px;
         width: 100%;
+        float: none
     }
 }
 
