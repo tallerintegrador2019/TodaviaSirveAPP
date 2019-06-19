@@ -3,9 +3,9 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    
+
     <ion-title class="todaviasirve">
-        <img class="isoLogo" src="../../assets/imgs/isologo.png">
+      <img class="isoLogo" src="../../assets/imgs/isologo.png">
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -17,7 +17,7 @@
     <ion-slides *ngIf="publicaciones" autoplay="4000" loop="true" speed="2000">
       <ion-slide *ngFor="let publicacion of publicaciones" (click)="irADetalle(publicacion)">
 
-        <ion-item>
+        <ion-item class="encabezadoCard">
           <ion-avatar item-start>
             <img src="http://lorempixel.com/200/200/people" alt="foto_usuario">
           </ion-avatar>
@@ -26,11 +26,11 @@
         </ion-item>
 
         <img class="imgSlider" src="{{prefixURL}}{{publicacion.imagenPortada}}">
-      
+
       </ion-slide>
     </ion-slides>
 
-  </ion-card> 
+  </ion-card>
 
   <h4 class="titulo">Publicaciones recientes</h4>
   <hr />
