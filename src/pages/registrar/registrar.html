@@ -19,6 +19,20 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+    <ion-item>
+      <ion-label floating>User Name</ion-label>
+      <ion-input type="text" [(ngModel)]="username"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Pass</ion-label>
+      <ion-input type="password" [(ngModel)]="pass"></ion-input>
+    </ion-item>
+
+<!--     <ion-item>
+      <ion-label floating>Confirmar contraseña</ion-label>
+      <ion-input type="password" [(ngModel)]="cpassword"></ion-input>
+    </ion-item> -->
 
     <ion-item>
       <ion-label floating>Nombre</ion-label>
@@ -32,28 +46,18 @@
 
     <ion-item>
       <ion-label floating>Correo Electrónico</ion-label>
-      <ion-input type="text" [(ngModel)]="email"></ion-input>
+      <ion-input type="email" [(ngModel)]="email"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label floating>Usuario</ion-label>
-      <ion-input type="text" [(ngModel)]="username"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label floating>Contraseña</ion-label>
-      <ion-input type="password" [(ngModel)]="password"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label floating>Confirmar contraseña</ion-label>
-      <ion-input type="password" [(ngModel)]="cpassword"></ion-input>
+      <ion-label floating>Imagen</ion-label>
+      <ion-input type="text" [(ngModel)]="imagen"></ion-input>
     </ion-item>
 
   </ion-list>
 
   <br />
-  <button ion-button full color="verdeTodavia">Quiero Registrarme</button>
+  <button ion-button full color="verdeTodavia" (click)="submitUsuario()">Quiero Registrarme</button>
 
 
 
