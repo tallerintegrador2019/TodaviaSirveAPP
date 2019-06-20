@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 export class YtProvider {
 
   apiKey = 'AIzaSyDfp6sUDwDqfRyJiiZvs4VYwgh7P10zp5Y';
-  cantVideos = 1;  // es la cantidad de videos que quieren que se devuelvan
+  cantVideos = 3;  // es la cantidad de videos que quieren que se devuelvan
 
   constructor(public http: HttpClient) {
   }
