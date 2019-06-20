@@ -16,6 +16,10 @@ import { PublicacionProvider } from '../providers/publicacion/publicacion';
 import { HttpClientModule } from "@angular/common/http";
 import { YtProvider } from '../providers/yt/yt';
 
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
+import { File } from '@ionic-native/file/ngx';
+import { Camera } from '@ionic-native/camera/ngx';
+
 
 @NgModule({
   declarations: [
@@ -43,7 +47,11 @@ import { YtProvider } from '../providers/yt/yt';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PublicacionProvider,
-    YtProvider
+    YtProvider,
+    FileTransfer,
+    FileTransferObject,
+    File,
+    Camera
   ]
 })
 export class AppModule {}
