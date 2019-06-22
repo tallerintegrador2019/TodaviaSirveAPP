@@ -9,6 +9,8 @@ import { DetallePageModule } from "../pages/detalle/detalle.module";
 import { BuscarPageModule } from "../pages/buscar/buscar.module";
 import { AboutPageModule } from "../pages/about/about.module";
 import { RegistrarPageModule } from "../pages/registrar/registrar.module";
+import { TabsPageModule } from "../pages/tabs/tabs.module";
+import { PerfilPageModule } from '../pages/perfil/perfil.module';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -19,6 +21,7 @@ import { YtProvider } from '../providers/yt/yt';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
+
 
 
 @NgModule({
@@ -34,7 +37,9 @@ import { Camera } from '@ionic-native/camera/ngx';
     DetallePageModule,
     BuscarPageModule,
     AboutPageModule,
-    RegistrarPageModule
+    RegistrarPageModule,
+    TabsPageModule,
+    PerfilPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

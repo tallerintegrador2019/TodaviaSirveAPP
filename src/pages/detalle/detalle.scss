@@ -15,4 +15,18 @@ page-detalle {
         text-align: center;
     }
 
+    .linkVideoAPI {
+        text-decoration: none;
+    }
+
+    .item ion-thumbnail {
+        min-height: 50px;
+        width: auto;    
+        img {
+            height: 50px;
+            width: auto;
+        }
+    }
+
+
 }
