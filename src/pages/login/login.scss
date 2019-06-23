@@ -1,3 +1,32 @@
 page-login {
 
+    .colorDeFondo{
+        background-image: url(../../assets/imgs/fondo02.jpg);
+    }
+
+    ion-content{
+        vertical-align: middle;
+        text-align: center;
+        margin: auto;
+    }
+
+    .grid {
+        margin-top: 15%;
+    }
+
+    .imgLogo{
+        height: 200px;
+    }
+
+    form input{
+        background-color: green;
+    }
+
+    .input-cover {
+        opacity: 0.5;
+    }
+
+
+
+    
 }
