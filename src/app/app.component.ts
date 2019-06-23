@@ -10,6 +10,7 @@ import { AboutPage } from "../pages/about/about";
 import { RegistrarPage } from "../pages/registrar/registrar";
 import { TabsPage } from '../pages/tabs/tabs';
 import { PerfilPage } from '../pages/perfil/perfil';
+import { LoginPage } from '../pages/login/login';
 
 @Component({
   templateUrl: 'app.html'
@@ -31,6 +32,7 @@ export class MyApp {
       { title: 'Registrarse', component: RegistrarPage },
       { title: 'Mi Perfil', component: PerfilPage },
       { title: 'Quienes somos', component: AboutPage },
+      { title: 'Login', component: LoginPage }
       /* { title: 'List', component: ListPage } */
     ];
 

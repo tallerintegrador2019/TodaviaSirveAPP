@@ -21,6 +21,7 @@ import { YtProvider } from '../providers/yt/yt';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
+import { LoginPageModule } from '../pages/login/login.module';
 
 
 
@@ -39,7 +40,8 @@ import { Camera } from '@ionic-native/camera/ngx';
     AboutPageModule,
     RegistrarPageModule,
     TabsPageModule,
-    PerfilPageModule
+    PerfilPageModule,
+    LoginPageModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
