@@ -3,21 +3,17 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Registrarse</ion-title>
+    <ion-title>Registrate</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 
+    <h4 class="titulo">Completa tus datos</h4>
+    <hr />
+
   <ion-list>
 
-    <ion-grid>
-      <ion-row>
-        <ion-col col-12 style="text-align: center">
-          <img class="imgFotoPerfil" src="../../assets/imgs/person_edit.png" alt="editar foto">
-        </ion-col>
-      </ion-row>
-    </ion-grid>
     <ion-item>
       <ion-label floating>User Name</ion-label>
       <ion-input type="text" [(ngModel)]="username"></ion-input>
@@ -48,19 +44,22 @@
       <ion-input type="email" [(ngModel)]="email"></ion-input>
     </ion-item>
 
-    <br/>
     <ion-item>
-      <ion-label>Imagen</ion-label>
-      <br/>
-      <ion-input type="file" [(ngModel)]="imagen"></ion-input>
+      <ion-label stacked>Foto</ion-label>
+      <ion-input type="file" accept="image/*" (change)="onFileChanged($event)"></ion-input>
     </ion-item>
-    <br/>
+
+<!--     <ion-grid>
+      <ion-row>
+        <ion-col col-12 style="text-align: center">
+          <img class="imgFotoPerfil" src="../../assets/imgs/person_edit.png" alt="editar foto">
+        </ion-col>
+      </ion-row>
+    </ion-grid> -->
 
   </ion-list>
 
   <br />
   <button ion-button full color="verdeTodavia" (click)="submitUsuario()">Quiero Registrarme</button>
-
-
 
 </ion-content>

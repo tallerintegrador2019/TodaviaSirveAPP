@@ -2,10 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { FileTransfer, FileTransferObject, FileUploadOptions } from '@ionic-native/file-transfer/ngx';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import { Observable } from 'rxjs/Observable';
-
 
 @IonicPage()
 @Component({
@@ -14,24 +10,20 @@ import { Observable } from 'rxjs/Observable';
 })
 export class RegistrarPage {
 
-  username
-  pass
-  nombre
-  apellido
-  email
-  imagen
-
-  data
+  username ="";
+  pass="";
+  nombre="";
+  apellido="";
+  email="";
+  imagen;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    public http: HttpClient,
-    public camera: Camera,
-    private transfer: FileTransfer,
-    public loadingCtrl: LoadingController
+    public http: HttpClient
   ) {
   }
 
+  
   ionViewDidLoad() {
 
   }
@@ -39,35 +31,38 @@ export class RegistrarPage {
 
   submitUsuario() {
 
+
+    /* let pathURL = "http://localhost:55081/Api/Usuario" */
+    let pathURL = "http://todaviasirve.azurewebsites.net//Api/Usuario"
+
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    headers.append('enctype', 'multipart/form-data'); 
+    headers.append('enctype', 'multipart/form-data;charset=UTF-16'); 
+    headers.append('Accept-Charset', 'utf-8'); 
     headers.append('Access-Control-Allow-Origin', '*');
     headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
 
-    let data = JSON.stringify({
-      username: this.username,
-      pass: this.pass,
-      nombre: this.nombre,
-      apellido: this.apellido,
-      email: this.email,
-      imagen: this.imagen
-    });
+    var formData = new FormData();
+    formData.append("username", this.username);
+    formData.append("pass", this.pass);
+    formData.append("nombre", this.nombre);
+    formData.append("apellido", this.apellido);
+    formData.append("email", this.email);
+    formData.append("imagen", this.imagen);
 
-    this.http.post("http://localhost:55081/Api/Usuario",
-      data,
-      { headers: { 'Content-Type': 'application/json'  } }
-    )
+    this.http.post( pathURL, formData, { headers: headers } )
       .subscribe(res => { alert("success " + res); },
         (err) => { alert("failed"); }
       );
 
-    console.log(data);
-
-
+    console.log(formData);
 
   } // cierre metodo
+  
 
+  onFileChanged(event) {
+    this.imagen = event.target.files[0];
+  }
 
 
 
