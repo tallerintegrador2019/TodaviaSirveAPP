@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
+import { LoginProvider } from "../../providers/login/login";
+import { HttpErrorResponse, HttpClient, HttpResponse, HttpHeaderResponse } from '@angular/common/http';
+import { TabsPage } from '../tabs/tabs';
 
 
 @IonicPage()
@@ -17,6 +20,8 @@ export class LoginPage implements OnInit {
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
+    public loginProvider: LoginProvider,
+    public toastCtrl: ToastController
   ) {
 
   }
@@ -33,4 +38,34 @@ export class LoginPage implements OnInit {
 
   }
 
-}
+  loguearUsuario() {
+
+    var usuario = this.loginProvider.estaRegistrado(this.userData.email, this.userData.password);
+
+    usuario.subscribe(res => {
+      console.log(res);
+      this.presentToast("BIENVENIDO: " + this.userData.email );
+    },
+      error => {
+        console.error(error);
+        this.presentToast("USUARIO INCORRECTO");
+      },
+      () => this.navCtrl.push(TabsPage)
+    );
+
+
+  } // cierre metodo
+
+
+  presentToast(msj: string) {
+    const toast = this.toastCtrl.create({
+      message: msj,
+      duration: 3000,
+    });
+
+    toast.present();
+  }
+
+
+
+} // cierre clase
