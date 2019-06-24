@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -11,6 +11,7 @@ import { RegistrarPage } from "../pages/registrar/registrar";
 import { TabsPage } from '../pages/tabs/tabs';
 import { PerfilPage } from '../pages/perfil/perfil';
 import { LoginPage } from '../pages/login/login';
+import {PublicacionPage} from '../pages/publicacion/publicacion';
 
 @Component({
   templateUrl: 'app.html'
@@ -22,7 +23,8 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen
+    ) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -32,7 +34,8 @@ export class MyApp {
       { title: 'Registrarse', component: RegistrarPage },
       { title: 'Mi Perfil', component: PerfilPage },
       { title: 'Quienes somos', component: AboutPage },
-      { title: 'Login', component: LoginPage }
+      { title: 'Login', component: LoginPage },
+      { title: 'Publicacion', component: PublicacionPage}
       /* { title: 'List', component: ListPage } */
     ];
 

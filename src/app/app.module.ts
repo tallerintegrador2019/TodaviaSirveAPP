@@ -22,6 +22,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 import { File } from '@ionic-native/file/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
 import { LoginPageModule } from '../pages/login/login.module';
+import {PublicacionPageModule} from '../pages/publicacion/publicacion.module';
 import { UsuarioProvider } from '../providers/usuario/usuario';
 import { LoginProvider } from '../providers/login/login';
 
@@ -43,7 +44,8 @@ import { LoginProvider } from '../providers/login/login';
     RegistrarPageModule,
     TabsPageModule,
     PerfilPageModule,
-    LoginPageModule
+    LoginPageModule,
+    PublicacionPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

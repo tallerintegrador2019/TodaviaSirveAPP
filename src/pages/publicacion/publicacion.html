@@ -1,0 +1,69 @@
+<!--
+  Generated template for the PublicacionPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="verdeTodavia">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Publicacion</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h4 class="titulo">Crea tu Publicacion</h4>
+  <hr />
+  <ion-list>
+
+    <form novalidate (ngSubmit)="submitPublicacion()" [formGroup]="sendformpublicacion">
+
+      <ion-item>
+        <ion-label floating>Titulo</ion-label>
+        <ion-input type="text" [(ngModel)]="titulo" formControlName="titulo"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Subtitulo</ion-label>
+        <ion-input type="text" [(ngModel)]="subtitulo" formControlName="subtitulo"></ion-input>
+      </ion-item> 
+
+      <ion-item>
+        <ion-label floating>Descripcion</ion-label>
+        <ion-input type="text" [(ngModel)]="descripcion" formControlName="descripcion"></ion-input>
+      </ion-item>
+
+    
+
+      <ion-item>
+        <ion-label stacked>Portada Publicacion</ion-label>
+        <ion-input type="file" accept="image/*" (change)="onFileChanged($event)"></ion-input>
+      </ion-item>
+
+    </form>
+
+  </ion-list>
+  <h3 class="titulo">Ingresa los pasos</h3>
+  <hr />
+  <ion-list>
+      <ion-item>
+          <ion-label stacked>Imagen 1</ion-label>
+          <ion-input type="file" accept="image/*" (change)="onFileChanged($event)"></ion-input>
+        </ion-item>
+
+    <ion-item>
+      <ion-label floating>Descripcion 1</ion-label>
+      <ion-input type="text" [(ngModel)]="descripcion1" formControlName="descripcion1"></ion-input>
+    </ion-item>   
+
+  </ion-list>
+
+      <br /><br />
+      <!-- <button ion-button full color="verdeTodavia" (click)="submitUsuario()">Quiero Registrarme</button> -->
+      <div style="text-align: center;">
+        <button type="submit" ion-button round color="verdeTodavia">Publicar</button>
+      </div>
+
+</ion-content>
