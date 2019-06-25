@@ -39,18 +39,22 @@ export class PublicacionPage implements OnInit {
       titulo: new FormControl('', [Validators.required,Validators.minLength(4), Validators.maxLength(20)]),
       subtitulo: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]),
       descripcion1: new FormControl('', [Validators.required,Validators.minLength(4), Validators.maxLength(20)]),
-      descripcion2: new FormControl('', [Validators.required,Validators.minLength(4), Validators.maxLength(20)]),
-
+      descripcion2: new FormControl('', [Validators.required,Validators.minLength(4), Validators.maxLength(20)])
     });
   }
 
   onFileChanged(event) {
     this.imagen = event.target.files[0];
   }
-
+  onFileChanged1(event) {
+    this.imagen1 = event.target.files[0];
+  }
+  onFileChanged2(event) {
+    this.imagen2 = event.target.files[0];
+  }
   submitPublicacion() {
-    /* let pathURL = "http://localhost:55081/Api/Usuario" */
-    let pathURL = "http://todaviasirve.azurewebsites.net//Api/Usuario"
+    let pathURL = "http://localhost:55081/Api/Publicacion";
+    // let pathURL = "http://todaviasirve.azurewebsites.net//Api/Usuario"
 
     let headers = new HttpHeaders();
     headers.append('enctype', 'multipart/form-data;'); 

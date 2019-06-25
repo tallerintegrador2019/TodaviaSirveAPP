@@ -20,50 +20,57 @@
 
     <form novalidate (ngSubmit)="submitPublicacion()" [formGroup]="sendformpublicacion">
 
-      <ion-item>
-        <ion-label floating>Titulo</ion-label>
-        <ion-input type="text" [(ngModel)]="titulo" formControlName="titulo"></ion-input>
-      </ion-item>
+          <ion-item>
+            <ion-label floating>Titulo</ion-label>
+            <ion-input type="text" [(ngModel)]="titulo" formControlName="titulo"></ion-input>
+          </ion-item>
 
-      <ion-item>
-        <ion-label floating>Subtitulo</ion-label>
-        <ion-input type="text" [(ngModel)]="subtitulo" formControlName="subtitulo"></ion-input>
-      </ion-item> 
+          <ion-item>
+            <ion-label floating>Subtitulo</ion-label>
+            <ion-input type="text" [(ngModel)]="subtitulo" formControlName="subtitulo"></ion-input>
+          </ion-item> 
 
-      <ion-item>
-        <ion-label floating>Descripcion</ion-label>
-        <ion-input type="text" [(ngModel)]="descripcion" formControlName="descripcion"></ion-input>
-      </ion-item>
+          <ion-item>
+            <ion-label floating>Descripcion</ion-label>
+            <ion-input type="text" [(ngModel)]="descripcion" formControlName="descripcion"></ion-input>
+          </ion-item>        
 
+          <ion-item>
+            <ion-label stacked>Portada Publicacion</ion-label>
+            <ion-input type="file" accept="image/*" (change)="onFileChanged($event)"></ion-input>
+          </ion-item>
+          <br>
+        
+      <h3 class="titulo">Ingresa los pasos</h3>
+      <hr />
+
+        <ion-item>
+              <ion-label stacked>Imagen 1</ion-label>
+              <ion-input type="file" accept="image/*" (change)="onFileChanged1($event)"></ion-input>
+        </ion-item>
+      
+        <ion-item>
+          <ion-label floating>Descripcion 1</ion-label>
+          <ion-input type="text" [(ngModel)]="descripcion1" formControlName="descripcion1"></ion-input>
+        </ion-item>   
+     <br>
+         <ion-item>
+            <ion-label stacked>Imagen 2</ion-label>
+            <ion-input type="file" accept="image/*" (change)="onFileChanged2($event)"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Descripcion 2</ion-label>
+            <ion-input type="text" [(ngModel)]="descripcion2" formControlName="descripcion2"></ion-input>
+          </ion-item>   
+          <br>
     
-
-      <ion-item>
-        <ion-label stacked>Portada Publicacion</ion-label>
-        <ion-input type="file" accept="image/*" (change)="onFileChanged($event)"></ion-input>
-      </ion-item>
-
+          <br /><br />
+          <!-- <button ion-button full color="verdeTodavia" (click)="submitUsuario()">Quiero Registrarme</button> -->
+          <div style="text-align: center;">
+            <button type="submit" ion-button round color="verdeTodavia">Publicar</button>
+          </div>
     </form>
 
   </ion-list>
-  <h3 class="titulo">Ingresa los pasos</h3>
-  <hr />
-  <ion-list>
-      <ion-item>
-          <ion-label stacked>Imagen 1</ion-label>
-          <ion-input type="file" accept="image/*" (change)="onFileChanged($event)"></ion-input>
-        </ion-item>
-
-    <ion-item>
-      <ion-label floating>Descripcion 1</ion-label>
-      <ion-input type="text" [(ngModel)]="descripcion1" formControlName="descripcion1"></ion-input>
-    </ion-item>   
-
-  </ion-list>
-
-      <br /><br />
-      <!-- <button ion-button full color="verdeTodavia" (click)="submitUsuario()">Quiero Registrarme</button> -->
-      <div style="text-align: center;">
-        <button type="submit" ion-button round color="verdeTodavia">Publicar</button>
-      </div>
 
 </ion-content>
