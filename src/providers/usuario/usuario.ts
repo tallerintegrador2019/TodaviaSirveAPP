@@ -7,13 +7,13 @@ import { Usuario } from '../../pages/models/usuario.model';
 @Injectable()
 export class UsuarioProvider {
   
-  private estaElUsuarioLogueado;
-  public usuarioLogueado: Usuario;
+  private estaElUsuarioLogueado;  // para saber si el usuario esta logueado
+  public usuarioLogueado: Usuario;   // el usuario que se logueo
 
   constructor(public http: HttpClient) {
     console.log('Hello UsuarioProvider Provider');
 
-    this.estaElUsuarioLogueado = false;
+    this.estaElUsuarioLogueado = false;  // la aplicacion empieza con ningun usuario logueado
   }
 
   obtenerTodosUsuarios(){
@@ -30,12 +30,15 @@ export class UsuarioProvider {
   }
 
   
+  // seteamos el usuario como logueado, añadiendolo al localStorage
   setearUsuarioLogueado(usuario: Usuario) {
     this.estaElUsuarioLogueado = true;
     this.usuarioLogueado = usuario;
     localStorage.setItem('currentUser', JSON.stringify(usuario));
   }
 
+
+  // obtenemos datos del usuario logueado, en localStorage
   obtenerUsuarioLogueado() {
   	return JSON.parse(localStorage.getItem('currentUser'));
   }

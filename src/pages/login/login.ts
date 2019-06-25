@@ -6,6 +6,8 @@ import { LoginProvider } from "../../providers/login/login";
 import { HttpErrorResponse, HttpClient, HttpResponse, HttpHeaderResponse } from '@angular/common/http';
 import { TabsPage } from '../tabs/tabs';
 
+import { UsuarioProvider } from "../../providers/usuario/usuario";
+import { Usuario } from '../models/usuario.model';
 
 @IonicPage()
 @Component({
@@ -21,7 +23,8 @@ export class LoginPage implements OnInit {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public loginProvider: LoginProvider,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+    public usuarioProvider: UsuarioProvider
   ) {
 
   }
@@ -40,10 +43,13 @@ export class LoginPage implements OnInit {
 
   loguearUsuario() {
 
-    var usuario = this.loginProvider.estaRegistrado(this.userData.email, this.userData.password);
+    var usuario = this.loginProvider.estaRegistrado(this.userData.email, this.userData.password).map(data => <Usuario>data);
 
     usuario.subscribe(res => {
       console.log(res);
+      
+      this.usuarioProvider.setearUsuarioLogueado(res);
+
       this.presentToast("BIENVENIDO: " + this.userData.email );
     },
       error => {
