@@ -53,11 +53,13 @@ export class PublicacionPage implements OnInit {
     this.imagen2 = event.target.files[0];
   }
   submitPublicacion() {
-    let pathURL = "http://localhost:55081/Api/Publicacion";
+    let pathURL = "http://localhost:55081/Api/Publicacion/PostPublicacionAsync";
     // let pathURL = "http://todaviasirve.azurewebsites.net//Api/Usuario"
 
     let headers = new HttpHeaders();
-    headers.append('enctype', 'multipart/form-data;'); 
+    headers.append('Content-Type', 'application/json');
+    headers.append('enctype', 'multipart/form-data;charset=UTF-16'); 
+    headers.append('Accept-Charset', 'utf-8'); 
     headers.append('Access-Control-Allow-Origin', '*');
     headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
 
