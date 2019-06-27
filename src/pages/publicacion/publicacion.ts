@@ -2,6 +2,8 @@ import { Component, OnInit} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Publicacion } from '../models/publicacion.model';
+import { Pasos } from '../models/pasos.model';
 /**
  * Generated class for the PublicacionPage page.
  *
@@ -25,13 +27,16 @@ export class PublicacionPage implements OnInit {
   imagen1;
   imagen2;
   sendformpublicacion: FormGroup;
+  publicacion :  Publicacion = new Publicacion();
+
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient) {
   }
 
   ngOnInit(): void {
-
     // let EMAILPATTERN = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
-
+    this.publicacion.pasos = new Pasos();
+    //this.publicacion.pasos.descripcion ="";
     this.sendformpublicacion = new FormGroup({
       /* nombre: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)]),
       apellido: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)]), */

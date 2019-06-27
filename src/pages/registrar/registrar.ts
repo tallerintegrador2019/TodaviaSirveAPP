@@ -45,7 +45,7 @@ export class RegistrarPage implements OnInit {
 
   submitUsuario() {
     /* let pathURL = "http://localhost:55081/Api/Usuario" */
-    let pathURL = "http://todaviasirve.azurewebsites.net//Api/Usuario"
+    let pathURL = "http://todaviasirve.azurewebsites.net/Api/Usuario"
 
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');

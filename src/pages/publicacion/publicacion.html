@@ -64,6 +64,19 @@
           </ion-item>   
           <br>
     
+          <ion-item>
+            <ion-label stacked>Imagen 2</ion-label>
+            <ion-input type="file" accept="image/*" (change)="onFileChanged2($event)"></ion-input>
+          </ion-item>
+
+          <div *ngIf="publicacion.pasos">
+              <ion-item>
+                  <ion-label floating>Descripcion objeto</ion-label>
+                  <ion-input type="text" [(ngModel)]="publicacion.pasos.descripcion" formControlName="descripcion2"></ion-input>
+                </ion-item> 
+            publicacion {{publicacion.pasos.descripcion}}
+          </div>
+
           <br /><br />
           <!-- <button ion-button full color="verdeTodavia" (click)="submitUsuario()">Quiero Registrarme</button> -->
           <div style="text-align: center;">
