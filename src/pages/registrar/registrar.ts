@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { LoginPage } from '../login/login';
 
 
 @IonicPage()
@@ -69,12 +70,18 @@ export class RegistrarPage implements OnInit {
 
     console.log(formData);
 
+    this.irALogin()
+
   } // cierre metodo
   
 
   onFileChanged(event) {
     this.imagen = event.target.files[0];
   }
+
+  irALogin(){
+    this.navCtrl.push(LoginPage);
+   }
 
 
 

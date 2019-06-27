@@ -12,6 +12,10 @@
 
 <ion-content>
 
+<!--     <div *ngIf="userLog">
+        <p text.center>Hola {{userLog.username}}</p>
+    </div> -->
+  
   <ion-card>
 
     <ion-slides *ngIf="publicaciones" autoplay="4000" loop="true" speed="2000">
@@ -32,14 +36,10 @@
 
   </ion-card>
 
- 
+
 
   <h4 class="titulo">Publicaciones recientes</h4>
   <hr />
-
-  <div *ngIf="userLog">
-    {{userLog.email}}
-  </div>
 
   <ion-list>
     <button ion-item *ngFor="let publicacion of publicaciones" (click)="irADetalle(publicacion)">

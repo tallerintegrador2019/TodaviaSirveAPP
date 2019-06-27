@@ -12,27 +12,32 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { PerfilPage } from '../pages/perfil/perfil';
 import { LoginPage } from '../pages/login/login';
 
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
+
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = TabsPage;
 
   pages: Array<{title: string, component: any, icon: string}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(  public platform: Platform, 
+                public statusBar: StatusBar, 
+                public splashScreen: SplashScreen,
+              ) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: TabsPage, icon: 'home' },
       { title: 'Buscador', component: BuscarPage, icon: 'search' },
-      { title: 'Registrarse', component: RegistrarPage, icon: 'home' },
+      { title: 'Registrarse', component: RegistrarPage, icon: 'key' },
       { title: 'Mi Perfil', component: PerfilPage, icon: 'person' },
-      { title: 'Quienes somos', component: AboutPage, icon: 'home' },
-      { title: 'Login', component: LoginPage, icon: 'home' }
+      { title: 'Quienes somos', component: AboutPage, icon: 'thumbs-up' },
+      { title: 'Login', component: LoginPage, icon: 'log-in' },
       /* { title: 'List', component: ListPage } */
     ];
 
@@ -52,4 +57,10 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
+
+  logout(){
+    localStorage.clear(); //becausae i have information from user
+    this.nav.push(LoginPage);
+  }
+
 }

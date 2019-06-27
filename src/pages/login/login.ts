@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, Menu, MenuController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 import { LoginProvider } from "../../providers/login/login";
@@ -24,7 +24,7 @@ export class LoginPage implements OnInit {
     public navParams: NavParams,
     public loginProvider: LoginProvider,
     public toastCtrl: ToastController,
-    public usuarioProvider: UsuarioProvider
+    public usuarioProvider: UsuarioProvider,
   ) {
 
   }

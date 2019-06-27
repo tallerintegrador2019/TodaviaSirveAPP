@@ -25,13 +25,15 @@ import { LoginPageModule } from '../pages/login/login.module';
 import { UsuarioProvider } from '../providers/usuario/usuario';
 import { LoginProvider } from '../providers/login/login';
 
+import { AvatarUserComponent } from "../components/avatar-user/avatar-user";
 
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    AvatarUserComponent
   ],
   imports: [
     BrowserModule,

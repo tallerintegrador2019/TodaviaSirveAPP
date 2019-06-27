@@ -24,7 +24,7 @@
             <ion-input text-center type="text" placeholder="Email" [(ngModel)]="userData.email" formControlName="email"
               [class.error1]="!signupform.controls.email.valid && signupform.controls.email.dirty"></ion-input>
           </ion-item>
-          <ion-item no-lines
+<!--           <ion-item no-lines
             *ngIf="( signupform.get('email').hasError('minlength') || signupform.get('email').hasError('pattern') ||signupform.get('email').hasError('required') ) && signupform.get('email').touched">
             <div class="error" text-center
               *ngIf="signupform.get('email').hasError('required') && signupform.get('email').touched">
@@ -34,7 +34,7 @@
               *ngIf="signupform.get('email').hasError('pattern') && signupform.get('email').touched">
               Email Incorrecto
             </div>
-          </ion-item>
+          </ion-item> -->
         </ion-col>
       </ion-row>
 
@@ -45,8 +45,7 @@
               formControlName="password"
               [class.error1]="!signupform.controls.password.valid && signupform.controls.password.dirty"></ion-input>
           </ion-item>
-
-          <ion-item no-lines
+<!--           <ion-item no-lines
             *ngIf="( signupform.get('password').hasError('minlength') || signupform.get('password').hasError('maxlength') ||signupform.get('password').hasError('required') ) && signupform.get('password').touched">
             <div class="error" text-center
               *ngIf="signupform.get('password').hasError('required') && signupform.get('password').touched">
@@ -60,7 +59,8 @@
               *ngIf="signupform.get('password').hasError('maxlength') && signupform.get('password').touched">
               Max 12 caract.
             </div>
-          </ion-item>
+          </ion-item> -->
+
         </ion-col>
       </ion-row>
 
