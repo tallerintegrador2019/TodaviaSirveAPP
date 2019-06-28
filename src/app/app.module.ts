@@ -20,12 +20,15 @@ import { YtProvider } from '../providers/yt/yt';
 
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { File } from '@ionic-native/file/ngx';
-import { Camera } from '@ionic-native/camera/ngx';
+import { Camera } from '@ionic-native/camera';
 import { LoginPageModule } from '../pages/login/login.module';
 import { UsuarioProvider } from '../providers/usuario/usuario';
 import { LoginProvider } from '../providers/login/login';
 
 import { AvatarUserComponent } from "../components/avatar-user/avatar-user";
+
+import { ReconocimientoPageModule } from '../pages/reconocimiento/reconocimiento.module';
+import { HttpModule } from "@angular/http";
 
 
 @NgModule({
@@ -45,7 +48,9 @@ import { AvatarUserComponent } from "../components/avatar-user/avatar-user";
     RegistrarPageModule,
     TabsPageModule,
     PerfilPageModule,
-    LoginPageModule
+    LoginPageModule,
+    ReconocimientoPageModule,
+    HttpModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

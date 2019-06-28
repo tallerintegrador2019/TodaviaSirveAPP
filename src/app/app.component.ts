@@ -11,6 +11,7 @@ import { RegistrarPage } from "../pages/registrar/registrar";
 import { TabsPage } from '../pages/tabs/tabs';
 import { PerfilPage } from '../pages/perfil/perfil';
 import { LoginPage } from '../pages/login/login';
+import { ReconocimientoPage } from '../pages/reconocimiento/reconocimiento';
 
 
 @Component({
@@ -38,6 +39,7 @@ export class MyApp {
       { title: 'Mi Perfil', component: PerfilPage, icon: 'person' },
       { title: 'Quienes somos', component: AboutPage, icon: 'thumbs-up' },
       { title: 'Login', component: LoginPage, icon: 'log-in' },
+      { title: 'Reconocimiento', component: ReconocimientoPage, icon: 'search' },
       /* { title: 'List', component: ListPage } */
     ];
 

@@ -1,15 +1,48 @@
-<!--
-  Generated template for the ReconocimientoPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-  <ion-navbar>
-    <ion-title>reconocimiento</ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content padding>
-
-</ion-content>
+    <!-- Color rojo de el navbar -->
+    <ion-navbar color="danger">
+      <ion-title>¿Hog dog o no?</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+    <ion-row margin>
+      <ion-card>
+        <!-- Si la imagen existe, mostramos su vista previa -->
+        <img *ngIf="imagen" [src]="'data:image/png;base64,' + imagen" />
+      </ion-card>
+    </ion-row>
+  
+    <!-- Si existe ya un resultado, mostraremos lo siguiente -->
+    <ion-col *ngIf="resultado">
+  
+      <!-- Si la variable "es" esta en true, mostramos que es un hotdog, de lo contrario pues mostramos que no es hotdog -->
+      <button *ngIf="es" color="secondary" ion-button full>
+        ¡Es un Hotdog!
+      </button>
+  
+      <button *ngIf="!es" color="danger" ion-button full>
+        ¡No es Hotdog!
+      </button>
+  
+      <!-- Si no es hotdog mostramos las etiquetas de lo que posiblemente está en la imagen -->
+      <div *ngIf="!es">
+        <h3>Posiblemente sea</h3>
+  
+        <!-- Recorremos la variable labels -->
+        <ion-chip color="secondary" *ngFor="let label of labels">
+  
+          <!-- Mostramos una por una -->
+          <ion-label>{{ label }}</ion-label>
+  
+        </ion-chip>
+      </div>
+  
+    </ion-col>
+    <!-- Boton flotante que ejecuta la funcion tomarFoto() -->
+    <ion-fab bottom right>
+      <button color="danger" ion-fab (click)="tomarFoto()">
+        <ion-icon name="camera"></ion-icon>
+      </button>
+    </ion-fab>
+  </ion-content>
