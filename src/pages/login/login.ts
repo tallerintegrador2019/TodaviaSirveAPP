@@ -8,6 +8,8 @@ import { TabsPage } from '../tabs/tabs';
 
 import { UsuarioProvider } from "../../providers/usuario/usuario";
 import { Usuario } from '../models/usuario.model';
+import { RegistrarPage } from '../registrar/registrar';
+
 
 @IonicPage()
 @Component({
@@ -25,6 +27,7 @@ export class LoginPage implements OnInit {
     public loginProvider: LoginProvider,
     public toastCtrl: ToastController,
     public usuarioProvider: UsuarioProvider,
+
   ) {
 
   }
@@ -50,7 +53,7 @@ export class LoginPage implements OnInit {
       
       this.usuarioProvider.setearUsuarioLogueado(res);
 
-      this.presentToast("BIENVENIDO: " + this.userData.email );
+      this.presentToast("BIENVENIDO: "+ res.nombre + " " + res.apellido );
     },
       error => {
         console.error(error);
@@ -71,6 +74,10 @@ export class LoginPage implements OnInit {
 
     toast.present();
   }
+
+  irARegistrar(){
+    this.navCtrl.push(RegistrarPage);
+   }
 
 
 

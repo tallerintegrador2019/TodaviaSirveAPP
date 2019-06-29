@@ -20,7 +20,9 @@ export class MyApp {
 
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = TabsPage;
+  usuario = localStorage.getItem('currentUser');
+
+  rootPage: any;
 
   pages: Array<{title: string, component: any, icon: string}>;
 
@@ -30,14 +32,21 @@ export class MyApp {
               ) {
     this.initializeApp();
 
+    // si hay usuario va al Home sino va al Login
+    if (this.usuario) {
+      this.rootPage = HomePage;
+    } else{
+      this.rootPage = LoginPage;
+    }
+
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: TabsPage, icon: 'home' },
       { title: 'Buscador', component: BuscarPage, icon: 'search' },
-      { title: 'Registrarse', component: RegistrarPage, icon: 'key' },
+ /*      { title: 'Registrarse', component: RegistrarPage, icon: 'key' }, */
       { title: 'Mi Perfil', component: PerfilPage, icon: 'person' },
       { title: 'Quienes somos', component: AboutPage, icon: 'thumbs-up' },
-      { title: 'Login', component: LoginPage, icon: 'log-in' },
+  /*     { title: 'Login', component: LoginPage, icon: 'log-in' }, */
       /* { title: 'List', component: ListPage } */
     ];
 

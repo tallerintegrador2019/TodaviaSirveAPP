@@ -18,9 +18,9 @@ import { PublicacionProvider } from '../providers/publicacion/publicacion';
 import { HttpClientModule, HttpHeaderResponse } from "@angular/common/http";
 import { YtProvider } from '../providers/yt/yt';
 
-import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
+/* import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { File } from '@ionic-native/file/ngx';
-import { Camera } from '@ionic-native/camera/ngx';
+import { Camera } from '@ionic-native/camera/ngx'; */
 import { LoginPageModule } from '../pages/login/login.module';
 import { UsuarioProvider } from '../providers/usuario/usuario';
 import { LoginProvider } from '../providers/login/login';
@@ -59,10 +59,10 @@ import { AvatarUserComponent } from "../components/avatar-user/avatar-user";
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PublicacionProvider,
     YtProvider,
-    FileTransfer,
+/*     FileTransfer,
     FileTransferObject,
     File,
-    Camera,
+    Camera, */
     UsuarioProvider,
     LoginProvider
   ]

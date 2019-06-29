@@ -11,6 +11,7 @@ import { Events } from 'ionic-angular';
 export class AvatarUserComponent {
 
   usuarioLog: Usuario = null;
+  imagesURL: string = "https://todaviasirve.azurewebsites.net/Content/Images/";
 
   constructor(
     public usuarioProvider : UsuarioProvider,

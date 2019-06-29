@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
   <ion-navbar color="verdeTodavia">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -6,7 +6,7 @@
     <ion-title>login</ion-title>
   </ion-navbar>
 </ion-header>
-
+ -->
 <ion-content class="colorDeFondo">
 
   <ion-grid>
@@ -24,17 +24,6 @@
             <ion-input text-center type="text" placeholder="Email" [(ngModel)]="userData.email" formControlName="email"
               [class.error1]="!signupform.controls.email.valid && signupform.controls.email.dirty"></ion-input>
           </ion-item>
-<!--           <ion-item no-lines
-            *ngIf="( signupform.get('email').hasError('minlength') || signupform.get('email').hasError('pattern') ||signupform.get('email').hasError('required') ) && signupform.get('email').touched">
-            <div class="error" text-center
-              *ngIf="signupform.get('email').hasError('required') && signupform.get('email').touched">
-              Ingrese su Email
-            </div>
-            <div class="error" text-center
-              *ngIf="signupform.get('email').hasError('pattern') && signupform.get('email').touched">
-              Email Incorrecto
-            </div>
-          </ion-item> -->
         </ion-col>
       </ion-row>
 
@@ -45,22 +34,6 @@
               formControlName="password"
               [class.error1]="!signupform.controls.password.valid && signupform.controls.password.dirty"></ion-input>
           </ion-item>
-<!--           <ion-item no-lines
-            *ngIf="( signupform.get('password').hasError('minlength') || signupform.get('password').hasError('maxlength') ||signupform.get('password').hasError('required') ) && signupform.get('password').touched">
-            <div class="error" text-center
-              *ngIf="signupform.get('password').hasError('required') && signupform.get('password').touched">
-              Introduzca su contraseña
-            </div>
-            <div class="error" text-center
-              *ngIf="signupform.get('password').hasError('minlength') && signupform.get('password').touched">
-              Min 6 carac.
-            </div>
-            <div class="error" text-center
-              *ngIf="signupform.get('password').hasError('maxlength') && signupform.get('password').touched">
-              Max 12 caract.
-            </div>
-          </ion-item> -->
-
         </ion-col>
       </ion-row>
 
@@ -74,6 +47,18 @@
       </ion-row>
 
     </form>
+
+    <ion-row>
+      <ion-col col-12>
+        <div style="text-align: center;">
+          <p class="textoBlanco">
+            ¿No tienes una cuenta? <a (click)="irARegistrar()">Registrate</a>
+          </p>
+        </div>
+      </ion-col>
+    </ion-row>
+
+
   </ion-grid>
 
 
@@ -85,13 +70,5 @@
 
 
 <style type="text/css">
-  .error {
-    color: rgb(223, 62, 62);
-    font-size: 11px;
-  }
 
-  .error1 {
-    color: rgb(75, 75, 75);
-    border-bottom: 1px solid #ff0000;
-  }
 </style>
