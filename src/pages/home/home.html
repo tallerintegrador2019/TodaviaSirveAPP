@@ -1,21 +1,29 @@
 <ion-header>
   <ion-navbar color="verdeTodavia">
+
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
+    <ion-item no-lines style="background: none; color: white;">
+      <ion-title class="todaviasirve">
+        <img class="isoLogo" src="../../assets/imgs/isologo.png">
+      </ion-title>
+      <ion-avatar item-end>
+        <img src="{{prefixURL}}{{userLog.imagen}}">
+      </ion-avatar>
+    </ion-item>
 
-    <ion-title class="todaviasirve">
-      <img class="isoLogo" src="../../assets/imgs/isologo.png">
-    </ion-title>
   </ion-navbar>
 </ion-header>
 
+
+
 <ion-content>
 
-<!--     <div *ngIf="userLog">
+  <!--     <div *ngIf="userLog">
         <p text.center>Hola {{userLog.username}}</p>
     </div> -->
-  
+
   <ion-card>
 
     <ion-slides *ngIf="publicaciones" autoplay="4000" loop="true" speed="2000">

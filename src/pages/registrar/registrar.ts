@@ -46,12 +46,12 @@ export class RegistrarPage implements OnInit {
 
   submitUsuario() {
     /* let pathURL = "http://localhost:55081/Api/Usuario" */
-    let pathURL = "http://todaviasirve.azurewebsites.net//Api/Usuario"
+    let pathURL = "http://todaviasirve.azurewebsites.net/Api/Usuario"
 
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     headers.append('enctype', 'multipart/form-data;charset=UTF-16'); 
-    headers.append('Accept-Charset', 'utf-8'); 
+    headers.append('Accept-Charset', 'utf-8');
     headers.append('Access-Control-Allow-Origin', '*');
     headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
 

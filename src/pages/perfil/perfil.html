@@ -11,9 +11,9 @@
 
   <ion-list>
     <ion-item>
-      <ion-avatar class="avatar">
-        <img src="https://todaviasirve.azurewebsites.net/Content/Images/{{userlog.imagen}}">
-      </ion-avatar>
+        <ion-avatar class="avatar">
+          <img src="http://todaviasirve.azurewebsites.net/Content/Images/{{userlog.imagen}}">
+        </ion-avatar>
       <h1 class="usernamePerfil">{{userlog.username}}</h1>
       <p class="nombrePerfil">{{userlog.nombre}}</p>
       <h2 class="nombrePerfil">{{userlog.apellido}}</h2>
@@ -26,6 +26,8 @@
         <ion-icon name="star-half"></ion-icon>
         <p>Muy Colaborativo</p>
       </ion-item>
+
+      <a (click)="irAEditarUsuario()">Editar Cuenta</a>
       
 
     </ion-item>
