@@ -1,48 +1,97 @@
-<ion-header>
+ <ion-header> 
     <!-- Color rojo de el navbar -->
-    <ion-navbar color="danger">
+   <ion-navbar color="danger">
       <ion-title>¿Hog dog o no?</ion-title>
     </ion-navbar>
   </ion-header>
   
-  <ion-content padding>
+
+<!-- 
+<ion-content padding>
+  <ion-row>
+
+    <ion-col col-12 text-center>
+
+      <button ion-button icon-start (tap)="captureAndUpload()">
+        <ion-icon name="camera"></ion-icon>
+        Activate Cloud Vision
+      </button>
+
+    </ion-col>
+
+    <ion-col col-12>
+        <img width="100%" height="auto" [src]="image">
+    </ion-col>
+
+    <ion-col *ngIf="result$ | async as result">
+
+      <h3>Hotdog?</h3>
+
+      <button *ngIf="result.hotdog"
+                color="secondary"ion-button full>
+
+        Hotdog!!!
+      </button>
+
+      <button *ngIf="!result.hotdog"
+                color="danger"ion-button full>
+      
+        Not Hotdog :)
+      </button>
+
+      <h3>Labels</h3>
+
+      <ion-chip color="secondary"
+              *ngFor="let label of result.labels">
+              
+              <ion-label>{{ label }}</ion-label>
+            
+      </ion-chip>
+        
+    </ion-col>
+  </ion-row>
+
+</ion-content> -->
+
+
+   <ion-content padding>
     <ion-row margin>
-      <ion-card>
+      <ion-card>  
         <!-- Si la imagen existe, mostramos su vista previa -->
-        <img *ngIf="imagen" [src]="'data:image/png;base64,' + imagen" />
+          <img *ngIf="imagen" [src]="'data:image/png;base64,' + imagen" />
       </ion-card>
-    </ion-row>
+    </ion-row>  
   
     <!-- Si existe ya un resultado, mostraremos lo siguiente -->
-    <ion-col *ngIf="resultado">
+     <ion-col *ngIf="resultado"> 
   
       <!-- Si la variable "es" esta en true, mostramos que es un hotdog, de lo contrario pues mostramos que no es hotdog -->
-      <button *ngIf="es" color="secondary" ion-button full>
+       <button *ngIf="es" color="secondary" ion-button full>
         ¡Es un Hotdog!
       </button>
   
       <button *ngIf="!es" color="danger" ion-button full>
         ¡No es Hotdog!
-      </button>
+      </button> 
   
       <!-- Si no es hotdog mostramos las etiquetas de lo que posiblemente está en la imagen -->
-      <div *ngIf="!es">
+       <div *ngIf="!es">
         <h3>Posiblemente sea</h3>
-  
+   
         <!-- Recorremos la variable labels -->
-        <ion-chip color="secondary" *ngFor="let label of labels">
+         <ion-chip color="secondary" *ngFor="let label of labels"> 
   
           <!-- Mostramos una por una -->
-          <ion-label>{{ label }}</ion-label>
+           <ion-label>{{ label }}</ion-label>
   
         </ion-chip>
       </div>
   
-    </ion-col>
+    </ion-col> 
     <!-- Boton flotante que ejecuta la funcion tomarFoto() -->
-    <ion-fab bottom right>
+      <ion-fab bottom right>
       <button color="danger" ion-fab (click)="tomarFoto()">
         <ion-icon name="camera"></ion-icon>
       </button>
     </ion-fab>
-  </ion-content>
+  </ion-content>  

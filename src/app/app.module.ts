@@ -29,6 +29,12 @@ import { AvatarUserComponent } from "../components/avatar-user/avatar-user";
 
 import { ReconocimientoPageModule } from '../pages/reconocimiento/reconocimiento.module';
 import { HttpModule } from "@angular/http";
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireStorageModule } from 'angularfire2/storage';
+import { environment } from "../environment";
+
+
 
 
 @NgModule({
@@ -51,6 +57,9 @@ import { HttpModule } from "@angular/http";
     LoginPageModule,
     ReconocimientoPageModule,
     HttpModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireStorageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
