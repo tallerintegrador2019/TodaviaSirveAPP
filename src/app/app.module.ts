@@ -28,6 +28,7 @@ import { UsuarioProvider } from '../providers/usuario/usuario';
 import { LoginProvider } from '../providers/login/login';
 
 import { AvatarUserComponent } from "../components/avatar-user/avatar-user";
+import { PasosPageModule } from '../pages/pasos/pasos.module';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { AvatarUserComponent } from "../components/avatar-user/avatar-user";
     PerfilPageModule,
     LoginPageModule,
     EditarusuarioPageModule,
-    PublicarPageModule
+    PublicarPageModule,
+    PasosPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -9,7 +9,7 @@
 
 <ion-content padding>
 
-  <h4>Subi tu publicacion</h4>
+  <h4>Subi tu publicacion Paso 1</h4>
   <hr />
 
   <ion-list>
@@ -40,6 +40,8 @@
         <ion-label stacked>Imagen Portada</ion-label>
         <ion-input type="file" accept="image/*" (change)="cargaArchivo($event)"></ion-input>
       </ion-item>
+
+      <img *ngIf="img" [src]="img"/>
 
       <br /><br />
       <div style="text-align: center;">
