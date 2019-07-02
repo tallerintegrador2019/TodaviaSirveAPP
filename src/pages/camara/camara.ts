@@ -32,7 +32,7 @@ export class CamaraPage {
     console.log('ionViewDidLoad CamaraPage');
   }
 
-  /*     
+/*       
     // DESDE LA CAMARA DEL CELULAR ----------------
     getPicture() {
     

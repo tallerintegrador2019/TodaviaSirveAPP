@@ -34,8 +34,6 @@ import { ReconoProvider } from '../providers/recono/recono';
 import { Camera } from '@ionic-native/camera';
 import { CamaraPageModule } from '../pages/camara/camara.module';
 
-import { IonicImageViewerModule } from 'ionic-img-viewer';
-
 
 @NgModule({
   declarations: [
@@ -59,7 +57,6 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
     PublicarPageModule,
     PasosPageModule,
     CamaraPageModule,
-    IonicImageViewerModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
