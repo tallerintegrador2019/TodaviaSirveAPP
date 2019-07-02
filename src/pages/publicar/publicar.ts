@@ -37,7 +37,6 @@ export class PublicarPage {
       .map(res => JSON.stringify(res))
       .subscribe(
         res => { 
-          this.id = res; // no lo guarda LPM
           console.log("resultado de res: ", res) ;
       })
       console.log("resultado de id: ", this.id)

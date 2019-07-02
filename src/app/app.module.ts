@@ -29,6 +29,11 @@ import { LoginProvider } from '../providers/login/login';
 
 import { AvatarUserComponent } from "../components/avatar-user/avatar-user";
 import { PasosPageModule } from '../pages/pasos/pasos.module';
+import { ReconoProvider } from '../providers/recono/recono';
+import { ReconocimientoPageModule } from '../pages/reconocimiento/reconocimiento.module';
+
+import { Camera } from '@ionic-native/camera';
+import { CamaraPageModule } from '../pages/camara/camara.module';
 
 
 @NgModule({
@@ -51,7 +56,9 @@ import { PasosPageModule } from '../pages/pasos/pasos.module';
     LoginPageModule,
     EditarusuarioPageModule,
     PublicarPageModule,
-    PasosPageModule
+    PasosPageModule,
+    ReconocimientoPageModule,
+    CamaraPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -66,7 +73,9 @@ import { PasosPageModule } from '../pages/pasos/pasos.module';
     PublicacionProvider,
     YtProvider,
     UsuarioProvider,
-    LoginProvider
+    LoginProvider,
+    ReconoProvider,
+    Camera
   ]
 })
 export class AppModule {}
