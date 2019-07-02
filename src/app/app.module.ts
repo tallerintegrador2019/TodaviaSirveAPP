@@ -30,10 +30,11 @@ import { LoginProvider } from '../providers/login/login';
 import { AvatarUserComponent } from "../components/avatar-user/avatar-user";
 import { PasosPageModule } from '../pages/pasos/pasos.module';
 import { ReconoProvider } from '../providers/recono/recono';
-import { ReconocimientoPageModule } from '../pages/reconocimiento/reconocimiento.module';
 
 import { Camera } from '@ionic-native/camera';
 import { CamaraPageModule } from '../pages/camara/camara.module';
+
+import { IonicImageViewerModule } from 'ionic-img-viewer';
 
 
 @NgModule({
@@ -57,8 +58,8 @@ import { CamaraPageModule } from '../pages/camara/camara.module';
     EditarusuarioPageModule,
     PublicarPageModule,
     PasosPageModule,
-    ReconocimientoPageModule,
-    CamaraPageModule
+    CamaraPageModule,
+    IonicImageViewerModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

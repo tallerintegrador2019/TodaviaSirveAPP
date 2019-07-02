@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { YtProvider } from "../../providers/yt/yt";
 
+import { ImageViewerController } from 'ionic-img-viewer';
+
 @IonicPage()
 @Component({
   selector: 'page-detalle',
@@ -15,7 +17,16 @@ export class DetallePage {
 
   videosEncontrados: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public ytProvider: YtProvider) {
+  _imageViewerCtrl: ImageViewerController
+
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public ytProvider: YtProvider,
+    imageViewerCtrl: ImageViewerController
+  ) {
+
+    this._imageViewerCtrl = imageViewerCtrl;
+
     this.publicacion = navParams.get("publi");
 
     this.ytProvider.obtenerVideos(this.publicacion.titulo).subscribe(res => this.videosEncontrados = res['items']);
@@ -26,5 +37,15 @@ export class DetallePage {
   ionViewDidLoad() {
 
   }
+
+  presentImage(myImage) {
+    const imageViewer = this._imageViewerCtrl.create(myImage);
+    imageViewer.present();
+
+    setTimeout(() => imageViewer.dismiss(), 1000);
+    imageViewer.onDidDismiss(() => alert('Viewer dismissed'));
+  }
+
+
 
 } // cierre DetallePage
