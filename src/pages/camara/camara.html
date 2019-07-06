@@ -10,7 +10,7 @@
 <ion-content padding>
 
 
-  <!--   <button ion-button block (click)="getPicture()">Toma una foto</button> -->
+    <button ion-button block (click)="getPictureCam()">Toma una foto</button>
 
   <ion-item no-lines>
     <ion-label stacked>Imagen</ion-label>
@@ -18,7 +18,7 @@
   </ion-item>
 
   <ion-card>
-    <img class="imgClass" *ngIf="image" [src]="image" />
+    <img class="imgClass" *ngIf="image" [src]="image" id="ImagenPrevia"/>
   </ion-card>
 
   <ion-card>
