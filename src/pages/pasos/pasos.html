@@ -3,21 +3,18 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Paso 2</ion-title>
+    <ion-title>Pasos a seguir</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 
-  <h4>Indica cuales son los pasos</h4>
-  <hr />
-
   <ion-list>
     <form novalidate (ngSubmit)="submitPaso()">
 
       <ion-item>
-        <ion-label>Titulo Publicacion: </ion-label>
-        <ion-input type="text" value="{{publi.titulo}}"></ion-input>
+        <ion-label>id Publicacion: </ion-label>
+        <ion-input type="text" value="{{idPublicacion}}"></ion-input>
       </ion-item>
 
       <ion-item>

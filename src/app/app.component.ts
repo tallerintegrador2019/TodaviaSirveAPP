@@ -36,7 +36,7 @@ export class MyApp {
 
     // si hay usuario va al Home sino va al Login
     if (this.usuario) {
-      this.rootPage = HomePage;
+      this.rootPage = TabsPage;
     } else{
       this.rootPage = LoginPage;
     }

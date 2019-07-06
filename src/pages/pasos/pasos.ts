@@ -13,14 +13,14 @@ export class PasosPage {
 
   img
   paso: Paso = <Paso>{};
-
-  publi// id traido de publicacion
+  idPublicacion// id traido de publicacion
+  pasoNro: number;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public publicacionProvider: PublicacionProvider
     ) {
-      this.publi = navParams.get("Publi");
+      this.idPublicacion = navParams.get("idPubli");
   }
 
   ionViewDidLoad() {
@@ -29,12 +29,8 @@ export class PasosPage {
 
 
   submitPaso() {
-    console.log(this.paso);
-    console.log(this.publi)
-    this.navCtrl.push(PasosPage,{ "Publi": this.publi } )
-
-  /*   this.publicacionProvider.subirPaso(this.paso); */
-
+    this.publicacionProvider.subirPaso(this.paso, this.idPublicacion);
+    this.navCtrl.push(PasosPage,{ "idPubli": this.idPublicacion } )
   }
 
     cargaArchivo(event) {

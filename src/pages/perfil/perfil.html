@@ -12,11 +12,12 @@
   <ion-list>
     <ion-item>
         <ion-avatar class="avatar">
-          <img src="http://todaviasirve.azurewebsites.net/Content/Images/{{userlog.imagen}}">
+          <img src="http://todaviasirve.azurewebsites.net/Content/Images/{{usuarioLogueado.imagen}}">
+       <!--    <img *ngIf= src="../../assets/imgs/defaultUser.jpg" alt=""> -->
         </ion-avatar>
-      <h1 class="usernamePerfil">{{userlog.username}}</h1>
-      <p class="nombrePerfil">{{userlog.nombre}}</p>
-      <h2 class="nombrePerfil">{{userlog.apellido}}</h2>
+      <h1 class="usernamePerfil">{{usuarioLogueado.username}}</h1>
+      <p class="nombrePerfil">{{usuarioLogueado.nombre}}</p>
+      <h2 class="nombrePerfil">{{usuarioLogueado.apellido}}</h2>
 
       <ion-item style="text-align: center;">
         <ion-icon name="star"></ion-icon>

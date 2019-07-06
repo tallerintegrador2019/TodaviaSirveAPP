@@ -68,7 +68,7 @@ export class UsuarioProvider {
     
 
     this.http.put( pathURL, formData , { headers: headers } )
-      .subscribe(res => { alert("success " + res); },
+      .subscribe(res => { },
         (err) => { alert("failed"); }
       );
 

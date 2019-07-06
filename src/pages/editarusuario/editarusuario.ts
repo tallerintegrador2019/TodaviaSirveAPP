@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { Usuario } from '../models/usuario.model';
 import { PerfilPage } from '../perfil/perfil';
-import { HomePage } from '../home/home';
+import { TabsPage } from '../tabs/tabs';
 
 
 @IonicPage()
@@ -17,14 +17,15 @@ export class EditarusuarioPage implements OnInit {
 
   usuario: Usuario;
   signupform: FormGroup;
+  img
 
-  constructor(  public navCtrl: NavController, 
-                public navParams: NavParams,
-                public http: HttpClient,
-                public usuarioProvider: UsuarioProvider
-              ) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public http: HttpClient,
+    public usuarioProvider: UsuarioProvider
+  ) {
 
-                this.usuario = this.usuarioProvider.obtenerUsuarioLogueado();         
+    this.usuario = this.usuarioProvider.obtenerUsuarioLogueado();
   }
 
   ionViewDidLoad() {
@@ -45,9 +46,11 @@ export class EditarusuarioPage implements OnInit {
   }
 
 
-  editarUsuario(){
+  editarUsuario() {
     this.usuarioProvider.editarUsuario(this.usuario.id, this.usuario)
-    this.navCtrl.setRoot(HomePage);
+    /* localStorage.setItem('currentUser', JSON.stringify(this.usuario)); */
+    this.usuarioProvider.setearUsuarioLogueado(this.usuario);
+    this.navCtrl.setRoot(PerfilPage);
     console.log(this.usuario);
 
   } // cierre editarUsuario()
@@ -55,6 +58,13 @@ export class EditarusuarioPage implements OnInit {
 
   onFileChanged(event) {
     this.usuario.imagen = event.target.files[0];
+    let reader = new FileReader();
+    reader.onload = (event: any) => {
+      this.img = event.target.result;
+    }
+    reader.readAsDataURL(event.target.files[0]);
   }
+
+
 
 } // cierre clase

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormGroup, FormControl } from '@angular/forms';
 import { HttpClient, HttpResponse } from '@angular/common/http';
@@ -16,8 +16,8 @@ export class PublicarPage {
 
   img
   publicacion: Publicacion = <Publicacion>{};
-
-  id:string =""
+  publi
+  fechaHoy: String = new Date().toISOString();
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -31,26 +31,41 @@ export class PublicarPage {
     console.log('ionViewDidLoad PublicarPage');
   }
 
+  /*   submitPublicacion() {
+      console.log(this.publicacion);
+      this.publicacion.fechaSubida = this.fechaHoy;
+      this.publicacionProvider.subirPublicacion(this.publicacion)
+        .subscribe(
+          res => {
+            console.log("resultado de res: ", this.publi = res);
+          });
+  
+          console.log(this.publi)
+  
+      this.navCtrl.push(PasosPage, { "Publi": this.publicacion });
+    } */
+
   submitPublicacion() {
     console.log(this.publicacion);
+    this.publicacion.fechaSubida = this.fechaHoy;
     this.publicacionProvider.subirPublicacion(this.publicacion)
-      .map(res => JSON.stringify(res))
-      .subscribe(
-        res => { 
-          console.log("resultado de res: ", res) ;
+      .subscribe(res => {
+        localStorage.setItem("idP", res["id"]+1);
       })
-      console.log("resultado de id: ", this.id)
 
-/*     this.navCtrl.push(PasosPage, {"Publi": this.publicacion}); */
+      this.navCtrl.push(PasosPage, { "idPubli": localStorage.getItem("idP") });
+
   }
 
-    cargaArchivo(event) {
-      this.publicacion.imagenPortada = event.target.files[0];
-      let reader = new FileReader();
-      reader.onload = (event:any) => {
-         this.img = event.target.result;
-      }
-      reader.readAsDataURL(event.target.files[0]);
+
+
+  cargaArchivo(event) {
+    this.publicacion.imagenPortada = event.target.files[0];
+    let reader = new FileReader();
+    reader.onload = (event: any) => {
+      this.img = event.target.result;
     }
+    reader.readAsDataURL(event.target.files[0]);
+  }
 
 } // cierre clase

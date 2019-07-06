@@ -131,7 +131,8 @@
       </ion-item>
 
       <ion-avatar class="avatar">
-        <img src="http://todaviasirve.azurewebsites.net/Content/Images/{{usuario.imagen}}">
+        <img *ngIf="img" [src]="img"/>
+        <img *ngIf="!img" src="http://todaviasirve.azurewebsites.net/Content/Images/{{usuario.imagen}}">
       </ion-avatar>
 
       <ion-item>
@@ -151,13 +152,5 @@
 </ion-content>
 
 <style type="text/css">
-  .error {
-    color: rgb(223, 62, 62);
-    font-size: 11px;
-  }
-
-  .error1 {
-    color: rgb(75, 75, 75);
-    border-bottom: 1px solid #ff0000;
-  }
+ 
 </style>

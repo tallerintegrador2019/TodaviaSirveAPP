@@ -27,15 +27,17 @@ export class PublicacionProvider {
     return this.http.get("https://todaviasirve.azurewebsites.net/api/Publicacion/Buscar/" + titulo)
   }
 
+
+  // SUBIR PUBLICACION
   subirPublicacion(publi: Publicacion) {
-    let pathURL = "http://localhost:55081/Api/Publicacion/";
+    /* let pathURL = "http://localhost:55081/Api/Publicacion/"; */
+    let pathURL = "http://todaviasirve.azurewebsites.net/Api/Publicacion/";
 
     const headers = new HttpHeaders()
-      /* .set('Content-Type', 'application/json;charset=UTF-8') */
       .set('enctype', 'multipart/form-data;charset=UTF-8')
-      .set('Accept-Charset', 'utf-8')
       .set('Access-Control-Allow-Origin', '*')
       .set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT')
+      /* .set('Accept-Charset', 'utf-8') */
 
     var formData = new FormData();
     formData.append("titulo", publi.titulo);
@@ -49,17 +51,17 @@ export class PublicacionProvider {
         (err) => { alert("failed"); }
       ); */
 
-    return this.http.post(pathURL, formData,  { headers: headers })
+    return this.http.post(pathURL, formData, { headers: headers });
   }
 
 
-  subirPaso(paso: Paso) {
-    let pathURL = "http://localhost:55081/Api/Paso/";
+  // SUBIR PASOS
+  subirPaso(paso: Paso, idPublicacion) {
+    /* let pathURL = "http://localhost:55081/Api/Paso/"; */
+    let pathURL = "http://todaviasirve.azurewebsites.net/Api/Paso/";
 
     const headers = new HttpHeaders()
-      /* .set('Content-Type', 'application/json;charset=UTF-8') */
       .set('enctype', 'multipart/form-data;charset=UTF-8')
-      .set('Accept-Charset', 'utf-8')
       .set('Access-Control-Allow-Origin', '*')
       .set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT')
 
@@ -67,13 +69,13 @@ export class PublicacionProvider {
     formData.append("numero", paso.numero);
     formData.append("descripcion", paso.descripcion);
     formData.append("imagen", paso.imagen);
+    formData.append("idPublicacion", idPublicacion);
 
     this.http.post(pathURL, formData, { headers: headers })
       .subscribe(res => { alert("success " + res); },
         (err) => { alert("failed"); }
       );
 
-    console.log(paso);
   }
 
 
