@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar color="verdeTodavia">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Detectar Objeto</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+
+  <!--   <button ion-button block (click)="getPicture()">Toma una foto</button> -->
+
+  <ion-item no-lines>
+    <ion-label stacked>Imagen</ion-label>
+    <ion-input type="file" accept="image/*" (change)="getPicture($event)"></ion-input>
+  </ion-item>
+
+  <ion-card>
+    <img class="imgClass" *ngIf="image" [src]="image" />
+  </ion-card>
+
+  <ion-card>
+    <ion-list class="listClass">
+      <button ion-item *ngFor="let item of encontrado">
+        <a>{{item.name}}</a>
+      </button>
+    </ion-list>
+  </ion-card>
+
+  <!--   <ion-card>
+    <ion-list class="listClass">
+      <button ion-item *ngFor="let item of datos">
+        <a>{{item}}</a>
+      </button>
+    </ion-list>
+  </ion-card> -->
+
+
+
+</ion-content>

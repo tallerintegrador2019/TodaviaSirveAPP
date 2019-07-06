@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, Menu, MenuController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, Menu, MenuController, LoadingController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 import { LoginProvider } from "../../providers/login/login";
@@ -21,18 +21,23 @@ export class LoginPage implements OnInit {
 
   signupform: FormGroup;
   userData = { "email": "", "password": "" };
+  loading: any;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public loginProvider: LoginProvider,
     public toastCtrl: ToastController,
     public usuarioProvider: UsuarioProvider,
-
+    public loadingCtrl: LoadingController
   ) {
 
+    this.loading = this.loadingCtrl.create({ content: " espere por favor..." });
+    this.loading.present();
   }
 
   ngOnInit(): void {
+
+
     let EMAILPATTERN = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
     this.signupform = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.pattern(EMAILPATTERN)]),
@@ -41,22 +46,25 @@ export class LoginPage implements OnInit {
   }
 
   ionViewDidLoad() {
-
+    this.loading.dismiss();
   }
 
   loguearUsuario() {
+
+    this.loading = this.loadingCtrl.create({ content: " espere por favor..." });
+    this.loading.present();
 
     var usuario = this.loginProvider.estaRegistrado(this.userData.email, this.userData.password).map(data => <Usuario>data);
 
     usuario.subscribe(res => {
       console.log(res);
-      
+      this.loading.dismiss();
       this.usuarioProvider.setearUsuarioLogueado(res);
-
-      this.presentToast("BIENVENIDO: "+ res.nombre + " " + res.apellido );
+      this.presentToast("BIENVENIDO: " + res.nombre + " " + res.apellido);
     },
       error => {
         console.error(error);
+        this.loading.dismiss();
         this.presentToast("USUARIO INCORRECTO");
       },
       () => this.navCtrl.push(TabsPage)
@@ -70,14 +78,15 @@ export class LoginPage implements OnInit {
     const toast = this.toastCtrl.create({
       message: msj,
       duration: 3000,
+      position: 'top',      
     });
 
     toast.present();
   }
 
-  irARegistrar(){
+  irARegistrar() {
     this.navCtrl.push(RegistrarPage);
-   }
+  }
 
 
 

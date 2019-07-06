@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 import { PublicacionProvider } from "../../providers/publicacion/publicacion";
 import { DetallePage } from '../detalle/detalle';
 
@@ -16,19 +16,24 @@ export class HomePage {
   prefixURL: string = "https://todaviasirve.azurewebsites.net/Content/Images/" ;
 
   userLog: Usuario;
+  loading: any;
   
   constructor(  public navCtrl: NavController, 
                 public publicacion: PublicacionProvider,
-                public usuarioProvider: UsuarioProvider
+                public usuarioProvider: UsuarioProvider,
+                public loadingCtrl: LoadingController
               ) {
       this.userLog = this.usuarioProvider.obtenerUsuarioLogueado()
   }
 
   ionViewDidLoad(){
+    this.loading = this.loadingCtrl.create({ content: " espere por favor..."});
+    this.loading.present();
+
     this.publicacion.obtenerTodasPublicaciones()
       .subscribe(
-        (data) => { this.publicaciones = data; },
-        (error) => { console.log(error); }
+        (data) => { this.loading.dismiss(); this.publicaciones = data; },
+        (error) => { this.loading.dismiss(); console.log(error); }
       )
   }
 

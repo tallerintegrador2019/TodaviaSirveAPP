@@ -3,14 +3,11 @@
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
-      <ion-title>Publicar</ion-title>
+      <ion-title>Subi tu idea</ion-title>
     </ion-navbar>
   </ion-header>
 
 <ion-content padding>
-
-  <h4>Subi tu publicacion</h4>
-  <hr />
 
   <ion-list>
     <form novalidate (ngSubmit)="submitPublicacion()">
@@ -25,15 +22,16 @@
         <ion-input type="text" [(ngModel)]="publicacion.subtitulo"  [ngModelOptions]="{standalone: true}"></ion-input>
       </ion-item>
 
-      <ion-item>
+ <!--      <ion-item>
         <ion-label floating>Descripcion</ion-label>
         <ion-input type="text" [(ngModel)]="publicacion.descripcion" [ngModelOptions]="{standalone: true}"></ion-input>
-      </ion-item>
+      </ion-item> -->
 
-      <ion-item>
-        <ion-label floating>Fecha de subida</ion-label>
-        <ion-input type="text" [(ngModel)]="publicacion.fechaSubida" [ngModelOptions]="{standalone: true}"></ion-input>
-      </ion-item>
+ <!--      <ion-item>
+        <ion-label floating>Fecha de subida</ion-label> -->
+        <!-- <ion-input type="text" [(ngModel)]="publicacion.fechaSubida" [ngModelOptions]="{standalone: true}"></ion-input> -->
+<!--         <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="publicacion.fechaSubida" [ngModelOptions]="{standalone: true}"></ion-datetime>
+      </ion-item> -->
 
       <br />
       <ion-item no-lines>
@@ -41,9 +39,11 @@
         <ion-input type="file" accept="image/*" (change)="cargaArchivo($event)"></ion-input>
       </ion-item>
 
+      <img *ngIf="img" [src]="img"/>
+
       <br /><br />
       <div style="text-align: center;">
-        <button type="submit" ion-button round color="verdeTodavia">Subir Publi</button>
+        <button type="submit" ion-button round color="verdeTodavia">Subir Publicacion e ir a pasos</button>
       </div>
 
     </form>

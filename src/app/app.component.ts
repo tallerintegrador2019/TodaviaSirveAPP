@@ -12,6 +12,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { PerfilPage } from '../pages/perfil/perfil';
 import { LoginPage } from '../pages/login/login';
 import { PublicarPage } from '../pages/publicar/publicar';
+import { CamaraPage } from '../pages/camara/camara';
 
 
 @Component({
@@ -44,11 +45,10 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: TabsPage, icon: 'home' },
       { title: 'Buscador', component: BuscarPage, icon: 'search' },
- /*      { title: 'Registrarse', component: RegistrarPage, icon: 'key' }, */
+      { title: 'Publicar', component: PublicarPage, icon: 'cloud-upload' },
+      { title: 'Camara', component: CamaraPage, icon: 'camera' },
       { title: 'Mi Perfil', component: PerfilPage, icon: 'person' },
-      { title: 'Quienes somos', component: AboutPage, icon: 'thumbs-up' },
-      { title: 'Publicar', component: PublicarPage, icon: 'person' },
-  /*     { title: 'Login', component: LoginPage, icon: 'log-in' }, */
+      { title: 'Quienes somos', component: AboutPage, icon: 'contacts' },
       /* { title: 'List', component: ListPage } */
     ];
 

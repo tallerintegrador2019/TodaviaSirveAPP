@@ -12,21 +12,21 @@ import { EditarusuarioPage } from '../editarusuario/editarusuario';
   templateUrl: 'perfil.html',
 })
 export class PerfilPage {
-
-  userlog: Usuario;
+/* 
+  usuarioLogueado: Usuario = JSON.parse(localStorage.getItem('currentUser')); */
+  usuarioLogueado
 
   constructor(  public navCtrl: NavController, 
                 public navParams: NavParams, 
                 public usuarioProvider: UsuarioProvider
               ) {
                 
-    this.userlog = this.usuarioProvider.obtenerUsuarioLogueado();
-    console.log(this.userlog);
+    this.usuarioLogueado = this.usuarioProvider.obtenerUsuarioLogueado();
 
   }
 
   ionViewDidLoad() {
-
+    
   }
 
   irAEditarUsuario(){

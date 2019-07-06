@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 
 
@@ -10,14 +10,21 @@ import { HomePage } from '../home/home';
 })
 export class AboutPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  loading: any;
+
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public loadingCtrl: LoadingController
+  ) {
+    this.loading = this.loadingCtrl.create({ content: " espere por favor..." });
+    this.loading.present();
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AboutPage');
+    this.loading.dismiss();
   }
 
-  popView(){
+  popView() {
     this.navCtrl.pop();
   }
 

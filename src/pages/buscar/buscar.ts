@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PublicacionProvider } from "../../providers/publicacion/publicacion";
 import { DetallePage } from '../detalle/detalle';
-import { NodeData } from '@angular/core/src/view';
 
 
 @IonicPage()
@@ -12,23 +11,26 @@ import { NodeData } from '@angular/core/src/view';
 })
 export class BuscarPage {
 
-  publicaciones: any;
-  prefixURL: string = "https://todaviasirve.azurewebsites.net/Content/Images/" ;
+  publicaciones: any = "";
+  prefixURL: string = "https://todaviasirve.azurewebsites.net/Content/Images/";
   titulo: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public publicacionService: PublicacionProvider) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public publicacionService: PublicacionProvider,
+  ) {
   }
 
   ionViewDidLoad() {
   }
 
-  buscarPublicacion(){
-    this.publicaciones = this.publicacionService.buscarPublicacion(this.titulo)    
+  buscarPublicacion() {
+    this.publicaciones = this.publicacionService.buscarPublicacion(this.titulo);
   }
 
-  irADetalle(publi){
-    this.navCtrl.push(DetallePage, {publi});
-   }
+  irADetalle(publi) {
+    this.navCtrl.push(DetallePage, { publi });
+  }
 
 
 

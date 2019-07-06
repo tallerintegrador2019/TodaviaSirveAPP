@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar color="verdeTodavia">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Pasos a seguir</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+    <form novalidate (ngSubmit)="submitPaso()">
+
+      <ion-item>
+        <ion-label>id Publicacion: </ion-label>
+        <ion-input type="text" value="{{idPublicacion}}"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Paso Numero: </ion-label>
+        <ion-input floating type="text" [(ngModel)]="paso.numero" [ngModelOptions]="{standalone: true}"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Paso Descripcion: </ion-label>
+        <ion-input floating type="text" [(ngModel)]="paso.descripcion" [ngModelOptions]="{standalone: true}"></ion-input>
+      </ion-item>
+
+      <br />
+      <ion-item no-lines>
+        <ion-label stacked>Imagen</ion-label>
+        <ion-input type="file" accept="image/*" (change)="cargaArchivo($event)"></ion-input>
+      </ion-item>
+
+      <img *ngIf="img" [src]="img"/>
+
+      <br /><br />
+      <div style="text-align: center;">
+        <button type="submit" ion-button round color="verdeTodavia">Cargar paso</button>
+      </div>
+
+    </form>
+  </ion-list>
+
+</ion-content>
