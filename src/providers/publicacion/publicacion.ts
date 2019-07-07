@@ -30,14 +30,14 @@ export class PublicacionProvider {
 
   // SUBIR PUBLICACION
   subirPublicacion(publi: Publicacion) {
-    /* let pathURL = "http://localhost:55081/Api/Publicacion/"; */
-    let pathURL = "http://todaviasirve.azurewebsites.net/Api/Publicacion/";
+    let pathURL = "http://localhost:55081/Api/Publicacion/";
+    /* let pathURL = "http://todaviasirve.azurewebsites.net/Api/Publicacion/"; */
 
     const headers = new HttpHeaders()
       .set('enctype', 'multipart/form-data;charset=UTF-8')
       .set('Access-Control-Allow-Origin', '*')
       .set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT')
-      /* .set('Accept-Charset', 'utf-8') */
+      .set('Accept-Charset', 'utf-8')
 
     var formData = new FormData();
     formData.append("titulo", publi.titulo);
@@ -57,13 +57,14 @@ export class PublicacionProvider {
 
   // SUBIR PASOS
   subirPaso(paso: Paso, idPublicacion) {
-    /* let pathURL = "http://localhost:55081/Api/Paso/"; */
-    let pathURL = "http://todaviasirve.azurewebsites.net/Api/Paso/";
+    let pathURL = "http://localhost:55081/Api/Paso/";
+    /* let pathURL = "http://todaviasirve.azurewebsites.net/Api/Paso/"; */
 
     const headers = new HttpHeaders()
       .set('enctype', 'multipart/form-data;charset=UTF-8')
       .set('Access-Control-Allow-Origin', '*')
       .set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT')
+      .set('Accept-Charset', 'utf-8')
 
     var formData = new FormData();
     formData.append("numero", paso.numero);

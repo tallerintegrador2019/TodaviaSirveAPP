@@ -28,7 +28,7 @@ export class PublicarPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PublicarPage');
+
   }
 
   /*   submitPublicacion() {
@@ -46,13 +46,15 @@ export class PublicarPage {
     } */
 
   submitPublicacion() {
-    console.log(this.publicacion);
     this.publicacion.fechaSubida = this.fechaHoy;
     this.publicacionProvider.subirPublicacion(this.publicacion)
-      .subscribe(res => {
-        localStorage.setItem("idP", res["id"]+1);
-      })
-
+    .subscribe(res => {
+      localStorage.setItem("idP", res["id"]+1);
+    })
+    
+      console.log("Objeto Publicacion: ", this.publicacion);
+      console.log("Este es el ID recibido: ", localStorage.getItem("idP"))
+      
       this.navCtrl.push(PasosPage, { "idPubli": localStorage.getItem("idP") });
 
   }

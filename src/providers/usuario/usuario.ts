@@ -52,7 +52,6 @@ export class UsuarioProvider {
     let pathURL = "http://todaviasirve.azurewebsites.net/Api/Usuario/"+id;
 
     const headers = new HttpHeaders()
-      /* .set('Content-Type', 'application/json;charset=UTF-8') */
       .set('enctype', 'multipart/form-data;charset=UTF-8')
       .set('Accept-Charset', 'utf-8')
       .set('Access-Control-Allow-Origin', '*')
