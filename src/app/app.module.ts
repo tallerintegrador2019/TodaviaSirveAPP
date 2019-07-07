@@ -19,6 +19,7 @@ import { PerfilPageModule } from '../pages/perfil/perfil.module';
 import { LoginPageModule } from '../pages/login/login.module';
 import { EditarusuarioPageModule } from '../pages/editarusuario/editarusuario.module';
 import { PublicarPageModule } from '../pages/publicar/publicar.module';
+import {MisPublicacionesPageModule} from '../pages/mis-publicaciones/mis-publicaciones.module';
 
 import { HttpClientModule, HttpHeaderResponse } from "@angular/common/http";
 
@@ -58,6 +59,7 @@ import { PasoProvider } from '../providers/paso/paso';
     PublicarPageModule,
     PasosPageModule,
     CamaraPageModule,
+    MisPublicacionesPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

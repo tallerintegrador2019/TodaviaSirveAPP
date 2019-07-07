@@ -17,6 +17,7 @@ export class PublicacionProvider {
 
   obtenerTodasPublicaciones() {
     return this.http.get("https://todaviasirve.azurewebsites.net/api/Publicacion")
+    //return this.http.get("http://localhost:5508/api/Publicacion")  
   }
 
   obtenerPublicacion(id) {
@@ -25,6 +26,7 @@ export class PublicacionProvider {
 
   buscarPublicacion(titulo: string) {
     return this.http.get("https://todaviasirve.azurewebsites.net/api/Publicacion/Buscar/" + titulo)
+    //return this.http.get("http://localhost:55081/api/Publicacion/Buscar/" + titulo)    
   }
 
 
@@ -79,5 +81,15 @@ export class PublicacionProvider {
 
   }
 
+  //OBTENER LAS PUBLICACIONES DE UN USUARIO
+  obtenerPublicacionesUsuario(id) {
+    return this.http.get("https://todaviasirve.azurewebsites.net/Api/Publicacion/PublicacionesUsuario/" + id)
+    //return this.http.get("http://localhost:55081/Api/Publicacion/PublicacionesUsuario/" + id)  
+  }
+
+  // obtenerTodasPublicaciones2() {
+  //   //return this.http.get("https://todaviasirve.azurewebsites.net/api/Publicacion")
+  //   return this.http.get("http://localhost:55081/api/Publicacion/")  
+  // }
 
 } // cierre clase
