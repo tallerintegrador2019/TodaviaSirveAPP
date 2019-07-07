@@ -10,7 +10,8 @@ export class PasoProvider {
   }
 
   getPasosDePublicacion(idPublicacion: number) {
-    return this.http.get("http://localhost:55081/Api/Paso/Publicacion/" + idPublicacion)
+    return this.http.get("https://todaviasirve.azurewebsites.net/Api/Paso/Publicacion/" + idPublicacion)
+    /* return this.http.get("http://localhost:55081/Api/Paso/Publicacion/" + idPublicacion) */
   }
 
 

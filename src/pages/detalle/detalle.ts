@@ -25,13 +25,15 @@ export class DetallePage {
 
     this.publicacion = navParams.get("publi");
 
+    this.pasoProvider.getPasosDePublicacion(this.publicacion.id)
+      .subscribe(res => this.pasos = res)
+
     // API PARA TRAER LOS VIDEOS DE YOUTUBE
     /* this.ytProvider.obtenerVideos(this.publicacion.titulo).subscribe(res => this.videosEncontrados = res['items']); */
   }
 
   ionViewDidLoad() {
-    this.pasoProvider.getPasosDePublicacion(this.publicacion.id)
-      .subscribe(res => this.pasos = res)
+    
 
   }
 
