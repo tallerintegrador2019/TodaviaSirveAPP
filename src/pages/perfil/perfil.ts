@@ -4,6 +4,7 @@ import { UsuarioProvider } from '../../providers/usuario/usuario';
 
 import { Usuario } from "../models/usuario.model";
 import { EditarusuarioPage } from '../editarusuario/editarusuario';
+import { LoginPage } from '../login/login';
 
 
 @IonicPage()
@@ -31,6 +32,11 @@ export class PerfilPage {
 
   irAEditarUsuario(){
     this.navCtrl.push(EditarusuarioPage);
+  }
+
+  cerrarSesion(){
+    localStorage.clear(); //becausae i have information from user
+    this.navCtrl.push(LoginPage);
   }
 
 }

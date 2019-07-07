@@ -13,12 +13,12 @@
     <form novalidate (ngSubmit)="submitPublicacion()">
 
       <ion-item>
-        <ion-label floating>Titulo </ion-label>
+        <ion-label floating>Titulo de la tranformacion </ion-label>
         <ion-input type="text" [(ngModel)]="publicacion.titulo" [ngModelOptions]="{standalone: true}" ></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label floating>Subtititulo </ion-label>
+        <ion-label floating>Una corta descripcion </ion-label>
         <ion-input type="text" [(ngModel)]="publicacion.subtitulo"  [ngModelOptions]="{standalone: true}"></ion-input>
       </ion-item>
 
@@ -34,11 +34,6 @@
       </ion-item> -->
 
       <br />
-     <!--  <ion-item no-lines>
-        <ion-label stacked>Imagen Portada</ion-label>
-        <ion-input type="file" accept="image/*" (change)="cargaArchivo($event)"></ion-input>
-      </ion-item> -->
-
       <ion-item>
         <p>Imagen: </p>
         <input type="file" accept="image/*" (change)="cargaArchivo($event)"/>
@@ -49,7 +44,7 @@
 
       <br /><br />
       <div style="text-align: center;">
-        <button type="submit" ion-button round color="verdeTodavia">Subir Publicacion e ir a pasos</button>
+        <button type="submit" ion-button round color="verdeTodavia">Subir pasos</button>
       </div>
 
     </form>

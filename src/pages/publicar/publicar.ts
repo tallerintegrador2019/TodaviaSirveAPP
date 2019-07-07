@@ -5,6 +5,8 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { PublicacionProvider } from '../../providers/publicacion/publicacion';
 import { Publicacion } from '../models/publicacion.model';
 import { PasosPage } from '../pasos/pasos';
+import { JsonPipe } from '@angular/common';
+import { stringify } from '@angular/core/src/util';
 
 
 @IonicPage()
@@ -27,38 +29,23 @@ export class PublicarPage {
 
   }
 
-  ionViewDidLoad() {
+  ionViewDidLoad() {  }
 
-  }
-
-  /*   submitPublicacion() {
-      console.log(this.publicacion);
-      this.publicacion.fechaSubida = this.fechaHoy;
-      this.publicacionProvider.subirPublicacion(this.publicacion)
-        .subscribe(
-          res => {
-            console.log("resultado de res: ", this.publi = res);
-          });
-  
-          console.log(this.publi)
-  
-      this.navCtrl.push(PasosPage, { "Publi": this.publicacion });
-    } */
 
   submitPublicacion() {
     this.publicacion.fechaSubida = this.fechaHoy;
     this.publicacionProvider.subirPublicacion(this.publicacion)
-    .subscribe(res => {
-      localStorage.setItem("idP", res["id"]+1);
-    })
-    
-      console.log("Objeto Publicacion subido: ", this.publicacion);
-      console.log("Este es el ID recibido del post: ", localStorage.getItem("idP"))
+      .subscribe(res => {
+        localStorage.removeItem("idP");
+        localStorage.setItem("idP", res["id"] + 1);
+      });
 
-      this.navCtrl.push(PasosPage, { "idPubli": localStorage.getItem("idP") });
+    console.log("Objeto Publicacion subido: ", this.publicacion);
+    console.log("Este es el ID recibido del post: ", localStorage.getItem("idP"))
+
+    this.navCtrl.push(PasosPage, { "idPubli": localStorage.getItem("idP") });
 
   }
-
 
 
   cargaArchivo(event) {

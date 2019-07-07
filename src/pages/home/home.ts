@@ -5,8 +5,10 @@ import { DetallePage } from '../detalle/detalle';
 
 import { UsuarioProvider } from "../../providers/usuario/usuario"; // para llamar al usuario logueado
 import { Usuario } from '../models/usuario.model';  // para cargar en la interface usuario
-import { NOT_FOUND_CHECK_ONLY_ELEMENT_INJECTOR } from '@angular/core/src/view/provider';
-import { dateValueRange } from 'ionic-angular/umd/util/datetime-util';
+
+import { PopoverController } from 'ionic-angular';
+import { PerfilPage } from '../perfil/perfil';
+import { CamaraPage } from '../camara/camara';
 
 @Component({
   selector: 'page-home',
@@ -24,7 +26,8 @@ export class HomePage {
   constructor(  public navCtrl: NavController, 
                 public publicacion: PublicacionProvider,
                 public usuarioProvider: UsuarioProvider,
-                public loadingCtrl: LoadingController
+                public loadingCtrl: LoadingController,
+                public popoverCtrl: PopoverController
               ) {
       this.userLog = this.usuarioProvider.obtenerUsuarioLogueado()
   }
@@ -49,6 +52,18 @@ export class HomePage {
   irADetalle(publi){
     this.navCtrl.push(DetallePage, {publi});
    }
+
+
+   presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create(PerfilPage);
+    popover.present({
+      ev: myEvent
+    });
+  }
+
+  irACamara(){
+    this.navCtrl.push(CamaraPage)
+  }
 
 
 } // cierre clase HomePage

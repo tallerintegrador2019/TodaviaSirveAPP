@@ -53,7 +53,7 @@ export class PublicacionProvider {
         (err) => { alert("failed"); }
       ); */
 
-    return this.http.post(pathURL, formData, { headers: headers });
+    return this.http.post(pathURL, formData, { headers: headers })
   }
 
 
@@ -75,9 +75,9 @@ export class PublicacionProvider {
     formData.append("idPublicacion", idPublicacion);
 
     this.http.post(pathURL, formData, { headers: headers })
-      .subscribe(res => { alert("success " + res); },
+/*       .subscribe(res => { alert("success " + res); },
         (err) => { alert("failed"); }
-      );
+      ); */
 
   }
 

@@ -19,11 +19,11 @@
     <input type="file" accept="image/*" (change)="getPicture($event)" />
   </ion-item>
 
-  <ion-card>
-    <img class="imgClass" *ngIf="image" [src]="image" />
+  <ion-card class="cardClass">
+    <img *ngIf="image" [src]="image" />
   </ion-card>
 
-  <ion-card>
+  <ion-card *ngIf="item">
     <ion-list class="listClass">
       <button ion-item *ngFor="let item of encontrado">
         <a>{{item.name}}</a>

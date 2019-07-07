@@ -1,11 +1,8 @@
 import { NgModule } from '@angular/core';
 import { AvatarUserComponent } from './avatar-user/avatar-user';
-import { TabbarComponent } from './tabbar/tabbar';
 @NgModule({
-	declarations: [AvatarUserComponent,
-    TabbarComponent],
+	declarations: [AvatarUserComponent],
 	imports: [],
-	exports: [AvatarUserComponent,
-    TabbarComponent]
+	exports: [AvatarUserComponent]
 })
 export class ComponentsModule {}

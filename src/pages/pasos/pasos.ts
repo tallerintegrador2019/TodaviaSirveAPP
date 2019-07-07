@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { PublicacionProvider } from "../../providers/publicacion/publicacion";
 import { Paso } from '../models/paso.model';
+import { TabsPage } from '../tabs/tabs';
 
 @IonicPage()
 @Component({
@@ -21,18 +22,17 @@ export class PasosPage {
     public publicacionProvider: PublicacionProvider
   ) {
 
-    this.idPublicacion = navParams.get("idPubli");
+    this.idPublicacion = parseInt(navParams.get("idPubli"));
 
   }
 
-  ionViewDidLoad() {
-
-  }
+  ionViewDidLoad() {  }
 
 
   submitPaso() {
     this.publicacionProvider.subirPaso(this.paso, this.idPublicacion);
     this.navCtrl.push(PasosPage, { "idPubli": this.idPublicacion })
+
   }
 
   cargaArchivo(event) {
@@ -42,6 +42,11 @@ export class PasosPage {
       this.img = event.target.result;
     }
     reader.readAsDataURL(event.target.files[0]);
+  }
+
+  irAHome(){
+    this.submitPaso();
+    this.navCtrl.push(TabsPage);
   }
 
 }
