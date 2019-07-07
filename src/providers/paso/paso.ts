@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class PasoProvider {
 
   constructor(public http: HttpClient) {
-    console.log('Hello PasoProvider Provider');
+
   }
 
   getPasosDePublicacion(idPublicacion: number) {

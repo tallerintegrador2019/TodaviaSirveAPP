@@ -52,9 +52,9 @@ export class PublicarPage {
       localStorage.setItem("idP", res["id"]+1);
     })
     
-      console.log("Objeto Publicacion: ", this.publicacion);
-      console.log("Este es el ID recibido: ", localStorage.getItem("idP"))
-      
+      console.log("Objeto Publicacion subido: ", this.publicacion);
+      console.log("Este es el ID recibido del post: ", localStorage.getItem("idP"))
+
       this.navCtrl.push(PasosPage, { "idPubli": localStorage.getItem("idP") });
 
   }

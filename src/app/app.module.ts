@@ -42,7 +42,7 @@ import { PasoProvider } from '../providers/paso/paso';
     MyApp,
     HomePage,
     ListPage,
-    AvatarUserComponent
+    AvatarUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,13 +59,14 @@ import { PasoProvider } from '../providers/paso/paso';
     PublicarPageModule,
     PasosPageModule,
     CamaraPageModule,
-    MisPublicacionesPageModule
+    MisPublicacionesPageModule,
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
   ],
   providers: [
     StatusBar,

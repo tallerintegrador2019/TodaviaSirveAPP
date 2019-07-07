@@ -34,10 +34,16 @@
       </ion-item> -->
 
       <br />
-      <ion-item no-lines>
+     <!--  <ion-item no-lines>
         <ion-label stacked>Imagen Portada</ion-label>
         <ion-input type="file" accept="image/*" (change)="cargaArchivo($event)"></ion-input>
+      </ion-item> -->
+
+      <ion-item>
+        <p>Imagen: </p>
+        <input type="file" accept="image/*" (change)="cargaArchivo($event)"/>
       </ion-item>
+      
 
       <img *ngIf="img" [src]="img"/>
 

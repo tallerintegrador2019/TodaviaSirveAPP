@@ -12,9 +12,11 @@
 
   <!--   <button ion-button block (click)="getPicture()">Toma una foto</button> -->
 
-  <ion-item no-lines>
-    <ion-label stacked>Imagen</ion-label>
-    <ion-input type="file" accept="image/*" (change)="getPicture($event)"></ion-input>
+
+
+  <ion-item>
+    <p>Imagen: </p>
+    <input type="file" accept="image/*" (change)="getPicture($event)" />
   </ion-item>
 
   <ion-card>
@@ -38,5 +40,5 @@
   </ion-card> -->
 
 
-
 </ion-content>
+
