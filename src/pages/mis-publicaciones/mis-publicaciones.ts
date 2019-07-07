@@ -35,7 +35,7 @@ export class MisPublicacionesPage {
 
   openMenu(publicacionClickeada) {
     let actionSheet = this.actionsheetCtrl.create({
-      title: 'Albums',
+      title: 'Acciones',
       cssClass: 'action-sheets-basic-page',
       buttons: [
         {
@@ -55,7 +55,7 @@ export class MisPublicacionesPage {
           }
         },
         {
-          text: 'Play',
+          text: 'Ranking',
           handler: () => {
             console.log('Play clicked');
           }
