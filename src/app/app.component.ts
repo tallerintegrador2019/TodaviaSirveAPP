@@ -13,7 +13,7 @@ import { PerfilPage } from '../pages/perfil/perfil';
 import { LoginPage } from '../pages/login/login';
 import { PublicarPage } from '../pages/publicar/publicar';
 import { CamaraPage } from '../pages/camara/camara';
-
+import {MisPublicacionesPage} from '../pages/mis-publicaciones/mis-publicaciones';
 
 @Component({
   templateUrl: 'app.html'
@@ -49,6 +49,7 @@ export class MyApp {
       { title: 'Camara', component: CamaraPage, icon: 'camera' },
       { title: 'Mi Perfil', component: PerfilPage, icon: 'person' },
       { title: 'Quienes somos', component: AboutPage, icon: 'contacts' },
+      { title: 'Mis Publicaciones', component: MisPublicacionesPage, icon: 'search' }
       /* { title: 'List', component: ListPage } */
     ];
 
