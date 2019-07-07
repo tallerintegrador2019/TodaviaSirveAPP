@@ -86,6 +86,12 @@ export class PublicacionProvider {
     return this.http.get("http://localhost:55081/Api/Publicacion/PublicacionesUsuario/" + id)  
   }
 
+  eliminarPublicacion(id, idUsuario){
+    console.log("por eliminar publicacion con este id : "+ id);
+    //return this.http.get("http://localhost:55081/Api/Publicacion/PublicacionesUsuario/" + id) 
+    return this.http.get("http://localhost:55081/Api/Publicacion/DeletePublicacionUsuario/"+id+"/"+idUsuario) 
+  }
+  
   // obtenerTodasPublicaciones2() {
   //   //return this.http.get("https://todaviasirve.azurewebsites.net/api/Publicacion")
   //   return this.http.get("http://localhost:55081/api/Publicacion/")  
