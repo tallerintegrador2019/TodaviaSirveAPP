@@ -72,11 +72,11 @@ export class MisPublicacionesPage {
     actionSheet.present();
   }
   
-  llamadaEliminarPublicacion(id){
-    console.log("estoy llamando a elimar");
-    this.valor =  this.publicacionProvider.eliminarPublicacion(id);
-    this.recargarPublicaciones();
-  }
+  // llamadaEliminarPublicacion(id){
+  //   console.log("estoy llamando a elimar");
+  //   this.valor =  this.publicacionProvider.eliminarPublicacion(id);
+  //   this.recargarPublicaciones();
+  // }
 
   recargarPublicaciones(){
     //this.publicaciones =  this.publicacionProvider.obtenerPublicacionesUsuario(this.usuario.id);
