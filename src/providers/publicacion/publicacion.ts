@@ -31,9 +31,9 @@ export class PublicacionProvider {
 
 
   // SUBIR PUBLICACION
-  subirPublicacion(publi: Publicacion) {
-    /* let pathURL = "http://localhost:55081/Api/Publicacion/"; */
-    let pathURL = "http://todaviasirve.azurewebsites.net/Api/Publicacion/";
+  subirPublicacion(publi: Publicacion,id: string) {
+     let pathURL = "http://localhost:55081/Api/Publicacion/"; 
+    //let pathURL = "http://todaviasirve.azurewebsites.net/Api/Publicacion/";
 
     const headers = new HttpHeaders()
       .set('enctype', 'multipart/form-data;charset=UTF-8')
@@ -47,7 +47,7 @@ export class PublicacionProvider {
     formData.append("descripcion", publi.descripcion);
     formData.append("fechaSubida", publi.fechaSubida);
     formData.append("imagenPortada", publi.imagenPortada);
-
+    formData.append("usuarioPublicacion",id);
     /* this.http.post(pathURL, formData, { headers: headers })
       .subscribe(res => { alert("success " + res); },
         (err) => { alert("failed"); }
@@ -82,8 +82,8 @@ export class PublicacionProvider {
 
   //OBTENER LAS PUBLICACIONES DE UN USUARIO
   obtenerPublicacionesUsuario(id) {
-    return this.http.get("https://todaviasirve.azurewebsites.net/Api/Publicacion/PublicacionesUsuario/" + id)
-    //return this.http.get("http://localhost:55081/Api/Publicacion/PublicacionesUsuario/" + id)  
+    //return this.http.get("https://todaviasirve.azurewebsites.net/Api/Publicacion/PublicacionesUsuario/" + id)
+    return this.http.get("http://localhost:55081/Api/Publicacion/PublicacionesUsuario/" + id)  
   }
 
   // obtenerTodasPublicaciones2() {
