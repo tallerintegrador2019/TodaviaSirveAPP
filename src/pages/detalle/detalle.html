@@ -52,7 +52,21 @@
         </ion-note>
       </ion-col>
     </ion-row>
-    <ion-list *ngIf="valor">         
+    <div *ngIf="valor">         
+
+        <!-- Disabled and readonly textarea in an item with a stacked label --> 
+        <ion-list *ngFor="let comentario of listadoComentarios"> 
+            <ion-item>
+                <ion-label position="stacked">PEPE</ion-label>
+                <ion-textarea
+                  disabled
+                  readonly
+                  value={{comentario}}>
+                </ion-textarea>
+              </ion-item> 
+        </ion-list>
+        
+        <ion-list> 
           <!-- Textarea in an item with a floating label -->
           <form novalidate (ngSubmit)="submitComentario()" [formGroup]="signupform">
             <ion-item>
@@ -86,7 +100,8 @@
             <ion-label>Notes</ion-label>
             <ion-textarea rows="6" cols="20" placeholder="Enter any notes here..."></ion-textarea>
           </ion-item> -->
-    </ion-list>
+      </ion-list>
+    </div>
   </ion-card>
 
   <h4 class="titulo">Videos Relacionados</h4>
