@@ -1,14 +1,21 @@
 page-camara {
 
-    .imgClass{
+/*     .imgClass{
         height: 320px;
         width: auto;
         margin: 0 auto;
         overflow: auto;
+    } */
+
+    .cardClass img{
+        margin: 0 auto;
+        width: 360px;
+        height: 360px;
+        object-fit: cover;
     }
 
     .listClass{
-        height: 135px;
+        height: 200px;
     }
 
 

@@ -5,6 +5,8 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { PublicacionProvider } from '../../providers/publicacion/publicacion';
 import { Publicacion } from '../models/publicacion.model';
 import { PasosPage } from '../pasos/pasos';
+import { JsonPipe } from '@angular/common';
+import { stringify } from '@angular/core/src/util';
 import {UsuarioProvider} from '../../providers/usuario/usuario';
 import { Usuario } from '../models/usuario.model';
 
@@ -20,6 +22,8 @@ export class PublicarPage {
   publi
   fechaHoy: String = new Date().toISOString();
 
+  idPubli
+
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public http: HttpClient,
@@ -29,36 +33,17 @@ export class PublicarPage {
       this.usuario = usuarioProvider.obtenerUsuarioLogueado();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PublicarPage');
-  }
+  ionViewDidLoad() {  }
 
-  /*   submitPublicacion() {
-      console.log(this.publicacion);
-      this.publicacion.fechaSubida = this.fechaHoy;
-      this.publicacionProvider.subirPublicacion(this.publicacion)
-        .subscribe(
-          res => {
-            console.log("resultado de res: ", this.publi = res);
-          });
-  
-          console.log(this.publi)
-  
-      this.navCtrl.push(PasosPage, { "Publi": this.publicacion });
-    } */
 
   submitPublicacion() {
-    console.log(this.publicacion);
     this.publicacion.fechaSubida = this.fechaHoy;
     this.publicacionProvider.subirPublicacion(this.publicacion,this.usuario.id)
       .subscribe(res => {
-        localStorage.setItem("idP", res["id"]+1);
-      })
-
-      this.navCtrl.push(PasosPage, { "idPubli": localStorage.getItem("idP") });
-
+        this.idPubli = res;
+        this.navCtrl.push(PasosPage, { "idPubli" : this.idPubli});
+      });
   }
-
 
 
   cargaArchivo(event) {

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { YtProvider } from "../../providers/yt/yt";
+import { PasoProvider } from '../../providers/paso/paso';
 import {UsuarioProvider} from "../../providers/usuario/usuario";
 import {PublicacionProvider} from "../../providers/publicacion/publicacion";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -24,22 +25,30 @@ export class DetallePage {
   usuario;
   listadoComentarios
 
+  pasos
+
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public ytProvider: YtProvider,
+    public pasoProvider: PasoProvider,
     public http: HttpClient,
     public usuarioProv : UsuarioProvider,
     public publicacionProvider : PublicacionProvider
   ) {
 
     this.publicacion = navParams.get("publi");
+    this.pasoProvider.getPasosDePublicacion(this.publicacion.id)
+      .subscribe(res => this.pasos = res)
 
+    // API PARA TRAER LOS VIDEOS DE YOUTUBE
+    /* this.ytProvider.obtenerVideos(this.publicacion.titulo).subscribe(res => this.videosEncontrados = res['items']); */
     this.ytProvider.obtenerVideos(this.publicacion.titulo).subscribe(res => this.videosEncontrados = res['items']);
     this.usuario = this.usuarioProv.obtenerUsuarioLogueado();
     console.log(this.videosEncontrados);
   }
 
   ionViewDidLoad() {
+    
 
   }
 

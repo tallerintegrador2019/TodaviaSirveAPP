@@ -34,6 +34,7 @@ import { ReconoProvider } from '../providers/recono/recono';
 
 import { Camera } from '@ionic-native/camera';
 import { CamaraPageModule } from '../pages/camara/camara.module';
+import { PasoProvider } from '../providers/paso/paso';
 
 
 @NgModule({
@@ -41,7 +42,7 @@ import { CamaraPageModule } from '../pages/camara/camara.module';
     MyApp,
     HomePage,
     ListPage,
-    AvatarUserComponent
+    AvatarUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,13 +59,14 @@ import { CamaraPageModule } from '../pages/camara/camara.module';
     PublicarPageModule,
     PasosPageModule,
     CamaraPageModule,
-    MisPublicacionesPageModule
+    MisPublicacionesPageModule,
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
   ],
   providers: [
     StatusBar,
@@ -75,7 +77,8 @@ import { CamaraPageModule } from '../pages/camara/camara.module';
     UsuarioProvider,
     LoginProvider,
     ReconoProvider,
-    Camera
+    Camera,
+    PasoProvider
   ]
 })
 export class AppModule {}

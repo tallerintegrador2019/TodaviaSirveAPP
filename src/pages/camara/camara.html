@@ -12,16 +12,18 @@
 
   <!--   <button ion-button block (click)="getPicture()">Toma una foto</button> -->
 
-  <ion-item no-lines>
-    <ion-label stacked>Imagen</ion-label>
-    <ion-input type="file" accept="image/*" (change)="getPicture($event)"></ion-input>
+
+
+  <ion-item>
+    <p>Imagen: </p>
+    <input type="file" accept="image/*" (change)="getPicture($event)" />
   </ion-item>
 
-  <ion-card>
-    <img class="imgClass" *ngIf="image" [src]="image" />
+  <ion-card class="cardClass">
+    <img *ngIf="image" [src]="image" />
   </ion-card>
 
-  <ion-card>
+  <ion-card *ngIf="item">
     <ion-list class="listClass">
       <button ion-item *ngFor="let item of encontrado">
         <a>{{item.name}}</a>
@@ -38,5 +40,5 @@
   </ion-card> -->
 
 
-
 </ion-content>
+

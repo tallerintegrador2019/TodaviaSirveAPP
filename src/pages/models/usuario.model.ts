@@ -6,5 +6,4 @@ export interface Usuario{
     username
     pass
     imagen
-    idRango
 }

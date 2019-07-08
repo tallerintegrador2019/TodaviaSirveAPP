@@ -1,6 +1,5 @@
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { Injectable, Component, NgModule } from '@angular/core';
-import { ReturnStatement } from '@angular/compiler';
 import 'rxjs/add/operator/map';
 
 import { Publicacion } from "../../pages/models/publicacion.model";
@@ -39,7 +38,7 @@ export class PublicacionProvider {
       .set('enctype', 'multipart/form-data;charset=UTF-8')
       .set('Access-Control-Allow-Origin', '*')
       .set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT')
-      /* .set('Accept-Charset', 'utf-8') */
+      .set('Accept-Charset', 'utf-8')
 
     var formData = new FormData();
     formData.append("titulo", publi.titulo);
@@ -66,6 +65,7 @@ export class PublicacionProvider {
       .set('enctype', 'multipart/form-data;charset=UTF-8')
       .set('Access-Control-Allow-Origin', '*')
       .set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT')
+      .set('Accept-Charset', 'utf-8')
 
     var formData = new FormData();
     formData.append("numero", paso.numero);
@@ -74,11 +74,17 @@ export class PublicacionProvider {
     formData.append("idPublicacion", idPublicacion);
 
     this.http.post(pathURL, formData, { headers: headers })
-      .subscribe(res => { alert("success " + res); },
-        (err) => { alert("failed"); }
+      .subscribe(res => {
+        console.log("Subido: " + res);
+      },
+        (error) => {
+          console.log(error);
+          alert("Se ha producido un error: " + error);
+        }
       );
 
-  }
+}
+
 
   //OBTENER LAS PUBLICACIONES DE UN USUARIO
   obtenerPublicacionesUsuario(id) {

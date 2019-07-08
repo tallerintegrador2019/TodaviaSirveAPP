@@ -1,28 +1,14 @@
 page-perfil {
 
-    .ion-label{
-        text-align: center
+    .avatarClass img{
+        margin: 0 auto;
+        width: 250px;
+        height: 200px;
+        object-fit: cover;
     }
 
-    .avatar img{
-        margin: auto;
-        width: 50%;
-        height: 50%
-    }
-
-    .usernamePerfil{
-        padding-top: 20px;
-        text-align: center
-    }
-
-    .nombrePerfil{
-        padding-top: 10px;
-        text-align: center;
-
-    }
-
-    .estrellaPerfil{
-        text-align: center;
+    .divBotones{
+        margin: 10px;
     }
 
 
