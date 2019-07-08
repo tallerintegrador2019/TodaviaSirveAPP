@@ -65,7 +65,7 @@ export class CamaraPage {
     }
     reader.readAsDataURL(event.target.files[0]);
 
-    this.subirAAPI();
+    /* this.subirAAPI(); */
   }
 
 

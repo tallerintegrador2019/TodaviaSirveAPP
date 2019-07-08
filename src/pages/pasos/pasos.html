@@ -24,21 +24,36 @@
 
       <ion-item>
         <ion-label>Paso Descripcion: </ion-label>
-        <ion-input floating type="text" [(ngModel)]="paso.descripcion" [ngModelOptions]="{standalone: true}"></ion-input>
+        <ion-textarea type="text" [(ngModel)]="paso.descripcion" [ngModelOptions]="{standalone: true}">
+        </ion-textarea>
       </ion-item>
 
       <br />
-      <ion-item no-lines>
-        <ion-label stacked>Imagen</ion-label>
-        <ion-input type="file" accept="image/*" (change)="cargaArchivo($event)"></ion-input>
+      <ion-item>
+        <p>Imagen: </p>
+        <input type="file" accept="image/*" (change)="cargaArchivo($event)" />
       </ion-item>
 
-      <img *ngIf="img" [src]="img"/>
+      <img *ngIf="img" [src]="img" />
 
       <br /><br />
-      <div style="text-align: center;">
-        <button type="submit" ion-button round color="verdeTodavia">Cargar paso</button>
-      </div>
+
+
+
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6>
+            <div style="text-align: center;">
+              <button type="submit" ion-button round color="verdeTodavia">Cargar paso</button>
+            </div>
+          </ion-col>
+          <ion-col col-6>
+            <div style="text-align: center;">
+              <a ion-button round color="danger" (click)="irAHome()">Finalizar</a>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
 
     </form>
   </ion-list>

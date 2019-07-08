@@ -16,7 +16,7 @@
 
     <form novalidate (ngSubmit)="editarUsuario()" [formGroup]="signupform">
 
-<!--       <ion-item>
+      <!--       <ion-item>
         <ion-label>ID </ion-label>
         <ion-input type="text" value="{{usuario.id}}"></ion-input>
       </ion-item> -->
@@ -130,15 +130,15 @@
         </div>
       </ion-item>
 
+      <ion-item>
+        <p>Imagen: </p>
+        <input type="file" accept="image/*" (change)="onFileChanged($event)" />
+      </ion-item>
+
       <ion-avatar class="avatar">
-        <img *ngIf="img" [src]="img"/>
+        <img *ngIf="img" [src]="img" />
         <img *ngIf="!img" src="http://todaviasirve.azurewebsites.net/Content/Images/{{usuario.imagen}}">
       </ion-avatar>
-
-      <ion-item>
-        <ion-label stacked>Foto</ion-label>
-        <ion-input type="file" accept="image/*" (change)="onFileChanged($event)"></ion-input>
-      </ion-item>
 
       <br /><br />
       <div style="text-align: center;">
@@ -152,5 +152,5 @@
 </ion-content>
 
 <style type="text/css">
- 
+
 </style>
