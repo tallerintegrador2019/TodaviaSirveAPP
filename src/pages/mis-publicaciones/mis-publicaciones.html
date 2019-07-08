@@ -13,17 +13,18 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="action-sheets-basic-page">
 
   <h4 class="titulo">Mis Publicaciones</h4>
   <hr />
   <ion-list>
-    <button ion-item *ngFor="let publicacion of publicaciones | async">
+    <button ion-item *ngFor="let publicacion of publicaciones | async" block (click)="openMenu(publicacion)">
       <ion-avatar item-start>
         <img src="{{prefixURL}}{{publicacion.imagenPortada}}">
       </ion-avatar>
       <h2>{{publicacion.titulo}}</h2>
       <p>{{publicacion.subtitulo}}</p>
+      <ion-icon name="trash" item-start></ion-icon>
     </button>
   </ion-list>
 

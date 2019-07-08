@@ -7,7 +7,8 @@ import { Publicacion } from '../models/publicacion.model';
 import { PasosPage } from '../pasos/pasos';
 import { JsonPipe } from '@angular/common';
 import { stringify } from '@angular/core/src/util';
-
+import {UsuarioProvider} from '../../providers/usuario/usuario';
+import { Usuario } from '../models/usuario.model';
 
 @IonicPage()
 @Component({
@@ -15,7 +16,7 @@ import { stringify } from '@angular/core/src/util';
   templateUrl: 'publicar.html',
 })
 export class PublicarPage {
-
+  usuario: Usuario;
   img
   publicacion: Publicacion = <Publicacion>{};
   publi
@@ -26,9 +27,10 @@ export class PublicarPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public http: HttpClient,
-    public publicacionProvider: PublicacionProvider
+    public publicacionProvider: PublicacionProvider,
+    public usuarioProvider:UsuarioProvider
   ) {
-
+      this.usuario = usuarioProvider.obtenerUsuarioLogueado();
   }
 
   ionViewDidLoad() {  }
@@ -36,7 +38,7 @@ export class PublicarPage {
 
   submitPublicacion() {
     this.publicacion.fechaSubida = this.fechaHoy;
-    this.publicacionProvider.subirPublicacion(this.publicacion)
+    this.publicacionProvider.subirPublicacion(this.publicacion,this.usuario.id)
       .subscribe(res => {
         this.idPubli = res;
         this.navCtrl.push(PasosPage, { "idPubli" : this.idPubli});
