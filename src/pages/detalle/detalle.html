@@ -55,13 +55,16 @@
     <div *ngIf="valor">         
 
         <!-- Disabled and readonly textarea in an item with a stacked label --> 
-        <ion-list *ngFor="let comentario of listadoComentarios"> 
+        <ion-list *ngFor="let comenUsu of listadoComentarios"> 
             <ion-item>
-                <ion-label position="stacked">PEPE</ion-label>
+                <ion-avatar item-start>
+                    <img src="{{imagenURL}}{{comenUsu.imagen}}">
+                  </ion-avatar>
+               
                 <ion-textarea
                   disabled
                   readonly
-                  value={{comentario}}>
+                  value={{comenUsu.comentario}}>
                 </ion-textarea>
               </ion-item> 
         </ion-list>

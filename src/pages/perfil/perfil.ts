@@ -22,7 +22,7 @@ export class PerfilPage {
               ) {
                 
     this.usuarioLogueado = this.usuarioProvider.obtenerUsuarioLogueado();
-
+    console.log(this.usuarioLogueado);
   }
 
   ionViewDidLoad() {

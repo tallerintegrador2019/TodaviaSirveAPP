@@ -5,6 +5,8 @@ import { YtProvider } from "../../providers/yt/yt";
 import {UsuarioProvider} from "../../providers/usuario/usuario";
 import {PublicacionProvider} from "../../providers/publicacion/publicacion";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ComenUsu } from '../models/comenUsu.model';
+
 
 @IonicPage()
 @Component({
@@ -20,7 +22,7 @@ export class DetallePage {
   valor : string = null ; 
   comentario = "";
   usuario;
-  listadoComentarios;
+  listadoComentarios
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -44,15 +46,17 @@ export class DetallePage {
   cargarPublicacion(){
     if(this.valor == null){
        this.valor = "Cargado";
-    }else{
-      this.valor = null
-    }
-    console.log(this.valor);
+       console.log(this.valor);
     this.signupform = new FormGroup({
       comentario: new FormControl('', [Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])
     });
     this.publicacionProvider.obtenerComentarioPublicacion(this.publicacion.id)
     .subscribe(res => this.listadoComentarios = res);
+    console.log(this.listadoComentarios);
+    }else{
+      this.valor = null
+    }
+    
   }
 
   submitComentario(){
