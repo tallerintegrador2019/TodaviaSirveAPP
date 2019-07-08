@@ -13,8 +13,8 @@ import { PublicarPage } from '../publicar/publicar';
 export class TabsPage {
 
   tab1 = HomePage;
-  tab2 = BuscarPage;
-  tab3 = PublicarPage;
+  tab2 = PublicarPage;
+  tab3 = BuscarPage;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -23,4 +23,5 @@ export class TabsPage {
 
   }
 
-}
+
+} // cierre clase

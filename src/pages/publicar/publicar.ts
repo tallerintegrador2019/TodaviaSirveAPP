@@ -21,6 +21,8 @@ export class PublicarPage {
   publi
   fechaHoy: String = new Date().toISOString();
 
+  idPubli
+
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public http: HttpClient,
@@ -36,15 +38,9 @@ export class PublicarPage {
     this.publicacion.fechaSubida = this.fechaHoy;
     this.publicacionProvider.subirPublicacion(this.publicacion)
       .subscribe(res => {
-        localStorage.removeItem("idP");
-        localStorage.setItem("idP", res["id"] + 1);
+        this.idPubli = res;
+        this.navCtrl.push(PasosPage, { "idPubli" : this.idPubli});
       });
-
-    console.log("Objeto Publicacion subido: ", this.publicacion);
-    console.log("Este es el ID recibido del post: ", localStorage.getItem("idP"))
-
-    this.navCtrl.push(PasosPage, { "idPubli": localStorage.getItem("idP") });
-
   }
 
 

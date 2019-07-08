@@ -1,6 +1,5 @@
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { Injectable, Component, NgModule } from '@angular/core';
-import { ReturnStatement } from '@angular/compiler';
 import 'rxjs/add/operator/map';
 
 import { Publicacion } from "../../pages/models/publicacion.model";
@@ -48,11 +47,6 @@ export class PublicacionProvider {
     formData.append("fechaSubida", publi.fechaSubida);
     formData.append("imagenPortada", publi.imagenPortada);
 
-    /* this.http.post(pathURL, formData, { headers: headers })
-      .subscribe(res => { alert("success " + res); },
-        (err) => { alert("failed"); }
-      ); */
-
     return this.http.post(pathURL, formData, { headers: headers })
   }
 
@@ -75,18 +69,23 @@ export class PublicacionProvider {
     formData.append("idPublicacion", idPublicacion);
 
     this.http.post(pathURL, formData, { headers: headers })
-/*       .subscribe(res => { alert("success " + res); },
-        (err) => { alert("failed"); }
-      ); */
+      .subscribe(res => {
+        console.log("Subido: " + res);
+      },
+        (error) => {
+          console.log(error);
+          alert("Se ha producido un error: " + error);
+        }
+      );
 
-  }
+}
 
-  //OBTENER LAS PUBLICACIONES DE UN USUARIO
-  obtenerPublicacionesUsuario(id) {
-    return this.http.get("https://todaviasirve.azurewebsites.net/Api/Publicacion/PublicacionesUsuario/" + id)
-  
-    //return this.http.get("http://localhost:55081/Api/Publicacion/PublicacionesUsuario/" + id)  
-  }
+//OBTENER LAS PUBLICACIONES DE UN USUARIO
+obtenerPublicacionesUsuario(id) {
+  return this.http.get("https://todaviasirve.azurewebsites.net/Api/Publicacion/PublicacionesUsuario/" + id)
+
+  //return this.http.get("http://localhost:55081/Api/Publicacion/PublicacionesUsuario/" + id)  
+}
 
   // obtenerTodasPublicaciones2() {
   //   //return this.http.get("https://todaviasirve.azurewebsites.net/api/Publicacion")

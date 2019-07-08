@@ -22,7 +22,7 @@ export class PasosPage {
     public publicacionProvider: PublicacionProvider
   ) {
 
-    this.idPublicacion = parseInt(navParams.get("idPubli"));
+    this.idPublicacion = navParams.get("idPubli");
 
   }
 
@@ -32,7 +32,6 @@ export class PasosPage {
   submitPaso() {
     this.publicacionProvider.subirPaso(this.paso, this.idPublicacion);
     this.navCtrl.push(PasosPage, { "idPubli": this.idPublicacion })
-
   }
 
   cargaArchivo(event) {
@@ -45,8 +44,8 @@ export class PasosPage {
   }
 
   irAHome(){
-    this.submitPaso();
-    this.navCtrl.push(TabsPage);
+    this.publicacionProvider.subirPaso(this.paso, this.idPublicacion);
+    this.navCtrl.setRoot(TabsPage);
   }
 
-}
+} // cierre clase
