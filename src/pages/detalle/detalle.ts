@@ -42,7 +42,11 @@ export class DetallePage {
   }
 
   cargarPublicacion(){
-    this.valor = "Cargado";
+    if(this.valor == null){
+       this.valor = "Cargado";
+    }else{
+      this.valor = null
+    }
     console.log(this.valor);
     this.signupform = new FormGroup({
       comentario: new FormControl('', [Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])
