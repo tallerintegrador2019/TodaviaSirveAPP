@@ -18,9 +18,9 @@ export class CamaraPage {
 
   image: string = null;
   loading
-
   encontrado
-  datos = ["Planta", "Botella", "Maceta", "ddddddd", "eeeeee", "ffffff"]
+
+  datos = ["Planta", "Botella", "Maceta", "ddddddd", "eeeeee", "ffffff"]   // ejemplos
 
 
   publicaciones: any = "";
@@ -40,7 +40,7 @@ export class CamaraPage {
   ionViewDidLoad() {  }
 
   buscarPublicacion(item) {
-    this.publicaciones = this.publicacionService.buscarPublicacion(item);
+    this.publicaciones = this.publicacionService.buscarPublicacion(item);    
   }
 
   irADetalle(publi) {

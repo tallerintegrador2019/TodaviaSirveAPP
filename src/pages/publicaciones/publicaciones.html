@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar color="verdeTodavia">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Todas las Publicaciones</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let publicacion of publicaciones">
+
+      <ion-item>
+        <ion-thumbnail item-start class="itemClass">
+          <img src="{{imagesPath}}{{publicacion.imagenPortada}}">
+        </ion-thumbnail>
+        <h2>{{publicacion.titulo}}</h2>
+        <p>{{publicacion.subtitulo}}</p>
+      </ion-item>
+
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="borrarPublicacion(publicacion.id)">Eliminar</button>
+      </ion-item-options>
+      <ion-item-options side="left">
+        <button ion-button (click)="editarPublicacion(publicacion.id)">&nbsp;&nbsp;&nbsp;Editar&nbsp;&nbsp;&nbsp;</button>
+      </ion-item-options>
+
+    </ion-item-sliding>
+  </ion-list>
+
+</ion-content>
