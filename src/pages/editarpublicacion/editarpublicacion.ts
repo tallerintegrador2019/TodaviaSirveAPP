@@ -14,8 +14,8 @@ export class EditarpublicacionPage {
 
   publicacion: Publicacion;
   img
-  /* imagesPath = "https://todaviasirve.azurewebsites.net/Content/Images/" */
-  imagesPath = "http://localhost:55081/Content/Images/"
+  imagesPath = "https://todaviasirve.azurewebsites.net/Content/Images/"
+  /* imagesPath = "http://localhost:55081/Content/Images/" */
 
   constructor(
     public navCtrl: NavController,

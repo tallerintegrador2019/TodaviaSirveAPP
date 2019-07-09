@@ -17,16 +17,16 @@ export class PasoProvider {
 
    // BORRAR PASO
    borrarPaso(idPaso) {
-    /* return this.http.get("https://todaviasirve.azurewebsites.net/api/Paso/" + idPaso); */
-    return this.http.delete("http://localhost:55081/api/Paso/" + idPaso)
+    return this.http.get("https://todaviasirve.azurewebsites.net/api/Paso/" + idPaso);
+    /* return this.http.delete("http://localhost:55081/api/Paso/" + idPaso) */
   }
 
 
    // EDITAR PASO
    editarPaso(paso: Paso) {
 
-    /* let pathURL = "http://todaviasirve.azurewebsites.net/Api/Paso/" + publi.id; */
-    let pathURL = "http://localhost:55081/Api/Paso/" + paso.id;
+    let pathURL = "http://todaviasirve.azurewebsites.net/Api/Paso/" + paso.id;
+    /* let pathURL = "http://localhost:55081/Api/Paso/" + paso.id; */
 
     const headers = new HttpHeaders()
       .set('enctype', 'multipart/form-data;charset=UTF-8')

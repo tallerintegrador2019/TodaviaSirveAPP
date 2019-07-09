@@ -30,15 +30,15 @@ export class PublicacionProvider {
 
   // BORRAR PUBLICACION
   borrarPublicacion(idPubli) {
-    /* return this.http.get("https://todaviasirve.azurewebsites.net/api/Publicacion/" + idPubli); */
-    return this.http.delete("http://localhost:55081/api/Publicacion/" + idPubli)
+    return this.http.get("https://todaviasirve.azurewebsites.net/api/Publicacion/" + idPubli);
+    /* return this.http.delete("http://localhost:55081/api/Publicacion/" + idPubli) */
   }
 
   // EDITAR PUBLICACION
   editarPublicacion(publi: Publicacion) {
 
-    /* let pathURL = "http://todaviasirve.azurewebsites.net/Api/Publicacion/" + publi.id; */
-    let pathURL = "http://localhost:55081/Api/Publicacion/" + publi.id;
+    let pathURL = "http://todaviasirve.azurewebsites.net/Api/Publicacion/" + publi.id;
+    /* let pathURL = "http://localhost:55081/Api/Publicacion/" + publi.id; */
 
     const headers = new HttpHeaders()
       .set('enctype', 'multipart/form-data;charset=UTF-8')
