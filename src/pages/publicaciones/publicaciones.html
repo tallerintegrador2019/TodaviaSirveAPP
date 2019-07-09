@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Todas las Publicaciones</ion-title>
+    <ion-title>Administrar Publicaciones</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -25,11 +25,20 @@
       </ion-item>
 
       <ion-item-options side="right">
-        <button ion-button color="danger" (click)="borrarPublicacion(publicacion.id)">Eliminar</button>
+        <button ion-button color="danger" (click)="borrarPublicacion(publicacion.id)">
+          <ion-icon name="trash"></ion-icon>
+          Eliminar
+        </button>
       </ion-item-options>
       <ion-item-options side="left">
-        <button ion-button
-          (click)="irAEditarPublicacion(publicacion)">&nbsp;&nbsp;&nbsp;Editar&nbsp;&nbsp;&nbsp;</button>
+        <button ion-button color="primary" (click)="irAEditarPublicacion(publicacion)">
+          <ion-icon name="paper"></ion-icon>
+          Public.
+        </button>
+        <button ion-button color="secondary" (click)="irAEditarPasos(publicacion)">
+          <ion-icon name="photos"></ion-icon>
+          Pasos
+        </button>
       </ion-item-options>
 
     </ion-item-sliding>
