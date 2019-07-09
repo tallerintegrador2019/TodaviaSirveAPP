@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, LoadingController, ToastController
 import { PublicacionProvider } from '../../providers/publicacion/publicacion';
 import { DetallePage } from '../detalle/detalle';
 import { EditarpublicacionPage } from '../editarpublicacion/editarpublicacion';
+import { PasosdepublicacionesPage } from '../pasosdepublicaciones/pasosdepublicaciones';
 
 
 
@@ -64,6 +65,10 @@ export class PublicacionesPage {
 
   irAEditarPublicacion(publi){
     this.navCtrl.push(EditarpublicacionPage, { "publi" : publi } );
+  }
+
+  irAPasosDePublicacion(publi){
+    this.navCtrl.push(PasosdepublicacionesPage, { "publi" : publi } );
   }
 
   presentToast(msj: string) {

@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar color="verdeTodavia">
+  <ion-title>Pasos de la Publicacion</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let paso of pasos">
+
+      <ion-item> <!-- (click)="irADetalleDePaso(paso)" -->
+        <ion-thumbnail item-start class="itemClass">
+          <img src="{{imagesPath}}{{paso.imagen}}">
+        </ion-thumbnail>
+        <h2>{{paso.numero}}</h2>
+        <p>{{paso.descripcion}}</p>
+      </ion-item>
+
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="borrarPaso(paso.id)">
+          <ion-icon name="trash"></ion-icon>
+          Eliminar
+        </button>
+      </ion-item-options>
+      <ion-item-options side="left">
+        <button ion-button color="primary" (click)="irAEditarPaso(paso)">
+          Editar
+        </button>
+      </ion-item-options>
+
+    </ion-item-sliding>
+  </ion-list>
+
+
+</ion-content>

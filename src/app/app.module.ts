@@ -37,6 +37,8 @@ import { CamaraPageModule } from '../pages/camara/camara.module';
 import { PasoProvider } from '../providers/paso/paso';
 import { PublicacionesPageModule } from '../pages/publicaciones/publicaciones.module';
 import { EditarpublicacionPageModule } from '../pages/editarpublicacion/editarpublicacion.module';
+import { PasosdepublicacionesPageModule } from '../pages/pasosdepublicaciones/pasosdepublicaciones.module';
+import { EditarpasoPageModule } from '../pages/editarpaso/editarpaso.module';
 
 
 @NgModule({
@@ -64,6 +66,8 @@ import { EditarpublicacionPageModule } from '../pages/editarpublicacion/editarpu
     MisPublicacionesPageModule,
     PublicacionesPageModule,
     EditarpublicacionPageModule,
+    PasosdepublicacionesPageModule,
+    EditarpasoPageModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
