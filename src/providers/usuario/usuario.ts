@@ -19,7 +19,8 @@ export class UsuarioProvider {
   }
 
   obtenerTodosUsuarios(){
-    return this.http.get("https://todaviasirve.azurewebsites.net/api/Usuario")
+    //return this.http.get("https://todaviasirve.azurewebsites.net/api/Usuario")
+    return this.http.get("http://localhost:55081/Api/Usuario");
   }
 
   obtenerUsuario(id){
