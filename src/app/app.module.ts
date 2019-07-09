@@ -36,6 +36,7 @@ import { Camera } from '@ionic-native/camera';
 import { CamaraPageModule } from '../pages/camara/camara.module';
 import { PasoProvider } from '../providers/paso/paso';
 import { PublicacionesPageModule } from '../pages/publicaciones/publicaciones.module';
+import { EditarpublicacionPageModule } from '../pages/editarpublicacion/editarpublicacion.module';
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import { PublicacionesPageModule } from '../pages/publicaciones/publicaciones.mo
     CamaraPageModule,
     MisPublicacionesPageModule,
     PublicacionesPageModule,
+    EditarpublicacionPageModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

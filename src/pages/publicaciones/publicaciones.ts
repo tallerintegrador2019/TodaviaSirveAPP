@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 import { PublicacionProvider } from '../../providers/publicacion/publicacion';
 import { DetallePage } from '../detalle/detalle';
+import { EditarpublicacionPage } from '../editarpublicacion/editarpublicacion';
 
 
 
@@ -61,6 +62,10 @@ export class PublicacionesPage {
     
   }
 
+  irAEditarPublicacion(publi){
+    this.navCtrl.push(EditarpublicacionPage, { "publi" : publi } );
+  }
+
   presentToast(msj: string) {
     const toast = this.toastCtrl.create({
       message: msj,
@@ -69,6 +74,14 @@ export class PublicacionesPage {
     });
 
     toast.present();
+  }
+
+  doRefresh(refresher) {
+    this.ionViewDidLoad();
+
+    setTimeout(() => {
+      refresher.complete();
+    }, 500);
   }
 
 }

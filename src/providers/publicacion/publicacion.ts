@@ -34,6 +34,30 @@ export class PublicacionProvider {
     return this.http.delete("http://localhost:55081/api/Publicacion/" + idPubli)
   }
 
+  // EDITAR PUBLICACION
+  editarPublicacion(publi: Publicacion) {
+
+    /* let pathURL = "http://todaviasirve.azurewebsites.net/Api/Publicacion/" + publi.id; */
+    let pathURL = "http://localhost:55081/Api/Publicacion/" + publi.id;
+
+    const headers = new HttpHeaders()
+      .set('enctype', 'multipart/form-data;charset=UTF-8')
+      .set('Access-Control-Allow-Origin', '*')
+      .set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT')
+      .set('Accept-Charset', 'utf-8')
+
+    var formData = new FormData();
+    formData.append("titulo", publi.titulo);
+    formData.append("subtitulo", publi.subtitulo);
+    formData.append("descripcion", publi.descripcion);
+    formData.append("fechaSubida", publi.fechaSubida);
+    formData.append("imagenPortada", publi.imagenPortada);
+
+    return this.http.put(pathURL, formData, { headers: headers })
+    .subscribe(res => res ); 
+
+  }
+
   // SUBIR PUBLICACION
   subirPublicacion(publi: Publicacion, id: string) {
     let pathURL = "http://todaviasirve.azurewebsites.net/Api/Publicacion/";

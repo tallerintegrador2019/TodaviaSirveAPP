@@ -9,10 +9,14 @@
 
 <ion-content>
 
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <ion-list>
     <ion-item-sliding *ngFor="let publicacion of publicaciones">
 
-      <ion-item>
+      <ion-item (click)="irADetalle(publicacion)">
         <ion-thumbnail item-start class="itemClass">
           <img src="{{imagesPath}}{{publicacion.imagenPortada}}">
         </ion-thumbnail>
@@ -24,7 +28,8 @@
         <button ion-button color="danger" (click)="borrarPublicacion(publicacion.id)">Eliminar</button>
       </ion-item-options>
       <ion-item-options side="left">
-        <button ion-button (click)="editarPublicacion(publicacion.id)">&nbsp;&nbsp;&nbsp;Editar&nbsp;&nbsp;&nbsp;</button>
+        <button ion-button
+          (click)="irAEditarPublicacion(publicacion)">&nbsp;&nbsp;&nbsp;Editar&nbsp;&nbsp;&nbsp;</button>
       </ion-item-options>
 
     </ion-item-sliding>
