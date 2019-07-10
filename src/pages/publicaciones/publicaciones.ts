@@ -56,7 +56,7 @@ export class PublicacionesPage {
         this.presentToast("Eliminado Correctamente");
       },
         (error) => {
-          this.presentToast("Eliminacion Falló");
+          this.presentToast("Eliminacion Falló" + error);
         }
       );
     console.log("Se borro la publicacion:" + idPubli);

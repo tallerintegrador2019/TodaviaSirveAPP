@@ -30,7 +30,7 @@ export class PublicacionProvider {
 
   // BORRAR PUBLICACION
   borrarPublicacion(idPubli) {
-    return this.http.get("https://todaviasirve.azurewebsites.net/api/Publicacion/" + idPubli);
+    return this.http.delete("https://todaviasirve.azurewebsites.net/api/Publicacion/" + idPubli);
     /* return this.http.delete("http://localhost:55081/api/Publicacion/" + idPubli) */
   }
 
@@ -123,7 +123,7 @@ export class PublicacionProvider {
 
   eliminarPublicacion(idPublicacion, idUsuario) {
     console.log("por eliminar publicacion con este id : " + idPublicacion);
-    return this.http.get("http://localhost:55081/Api/Publicacion/PublicacionesUsuario/" + idUsuario)
+    return this.http.delete("http://localhost:55081/Api/Publicacion/PublicacionesUsuario/" + idUsuario)
     /* return this.http.get("http://localhost:55081/Api/Publicacion/DeletePublicacionUsuario/"+idPublicacion+"/"+idUsuario)  */
   }
 
