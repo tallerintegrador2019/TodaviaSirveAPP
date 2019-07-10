@@ -79,7 +79,7 @@
           <form novalidate (ngSubmit)="submitComentario()" [formGroup]="signupform">
             <ion-item>
               <ion-label position="floating">Comenta</ion-label>
-                <ion-textarea placeholder="Que te parecio esta publicacion!!!" [(ngModel)]="comentario" 
+                <ion-textarea placeholder="Que te parecio esta publicacion?" [(ngModel)]="comentario" 
                   formControlName="comentario"  
                   [class.error1]="!signupform.controls.comentario.valid && signupform.controls.comentario.dirty">
                 </ion-textarea>
