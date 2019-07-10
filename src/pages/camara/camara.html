@@ -12,6 +12,9 @@
 
     <button ion-button block (click)="getPictureCam()">Toma una foto</button>
 
+    <input type="file" accept="image/*;capture=camera" class="custom-file-input">
+
+
   <ion-item no-lines>
     <ion-label stacked>Imagen</ion-label>
     <ion-input type="file" accept="image/*" (change)="getPicture($event)"></ion-input>
