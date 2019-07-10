@@ -13,6 +13,11 @@ page-home {
         width: 100%;
     }
 
+    // ACOMODA LAS FOTOS DEL CARRUSEL
+    .cardClass img {
+        object-fit: cover;
+      }
+
     .carrusel{
         height: auto;
         width: auto;

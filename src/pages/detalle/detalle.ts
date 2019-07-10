@@ -52,15 +52,11 @@ export class DetallePage {
     //this.listadoComentarios = this.listadoComentarios.comentarioUsuarios;
     // API PARA TRAER LOS VIDEOS DE YOUTUBE
     /* this.ytProvider.obtenerVideos(this.publicacion.titulo).subscribe(res => this.videosEncontrados = res['items']); */
-    //this.ytProvider.obtenerVideos(this.publicacion.titulo).subscribe(res => this.videosEncontrados = res['items']);
     this.usuario = this.usuarioProv.obtenerUsuarioLogueado();
     console.log(this.videosEncontrados);
   }
 
-  ionViewDidLoad() {
-    
-
-  }
+  ionViewDidLoad() {  }
 
   cargarPublicacion(){
     if(this.valor == null){

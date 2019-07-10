@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
@@ -19,10 +19,13 @@ export class EditarusuarioPage implements OnInit {
   signupform: FormGroup;
   img
 
+  pathImages = "http://todaviasirve.azurewebsites.net/Content/Images/"
+
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public http: HttpClient,
-    public usuarioProvider: UsuarioProvider
+    public usuarioProvider: UsuarioProvider,
+    public toastCtrl: ToastController,
   ) {
 
     this.usuario = this.usuarioProvider.obtenerUsuarioLogueado();
@@ -50,8 +53,8 @@ export class EditarusuarioPage implements OnInit {
     this.usuarioProvider.editarUsuario(this.usuario.id, this.usuario)
     /* localStorage.setItem('currentUser', JSON.stringify(this.usuario)); */
     this.usuarioProvider.setearUsuarioLogueado(this.usuario);
+    this.presentToast("Vuelva a Iniciar Sesion para efectuar los cambios");
     this.navCtrl.setRoot(PerfilPage);
-    console.log(this.usuario);
 
   } // cierre editarUsuario()
 
@@ -62,9 +65,21 @@ export class EditarusuarioPage implements OnInit {
     reader.onload = (event: any) => {
       this.img = event.target.result;
     }
-    reader.readAsDataURL(event.target.files[0]);
+    if (this.usuario.imagen){
+      reader.readAsDataURL(event.target.files[0]);
+    }
   }
 
+
+  presentToast(msj: string) {
+    const toast = this.toastCtrl.create({
+      message: msj,
+      duration: 3000,
+      position: 'top',      
+    });
+
+    toast.present();
+  }
 
 
 } // cierre clase

@@ -5,6 +5,8 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { LoadingController } from 'ionic-angular';
+import { DetallePage } from '../detalle/detalle';
+import { PublicacionProvider } from '../../providers/publicacion/publicacion';
 
 
 @IonicPage()
@@ -16,21 +18,36 @@ export class CamaraPage {
 
   image: string = null;
   loading
-
   encontrado
-  datos = ["aaaaa", "bbbbbb", "cccccc", "ddddddd", "eeeeee", "ffffff"]
+
+  datos = ["Planta", "Botella", "Maceta", "ddddddd", "eeeeee", "ffffff"]   // ejemplos
+
+
+  publicaciones: any = "";
+  prefixURL: string = "https://todaviasirve.azurewebsites.net/Content/Images/";
+  titulo: any;
+
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private camera: Camera,
     private http: HttpClient,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    public publicacionService: PublicacionProvider,
   ) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CamaraPage');
+  ionViewDidLoad() {  }
+
+  buscarPublicacion(item) {
+    this.publicaciones = this.publicacionService.buscarPublicacion(item);    
   }
+
+  irADetalle(publi) {
+    this.navCtrl.push(DetallePage, { publi });
+  }
+
+  
 
 /*       
     // DESDE LA CAMARA DEL CELULAR ----------------
@@ -63,9 +80,11 @@ export class CamaraPage {
     reader.onload = (event: any) => {
       this.image = event.target.result;
     }
-    reader.readAsDataURL(event.target.files[0]);
-
-    /* this.subirAAPI(); */
+    if(this.image){
+      reader.readAsDataURL(event.target.files[0]);
+      this.subirAAPI();
+    }
+    
   }
 
 

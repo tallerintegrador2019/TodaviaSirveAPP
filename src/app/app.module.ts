@@ -35,6 +35,10 @@ import { ReconoProvider } from '../providers/recono/recono';
 import { Camera } from '@ionic-native/camera';
 import { CamaraPageModule } from '../pages/camara/camara.module';
 import { PasoProvider } from '../providers/paso/paso';
+import { PublicacionesPageModule } from '../pages/publicaciones/publicaciones.module';
+import { EditarpublicacionPageModule } from '../pages/editarpublicacion/editarpublicacion.module';
+import { PasosdepublicacionesPageModule } from '../pages/pasosdepublicaciones/pasosdepublicaciones.module';
+import { EditarpasoPageModule } from '../pages/editarpaso/editarpaso.module';
 
 
 @NgModule({
@@ -60,7 +64,10 @@ import { PasoProvider } from '../providers/paso/paso';
     PasosPageModule,
     CamaraPageModule,
     MisPublicacionesPageModule,
-
+    PublicacionesPageModule,
+    EditarpublicacionPageModule,
+    PasosdepublicacionesPageModule,
+    EditarpasoPageModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

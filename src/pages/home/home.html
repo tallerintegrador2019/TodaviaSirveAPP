@@ -24,6 +24,11 @@
 
 <ion-content>
 
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <ion-card class="cardClass">
     <ion-slides *ngIf="publicaciones" autoplay="4000" loop="true" speed="2000">
       <ion-slide *ngFor="let publicacion of publicaciones" (click)="irADetalle(publicacion)">
