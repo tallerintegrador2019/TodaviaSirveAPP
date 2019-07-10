@@ -15,8 +15,8 @@ export class PublicacionProvider {
   }
 
   obtenerTodasPublicaciones() {
-    //return this.http.get("https://todaviasirve.azurewebsites.net/api/Publicacion")
-    return this.http.get("http://localhost:55081/Api/Publicacion")  
+    return this.http.get("https://todaviasirve.azurewebsites.net/api/Publicacion")
+    //return this.http.get("http://localhost:55081/Api/Publicacion")  
   }
 
   obtenerPublicacion(id) {

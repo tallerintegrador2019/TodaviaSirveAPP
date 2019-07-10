@@ -7,6 +7,7 @@ import {UsuarioProvider} from "../../providers/usuario/usuario";
 import {PublicacionProvider} from "../../providers/publicacion/publicacion";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ComenUsu } from '../models/comenUsu.model';
+import { ComentarioCantidad } from '../models/ComentarioCantidad.model';
 
 
 @IonicPage()
@@ -23,8 +24,9 @@ export class DetallePage {
   valor : string = null ; 
   comentario = "";
   usuario;
+  comentarioCantidad
   listadoComentarios
-
+  valor2 : ComentarioCantidad
   pasos
 
   constructor(public navCtrl: NavController,
@@ -39,10 +41,18 @@ export class DetallePage {
     this.publicacion = navParams.get("publi");
     this.pasoProvider.getPasosDePublicacion(this.publicacion.id)
       .subscribe(res => this.pasos = res)
+      this.publicacionProvider.obtenerComentarioPublicacion(this.publicacion.id)
+      .subscribe(res => this.comentarioCantidad = res);
+     
+      this.valor2 = this.comentarioCantidad
+      console.log(this.comentarioCantidad);
+      console.log(this.comentarioCantidad);
 
+    //this.comentarioCantidad = this.listadoComentarios.cantidad;
+    //this.listadoComentarios = this.listadoComentarios.comentarioUsuarios;
     // API PARA TRAER LOS VIDEOS DE YOUTUBE
     /* this.ytProvider.obtenerVideos(this.publicacion.titulo).subscribe(res => this.videosEncontrados = res['items']); */
-    this.ytProvider.obtenerVideos(this.publicacion.titulo).subscribe(res => this.videosEncontrados = res['items']);
+    //this.ytProvider.obtenerVideos(this.publicacion.titulo).subscribe(res => this.videosEncontrados = res['items']);
     this.usuario = this.usuarioProv.obtenerUsuarioLogueado();
     console.log(this.videosEncontrados);
   }
@@ -59,8 +69,8 @@ export class DetallePage {
     this.signupform = new FormGroup({
       comentario: new FormControl('', [Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])
     });
-    this.publicacionProvider.obtenerComentarioPublicacion(this.publicacion.id)
-    .subscribe(res => this.listadoComentarios = res);
+    // this.publicacionProvider.obtenerComentarioPublicacion(this.publicacion.id)
+    // .subscribe(res => this.listadoComentarios = res);
     console.log(this.listadoComentarios);
     }else{
       this.valor = null

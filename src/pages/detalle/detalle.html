@@ -42,7 +42,7 @@
       <ion-col>
         <button ion-button icon-start clear small (click)="cargarPublicacion()">
           <ion-icon name="text"></ion-icon>
-          <div>4 Comentarios</div>
+          <div> Comentarios</div>
         </button>
       </ion-col>
       <ion-col align-self-center text-center>
@@ -54,19 +54,21 @@
     <div *ngIf="valor">         
 
         <!-- Disabled and readonly textarea in an item with a stacked label --> 
-        <ion-list *ngFor="let comenUsu of listadoComentarios"> 
-            <ion-item>
-                <ion-avatar item-start>
-                    <img src="{{imagenURL}}{{comenUsu.imagen}}">
-                  </ion-avatar>
-               
-                <ion-textarea
-                  disabled
-                  readonly
-                  value={{comenUsu.comentario}}>
-                </ion-textarea>
-              </ion-item> 
-        </ion-list>
+     <!-- <ion-list *ngFor="let listadoComentarios of comentarioCantidad"> -->
+          <ion-list *ngFor="let comenUsu of comentarioCantidad.comentarioUsuarios"> 
+              <ion-item>
+                  <ion-avatar item-start>
+                      <img src="{{imagenURL}}{{comenUsu.imagen}}">
+                    </ion-avatar>
+                
+                  <ion-textarea
+                    disabled
+                    readonly
+                    value={{comenUsu.comentario}}>
+                  </ion-textarea>
+                </ion-item> 
+          </ion-list>
+     <!-- </ion-list> -->
         
         <ion-list> 
           <!-- Textarea in an item with a floating label -->
