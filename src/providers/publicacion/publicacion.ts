@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map';
 
 import { Publicacion } from "../../pages/models/publicacion.model";
 import { Paso } from '../../pages/models/paso.model';
+import { ComentarioCantidad } from '../../pages/models/ComentarioCantidad.model';
 
 
 @Injectable()
@@ -100,7 +101,7 @@ export class PublicacionProvider {
 
   obtenerComentarioPublicacion(idPublicacion){
     console.log("buscar comentarios de esta publicacion "+ idPublicacion);
-    return this.http.get("http://localhost:55081/Api/Publicacion/obtenerComentarioPublicacion/"+idPublicacion)
+    return this.http.get<ComentarioCantidad>("http://localhost:55081/Api/Publicacion/obtenerComentarioPublicacion/"+idPublicacion)
   }
   
   // obtenerTodasPublicaciones2() {
