@@ -65,5 +65,13 @@ export class HomePage {
     this.navCtrl.push(CamaraPage)
   }
 
+  doRefresh(refresher) {
+    this.ionViewDidLoad();
+
+    setTimeout(() => {
+      refresher.complete();
+    }, 500);
+  }
+
 
 } // cierre clase HomePage

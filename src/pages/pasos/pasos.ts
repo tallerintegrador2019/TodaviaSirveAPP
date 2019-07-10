@@ -17,6 +17,7 @@ export class PasosPage {
   idPublicacion// id traido de publicacion
   pasoNro: number;
 
+
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public publicacionProvider: PublicacionProvider
@@ -40,8 +41,12 @@ export class PasosPage {
     reader.onload = (event: any) => {
       this.img = event.target.result;
     }
-    reader.readAsDataURL(event.target.files[0]);
+    if (this.paso.imagen) {
+      reader.readAsDataURL(event.target.files[0]);
+    }
   }
+
+  
 
   irAHome(){
     this.publicacionProvider.subirPaso(this.paso, this.idPublicacion);

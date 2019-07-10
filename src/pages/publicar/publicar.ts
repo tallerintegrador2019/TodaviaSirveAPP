@@ -42,6 +42,7 @@ export class PublicarPage {
       .subscribe(res => {
         this.idPubli = res;
         this.navCtrl.push(PasosPage, { "idPubli" : this.idPubli});
+        console.log("ID de Publicacion: ",this.idPubli);
       });
   }
 
@@ -52,7 +53,9 @@ export class PublicarPage {
     reader.onload = (event: any) => {
       this.img = event.target.result;
     }
-    reader.readAsDataURL(event.target.files[0]);
+    if (this.publicacion.imagenPortada) {
+      reader.readAsDataURL(event.target.files[0]);
+    }
   }
 
 } // cierre clase

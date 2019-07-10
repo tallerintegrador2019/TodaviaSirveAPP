@@ -13,22 +13,20 @@ import { LoginPage } from '../login/login';
   templateUrl: 'perfil.html',
 })
 export class PerfilPage {
-/* 
-  usuarioLogueado: Usuario = JSON.parse(localStorage.getItem('currentUser')); */
+
   usuarioLogueado
+  loading
 
   constructor(  public navCtrl: NavController, 
                 public navParams: NavParams, 
-                public usuarioProvider: UsuarioProvider
+                public usuarioProvider: UsuarioProvider,
               ) {
                 
     this.usuarioLogueado = this.usuarioProvider.obtenerUsuarioLogueado();
     console.log(this.usuarioLogueado);
   }
 
-  ionViewDidLoad() {
-    
-  }
+  ionViewDidLoad() {  }
 
   irAEditarUsuario(){
     this.navCtrl.push(EditarusuarioPage);

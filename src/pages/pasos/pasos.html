@@ -12,10 +12,24 @@
   <ion-list>
     <form novalidate (ngSubmit)="submitPaso()">
 
+
+
+      <!--       <ion-card class="cardClass image-upload">
+        <label for="file-input">
+          <img *ngIf="!img" src="../../assets/imgs/imagenNoDisponible.png"/>
+          <img *ngIf="img" [src]="img" />
+        </label>
+        <input type="file" id="file-input" accept="image/*" (change)="cargaArchivo($event)" />
+      </ion-card> -->
+
+
       <ion-item>
-        <ion-label>id Publicacion: </ion-label>
-        <ion-input type="text" value="{{idPublicacion}}"></ion-input>
+        <p>Imagen: </p>
+        <input type="file" accept="image/*" (change)="cargaArchivo($event)" />
       </ion-item>
+
+      <img *ngIf="img" [src]="img" />
+
 
       <ion-item>
         <ion-label>Paso Numero: </ion-label>
@@ -27,17 +41,6 @@
         <ion-textarea type="text" [(ngModel)]="paso.descripcion" [ngModelOptions]="{standalone: true}">
         </ion-textarea>
       </ion-item>
-
-      <br />
-      <ion-item>
-        <p>Imagen: </p>
-        <input type="file" accept="image/*" (change)="cargaArchivo($event)" />
-      </ion-item>
-
-      <img *ngIf="img" [src]="img" />
-
-      <br /><br />
-
 
 
       <ion-grid>

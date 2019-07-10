@@ -19,26 +19,30 @@
     <input type="file" accept="image/*" (change)="getPicture($event)" />
   </ion-item>
 
+
   <ion-card class="cardClass">
     <img *ngIf="image" [src]="image" />
   </ion-card>
 
-  <ion-card *ngIf="item">
+
+  <ion-card *ngIf="image">
     <ion-list class="listClass">
-      <button ion-item *ngFor="let item of encontrado">
+      <button ion-item text-center *ngFor="let item of encontrado" (click)="buscarPublicacion(item.name)">
         <a>{{item.name}}</a>
       </button>
     </ion-list>
   </ion-card>
 
-  <!--   <ion-card>
-    <ion-list class="listClass">
-      <button ion-item *ngFor="let item of datos">
-        <a>{{item}}</a>
-      </button>
-    </ion-list>
-  </ion-card> -->
 
+  <ion-list class="card-background-page">
+    <ion-item button *ngFor="let publicacion of publicaciones | async" (click)="irADetalle(publicacion)">
+      <ion-card>
+        <img src="{{prefixURL}}{{publicacion.imagenPortada}}" />
+        <div class="card-title" text-wrap>{{publicacion.titulo}}</div>
+        <!-- <div class="card-subtitle">{{publicacion.subtitulo}}</div> -->
+      </ion-card>
+    </ion-item>
+  </ion-list>
 
 </ion-content>
 
