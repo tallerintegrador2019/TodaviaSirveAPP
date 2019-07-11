@@ -4,12 +4,19 @@ import { ToastController } from 'ionic-angular/components/toast/toast-controller
 import { Camera, CameraOptions, PictureSourceType } from '@ionic-native/camera';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {storage,initializeApp } from 'firebase';
+import { AngularFireStorage, AngularFireUploadTask } from "angularfire2/storage";
  import { LoadingController } from 'ionic-angular';
 import { errorHandler } from '@angular/platform-browser/src/browser';
 import { FIREBASE_CONFIG } from "../../app/firebase.config";
-// import { AngularFireStorage } from "angularfire2/storage";
-// import { Observable } from "rxjs";
-// import { finalize } from 'rxjs/operators';
+//import {AngularFireStorage} from '@angular/fire/storage';
+//import { AngularFireStorage, AngularFireUploadTask } from 'angularfire2/storage';
+//import { AngularFireStorage } from "angularfire2/storage";
+import { Observable } from "rxjs";
+import { finalize } from 'rxjs/operators';
+import { analyzeNgModules } from '@angular/compiler';
+import { JsonPipe } from '@angular/common';
+import { JsonpCallbackContext } from '@angular/common/http/src/jsonp';
+import { stringify } from '@angular/core/src/util';
 
 @IonicPage()
 @Component({
@@ -19,10 +26,13 @@ import { FIREBASE_CONFIG } from "../../app/firebase.config";
 export class CamaraPage {
 
    // propiedades de storage
-  //  uploadPercent: Observable<number>;
-  //  downloadURL: Observable<string>;
+   uploadPercent: Observable<number>;
+   downloadURL: Observable<string>;
+   image2: string = null;
+   
   //  imageStorage: string = null;
-
+  acaUrl
+ // downloadURL;
   responseFirebase;
   elemento;
   image: string = null;
@@ -36,15 +46,16 @@ export class CamaraPage {
   datos = ["aaaaa", "bbbbbb", "cccccc", "ddddddd", "eeeeee", "ffffff"]
 
   constructor(public navCtrl: NavController,
-    public navParams: NavParams,
-    private camera: Camera,
-    private http: HttpClient,
-    public loadingCtrl: LoadingController,
-    public toast : ToastController,
-    //private storage1: AngularFireStorage
-  ) {
-    initializeApp(FIREBASE_CONFIG);
-  }
+              public navParams: NavParams,
+              private camera: Camera,
+              private http: HttpClient,
+              public loadingCtrl: LoadingController,
+              public toast : ToastController,
+              private storage1: AngularFireStorage
+            ){
+              
+                //initializeApp(FIREBASE_CONFIG);
+             }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CamaraPage');
@@ -52,10 +63,10 @@ export class CamaraPage {
 
       
   //  DESDE LA CAMARA DEL CELULAR ----------------
-      async getPictureCam() {
-    
+async getPictureCam() 
+{
         const options: CameraOptions = {
-          quality: 50,
+          quality: 60,
           targetHeight: 600,
           targetWidth: 600,
           destinationType: this.camera.DestinationType.DATA_URL,
@@ -64,14 +75,91 @@ export class CamaraPage {
           //saveToPhotoAlbum: true
         } 
     
-  
-          const resultado = await this.camera.getPicture(options); 
-          this.image  =  'data:image/jpeg;base64,' + resultado;
-          const imagen = `data:image/jpeg;base64,${resultado}`;
-          const pictures = storage().ref('pictures/miFoto');
-          pictures.putString(resultado, 'DATA_URL');
+        
+        try{
 
-                    
+          const resultado = await this.camera.getPicture(options); 
+          //this.image  =  'data:image/jpeg;base64,' + resultado;
+          const imagen = `data:image/jpeg;base64,${resultado}`;
+          this.image = imagen;
+          const pictures = storage().ref('pictures/mifoto');
+                          
+         // const task = 
+          const task1 =  pictures.putString(imagen, 'data_url').then(res => {
+            //this.acaUrl  = res.downloadURL;
+            //this.mostrarToast ("deberia url"+this.acaUrl,7000);
+            // otroalgo.downloadURL();
+          });
+
+         // var algo: Promise<AngularFireUploadTask> ;
+          // algo = pictures.getDownloadURL();
+
+
+          // var otro = pictures.getDownloadURL().then(function(url){
+          //            this.mostrarToast("esto es una url creo"+url,5000);
+          // });
+
+          pictures.getDownloadURL().then(res => {
+            this.acaUrl = res;
+            this.mostrarToast("url"+this.acaUrl, 6000);
+            this.mostrarToast(res,8000);
+            this.subirApiJson(res);
+          })
+
+      
+
+                   //Con firestore
+
+          // var archivoEnviar;
+          // let file1 = fetch(imagen).then(r => r.blob()).then(blob => {
+          //   const file = new File([blob], "Imagencita")
+          //   this.mostrarToast("Ya sali del new file",8000);
+          //   archivoEnviar = file;
+          //   const ref = this.storage1.ref("angularfire/reconocimiento");
+          //   const task = this.storage1.upload("angularfire/reconocimiento",file);
+          // task.snapshotChanges().pipe(
+          //   finalize(() => {
+          //       this.downloadURL = ref.getDownloadURL();
+          //       this.downloadURL.subscribe( url => {
+          //           this.image2 = url;
+          //           this.mostrarToast("Esta es mi url "+ this.image2 , 6000);
+          //       })
+          //   })
+          // ).subscribe();
+          // });
+          // this.mostrarToast("ya pase el snapshot",5000);
+          // archivoEnviar = file1;
+          
+          
+
+                  
+          // .then(() =>{
+          //     this.acaUrl = pictures.getDownloadURL().then(function(url){
+          //       this.mostrarToast(url,6000);
+          //     });
+          // });
+
+          // Decimos que se puede hacer suscribe solamente a tipo Observable
+          
+          
+          //const downloadURL = pictures.getDownloadURL();
+          
+          // pictures.getDownloadURL().then(function( url){
+          //   this.mostrarToast(url,6000);
+          // });
+          
+          //const task: AngularFireUploadTask = this.afStorage.upload("pictures/miFoto", resultado);
+
+          //this.downloadURL = task.downloadURL();
+            // task.then(res => this.downloadURL = res);
+            
+            //this.downloadURL.subscribe((url) => {
+
+            //   this.acaUrl = url;
+            //   // do something 
+            //   // this.loading.dismiss();
+
+            // });
 
 
           //               // otra forma
@@ -93,85 +181,71 @@ export class CamaraPage {
           //       ));
           //   })
           // ).subscribe();
+        // this.camera.getPicture(options).then((imageData) => {
+        //       //    // imageData is either a base64 encoded string or a file URI
+        //       //    //this.uploadPhoto(imageData);
+        //       this.image = 'data:image/jpeg;base64,' + imageData;
+        //       const pictures = storage().ref('pictures');
+        //       pictures.putString(imageData, 'DATA_URL');
+        //       //   // this.mostrarToast(this.image, 15000);
+        //       //    //this.elemento =  document.getElementById("ImagenInput");
+        //       this.mostrarToast(pictures.name, 10000);
 
-        // try{
+                     
+         } catch (error) {
+           this.mostrarToast("Fallo fuera del Get"+error.message, 5000);
+        }
+} 
+subirApiJson(res) {
 
-        //  this.camera.getPicture(options).then((imageData) => {
-              //    // imageData is either a base64 encoded string or a file URI
-              //    // If it's base64 (DATA_URL):
-              //    //this.uploadPhoto(imageData);
-                
-              //   //this.image = imageData;
-              //   // this.mostrarToast(this.image, 15000);
-              //    //this.elemento =  document.getElementById("ImagenInput");
-              //    //this.mostrarToast(this.elemento, 10000);
+  this.loading = this.loadingCtrl.create({ content: "Espere por favor..."});
+  this.loading.present();
 
-              //    //this.mostrarToast(this.myPhoto.name, 20000);
-              //let decode = this.b64DecodeUnicode(imageData);
-              //this.myPhoto = this.convertDataURIToBinary(imageData);
-              //this.image = 'data:image/jpeg;base64,' + imageData;
-              //let file1 = fetch(this.image).then(r => r.blob());
-              //.then(fil => new File([fil],"imagen.jpg"));
-              //this.elemento = file1;
-              //this.submitFoto();
-              //this.subirAPICamara();
-              
-            //this.image = 'data:image/JPEG;base64,' + imageData;
-                        
-            
-            //  .then(savedPicture => {
-            //    this.responseFirebase = savedPicture.ref.getDownloadURL.name;
-            //    this.mostrarToast(this.responseFirebase,7000);
-            //  });
+  let pathURL = "https://brazilsouth.api.cognitive.microsoft.com/vision/v1.0/analyze?language=es&visualFeatures=tags"
+  let apiKey = "a84d243e248d4e67aee85fce8cace729";
+  
+  const headers = new HttpHeaders()
+    .set('Ocp-Apim-Subscription-Key', apiKey)
+    .set('Content-Type', 'application/json;charset=UTF-8')
+    .set('Access-Control-Allow-Origin', '*')
+    .set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT')
 
-              // this.uploadPhoto(imageData);  
 
-            
-              
-            //    }, (err) => {
-            //        this.mostrarToast("Fallo en Get Picture"+err.message, 5000);
-            //  });
-              //   //const imagen = `data:image/jpeg;base64,${resultado}`;
-              //   const pictures = storage().ref('pictures/reconocimiento');
-              //   //this.image = resultado;
-              //   pictures.putString(this.image, 'DATA_URL');
-        
-        //  } catch (error) {
-        //    this.mostrarToast("Fallo fuera del Get"+error.message, 5000);
-        // }
-     } 
+   
+    var jsonString = JSON.stringify({url: res});
+    // var obj;
+    // obj = {
 
-     b64DecodeUnicode(str) {
+    // }
+    // const formData = new FormData();
+  // formData.append("image",this.elemento);
+  this.http.post(pathURL, jsonString, { headers: headers })
+    .subscribe(res => {
+      this.encontrado = res['tags']
+      this.mostrarToast("Sin errores", 6000);
+      this.loading.dismiss();
+    }, (err) => {
+      this.loading.dismiss();
+      this.mostrarToast(err.status+" error code: "+err.code +"  Mensaje"+err.message, 6000);
+      this.encontrado = this.datos;
+      // this.encontrado = ["no se encontraron resultados","Sin resultados"];
+    });
+
+}
+
+
+b64DecodeUnicode(str) 
+{
       // Going backwards: from bytestream, to percent-encoding, to original string.
         return decodeURIComponent(atob(str).split('').map(function (c) {
           return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
         }).join(''));
-      }
+}
 
-     submitFoto() {
-      //let pathURL = "http://localhost:55081/Api/Usuario/PostUsuario" 
-      let pathURL = "http://todaviasirve.azurewebsites.net/Api/Usuario/PostUsuario"
-  
-      let headers = new HttpHeaders();
-      //headers.append('Content-Type', 'application/json');
-      headers.append('enctype', 'multipart/form-data;charset=UTF-16'); 
-      headers.append('Accept-Charset', 'utf-8');
-      headers.append('Access-Control-Allow-Origin', '*');
-      headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
-  
-      var formData = new FormData();
-      formData.append("nombre","usuarioImagen");
-      formData.append("imagen", this.elemento);
-  
-      this.http.post( pathURL, formData, { headers: headers } )
-        .subscribe(res => { alert("success " + res); },
-          (err) => { alert("failed"+ err.message); }
-        );
-    }
 
       
-
-      convertDataURIToBinary(dataURI) {
+         //Convertir datos a binario
+convertDataURIToBinary(dataURI) {
         // var base64Index = dataURI.indexOf(this.BASE64_MARKER) + this.BASE64_MARKER.length;
         // var base64 = dataURI.substring(base64Index);
         var raw = window.atob(dataURI);
@@ -184,18 +258,18 @@ export class CamaraPage {
         this.mostrarToast("entre al convert despues del for", 5000);
 
         return array;
-    }
+}
 
   
-
-      subirAPICamara() {
+      // Subir foto de la camara como tipo Blob o File
+subirAPICamara() {
 
         this.loading = this.loadingCtrl.create({ content: this.myPhoto});
         this.loading.present();
     
         let pathURL = "https://brazilsouth.api.cognitive.microsoft.com/vision/v1.0/analyze?language=es&visualFeatures=tags"
         let apiKey = "a84d243e248d4e67aee85fce8cace729";
-    
+        
         const headers = new HttpHeaders()
           .set('Ocp-Apim-Subscription-Key', apiKey)
           .set('enctype', 'multipart/form-data;charset=UTF-8')
@@ -216,22 +290,9 @@ export class CamaraPage {
             // this.encontrado = ["no se encontraron resultados","Sin resultados"];
           });
     
-      }
+}
 
-  //     getFileEntry(imgUri) {
-  //       window.resolveLocalFileSystemURL(imgUri, function success(fileEntry) {
-    
-  //           // Do something with the FileEntry object, like write to it, upload it, etc.
-  //           // writeFile(fileEntry, imgUri);
-  //           console.log("got file: " + fileEntry.fullPath);
-  //           // displayFileData(fileEntry.nativeURL, "Native URL");
-    
-  //       }, function () {
-  //         // If don't get the FileEntry (which may happen when testing
-  //         // on some emulators), copy to a new FileEntry.
-  //          this.createNewFileEntry(imgUri);
-  //       });
-  //   }
+        // Resolver url local
 
   //   createNewFileEntry(imgUri) {
   //     window.resolveLocalFileSystemURL(cordova.file.cacheDirectory, function success(dirEntry) {
@@ -249,6 +310,7 @@ export class CamaraPage {
   //     }, onErrorResolveUrl);
   // }
 
+          //Resolver Url local
       private async uploadPhoto(imageFileUri: string) {
         this.error = null;
         this.loading = await this.loadingCtrl.create({
@@ -264,25 +326,9 @@ export class CamaraPage {
           this.loading.dismiss();
           this.subirAPICamara();
             
-
-        // this.mostrarToast(file1.name,4000);
-        // window['resolveLocalFileSystemURL'](imageFileUri,
-        //   entry => {
-        //     entry['file'](file => {
-        //       this.loading.dismiss();
-        //       this.myPhoto = file;
-                //       this.subirAPICamara();
-             
-        //       this.readFile(file)
-        //     });
-        //     this.loading.dismiss();
-        //   }, err => {
-        //     this.loading.dismiss();
-        //     this.mostrarToast("Fallo en el read file", 5000);
-        //   });
       }
 
-      
+        //Crear un File 
   private readFile(file: any) {
     this.mostrarToast("entre al readfile", 5000);
     const reader = new FileReader();
@@ -304,14 +350,6 @@ export class CamaraPage {
   // DESDE ARCHIVO ----------------------
   getPicture(event) {
     this.image = event.target.files[0];
-    const pictures = storage().ref('pictures/miFoto');
-    pictures.putString(this.image, 'DATA_URL');
-    //this.elemento = this.image;
-    //this.submitFoto();
-    // this.myPhoto = event.target.files[0];
-    // //this.image = 'data:image/JPEG;base64,' + imageData;
-    //  this.mostrarToast(this.image, 15000);
-    //  console.log(this.image.toString);
      let reader = new FileReader();
      reader.onload = (event: any) => {
        this.image = event.target.result;

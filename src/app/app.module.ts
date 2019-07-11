@@ -33,6 +33,10 @@ import { ReconoProvider } from '../providers/recono/recono';
 
 import { Camera } from '@ionic-native/camera';
 import { CamaraPageModule } from '../pages/camara/camara.module';
+import { AngularFireStorageModule } from "angularfire2/storage";
+import { AngularFirestoreModule } from "angularfire2/firestore";
+import { AngularFireModule } from '@angular/fire';
+import { FIREBASE_CONFIG } from "../app/firebase.config";
 
 
 @NgModule({
@@ -57,6 +61,9 @@ import { CamaraPageModule } from '../pages/camara/camara.module';
     PublicarPageModule,
     PasosPageModule,
     CamaraPageModule,
+    AngularFireModule.initializeApp(FIREBASE_CONFIG),
+    AngularFirestoreModule,
+    AngularFireStorageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
