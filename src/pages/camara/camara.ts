@@ -7,7 +7,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoadingController } from 'ionic-angular';
 import { DetallePage } from '../detalle/detalle';
 import { PublicacionProvider } from '../../providers/publicacion/publicacion';
-
+import { ToastController } from 'ionic-angular/components/toast/toast-controller';
+import {storage,initializeApp } from 'firebase';
+import { FIREBASE_CONFIG } from "../../app/firebase.config";
 
 @IonicPage()
 @Component({
@@ -19,7 +21,7 @@ export class CamaraPage {
   image: string = null;
   loading
   encontrado
-
+  acaUrl
   datos = ["Planta", "Botella", "Maceta", "ddddddd", "eeeeee", "ffffff"]   // ejemplos
 
 
@@ -33,8 +35,10 @@ export class CamaraPage {
     private camera: Camera,
     private http: HttpClient,
     public loadingCtrl: LoadingController,
+    public toast : ToastController,
     public publicacionService: PublicacionProvider,
   ) {
+           initializeApp(FIREBASE_CONFIG);
   }
 
   ionViewDidLoad() {  }
@@ -48,6 +52,72 @@ export class CamaraPage {
   }
 
   
+     //  DESDE LA CAMARA DEL CELULAR ----------------
+    
+async getPictureCam() 
+{
+              const options: CameraOptions = {
+                quality: 60,
+                targetHeight: 600,
+                targetWidth: 600,
+                destinationType: this.camera.DestinationType.DATA_URL,
+                encodingType: this.camera.EncodingType.JPEG,
+                mediaType: this.camera.MediaType.PICTURE,
+                //saveToPhotoAlbum: true
+              } 
+      
+        try{
+      
+                const resultado = await this.camera.getPicture(options); 
+                //this.image  =  'data:image/jpeg;base64,' + resultado;
+                const imagen = `data:image/jpeg;base64,${resultado}`;
+                const pictures = storage().ref('pictures/miFoto');
+                this.image = imagen;
+                pictures.putString(imagen, 'data_url');
+                // const task1 =  pictures.putString(imagen, 'data_url').then(res => {
+                //   //this.acaUrl  = res.downloadURL;
+                //   //this.mostrarToast ("deberia url"+this.acaUrl,7000);
+                //   // otroalgo.downloadURL();
+                // });
+                //pictures.putString(imagen, 'data_url');
+                pictures.getDownloadURL().then(res => {
+                  this.acaUrl = res;    
+                  this.subirApiJson(res);
+                })
+          
+        } catch (error) {
+                 this.mostrarToast("Dato"+error.message, 3000);
+        }
+} 
+
+subirApiJson(res) 
+{     
+        this.loading = this.loadingCtrl.create({ content: "Espere por favor..."});
+        this.loading.present();
+            
+        let pathURL = "https://brazilsouth.api.cognitive.microsoft.com/vision/v1.0/analyze?language=es&visualFeatures=tags"
+        let apiKey = "a84d243e248d4e67aee85fce8cace729";
+      
+        const headers = new HttpHeaders()
+          .set('Ocp-Apim-Subscription-Key', apiKey)
+          .set('Content-Type', 'application/json;charset=UTF-8')
+          .set('Access-Control-Allow-Origin', '*')
+          .set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT')
+      
+        var jsonString = JSON.stringify({url: res});
+        this.http.post(pathURL, jsonString, { headers: headers })
+          .subscribe(res => {
+            this.encontrado = res['tags']
+            this.mostrarToast("Sin errores", 6000);
+            this.loading.dismiss();
+          }, (err) => {
+            this.loading.dismiss();
+            this.mostrarToast(err.status+" error code: "+err.code, 4000);
+          });
+      
+}
+      
+
 
 /*       
     // DESDE LA CAMARA DEL CELULAR ----------------
@@ -113,5 +183,13 @@ export class CamaraPage {
 
   }
 
+     //Funcion para mostrar mensaje de error recibe mensaje de error y la duración de el mensaje
+     mostrarToast(mensaje: string, duracion: number) {
+      this.toast.create({
+        message: mensaje,
+        duration: duracion
+      }).present();
+    }
+  
 
 } // cierre clase
