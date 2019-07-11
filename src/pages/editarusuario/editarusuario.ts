@@ -6,6 +6,7 @@ import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { Usuario } from '../models/usuario.model';
 import { PerfilPage } from '../perfil/perfil';
 import { TabsPage } from '../tabs/tabs';
+import { HomePage } from '../home/home';
 
 
 @IonicPage()
@@ -54,7 +55,7 @@ export class EditarusuarioPage implements OnInit {
     /* localStorage.setItem('currentUser', JSON.stringify(this.usuario)); */
     this.usuarioProvider.setearUsuarioLogueado(this.usuario);
     this.presentToast("Vuelva a Iniciar Sesion para efectuar los cambios");
-    this.navCtrl.setRoot(PerfilPage);
+    this.navCtrl.popTo(HomePage);
 
   } // cierre editarUsuario()
 

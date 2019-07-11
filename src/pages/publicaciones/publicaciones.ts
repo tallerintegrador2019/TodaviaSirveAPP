@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController, ItemSliding } from 'ionic-angular';
 import { PublicacionProvider } from '../../providers/publicacion/publicacion';
 import { DetallePage } from '../detalle/detalle';
 import { EditarpublicacionPage } from '../editarpublicacion/editarpublicacion';
@@ -56,18 +56,20 @@ export class PublicacionesPage {
         this.presentToast("Eliminado Correctamente");
       },
         (error) => {
-          this.presentToast("Eliminacion Falló");
+          this.presentToast("Eliminacion Falló" + error);
         }
       );
     console.log("Se borro la publicacion:" + idPubli);
     
   }
 
-  irAEditarPublicacion(publi){
+  irAEditarPublicacion(publi, slidingItem: ItemSliding){
+    slidingItem.close();
     this.navCtrl.push(EditarpublicacionPage, { "publi" : publi } );
   }
 
-  irAPasosDePublicacion(publi){
+  irAPasosDePublicacion(publi, slidingItem: ItemSliding){
+    slidingItem.close();
     this.navCtrl.push(PasosdepublicacionesPage, { "publi" : publi } );
   }
 

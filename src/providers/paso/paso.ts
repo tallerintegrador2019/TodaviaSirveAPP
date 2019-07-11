@@ -17,7 +17,7 @@ export class PasoProvider {
 
    // BORRAR PASO
    borrarPaso(idPaso) {
-    return this.http.get("https://todaviasirve.azurewebsites.net/api/Paso/" + idPaso);
+    return this.http.delete("https://todaviasirve.azurewebsites.net/api/Paso/" + idPaso);
     /* return this.http.delete("http://localhost:55081/api/Paso/" + idPaso) */
   }
 

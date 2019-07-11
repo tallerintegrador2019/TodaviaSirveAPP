@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
 
 import { Usuario } from "../models/usuario.model";
@@ -20,6 +20,7 @@ export class PerfilPage {
   constructor(  public navCtrl: NavController, 
                 public navParams: NavParams, 
                 public usuarioProvider: UsuarioProvider,
+                public viewCtrl: ViewController  // se agrego por el popover
               ) {
                 
     this.usuarioLogueado = this.usuarioProvider.obtenerUsuarioLogueado();
@@ -30,11 +31,12 @@ export class PerfilPage {
 
   irAEditarUsuario(){
     this.navCtrl.push(EditarusuarioPage);
+    this.viewCtrl.dismiss() // se agrego por el popover
   }
 
   cerrarSesion(){
     localStorage.clear(); //becausae i have information from user
-    this.navCtrl.push(LoginPage);
+    this.navCtrl.setRoot(LoginPage);
   }
 
 }

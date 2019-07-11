@@ -3,18 +3,20 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Administrar Publicaciones</ion-title>
+    <ion-title>Editar Publicaciones</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
 
+  <p text-center style="color:silver; margin: 5px 0 0 0;" > &lt; Deslice hacia los costados &gt;</p>
+
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-
+  
   <ion-list>
-    <ion-item-sliding *ngFor="let publicacion of publicaciones">
+    <ion-item-sliding *ngFor="let publicacion of publicaciones" #slidingItem>
 
       <ion-item (click)="irADetalle(publicacion)" text-wrap>
         <ion-thumbnail item-start class="itemClass">
@@ -31,11 +33,11 @@
         </button>
       </ion-item-options>
       <ion-item-options side="left">
-        <button ion-button color="primary" (click)="irAEditarPublicacion(publicacion)">
+        <button ion-button color="primary" (click)="irAEditarPublicacion(publicacion, slidingItem)">
           <ion-icon name="paper"></ion-icon>
           Public.
         </button>
-        <button ion-button color="secondary" (click)="irAPasosDePublicacion(publicacion)">
+        <button ion-button color="secondary" (click)="irAPasosDePublicacion(publicacion, slidingItem)">
           <ion-icon name="photos"></ion-icon>
           Pasos
         </button>

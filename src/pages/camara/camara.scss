@@ -44,6 +44,26 @@ page-camara {
       
       }
 
+      .contentButton {
+        padding-top: 1px;
+        margin: 0 15px 0px 15px;
+
+        button {
+          margin: 15px 0px 15px 0px;
+        }
+      }
+
+
+      .image-upload > input
+      {
+          display: none;
+      }
+      
+      .image-upload img
+      {
+          width: 50px;
+          cursor: pointer;
+      }
 
 
 }

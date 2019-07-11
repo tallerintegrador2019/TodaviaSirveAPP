@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, NavController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -13,7 +13,7 @@ import { PerfilPage } from '../pages/perfil/perfil';
 import { LoginPage } from '../pages/login/login';
 import { PublicarPage } from '../pages/publicar/publicar';
 import { CamaraPage } from '../pages/camara/camara';
-import {MisPublicacionesPage} from '../pages/mis-publicaciones/mis-publicaciones';
+import { MisPublicacionesPage } from '../pages/mis-publicaciones/mis-publicaciones';
 import { PublicacionesPage } from '../pages/publicaciones/publicaciones';
 
 @Component({
@@ -27,33 +27,31 @@ export class MyApp {
 
   rootPage: any;
 
-  pages: Array<{title: string, component: any, icon: string}>;
+  pages: Array<{ title: string, component: any, icon: string }>;
 
-  constructor(  public platform: Platform, 
-                public statusBar: StatusBar, 
-                public splashScreen: SplashScreen,
-              ) {
+  constructor(public platform: Platform,
+    public statusBar: StatusBar,
+    public splashScreen: SplashScreen,
+  ) {
+    
     this.initializeApp();
 
     // si hay usuario va al Home sino va al Login
     if (this.usuario) {
       this.rootPage = TabsPage;
-    } else{
+    } else {
       this.rootPage = LoginPage;
     }
+
 
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: TabsPage, icon: 'home' },
       { title: 'Buscador', component: BuscarPage, icon: 'search' },
-/*       { title: 'Publicar', component: PublicarPage, icon: 'cloud-upload' }, */
       { title: 'Camara', component: CamaraPage, icon: 'camera' },
- /*      { title: 'Mi Perfil', component: PerfilPage, icon: 'person' }, */
+      { title: 'Mis Publicaciones', component: MisPublicacionesPage, icon: 'star' },
+      { title: 'Editar Publicaciones', component: PublicacionesPage, icon: 'switch' },
       { title: 'Quienes somos', component: AboutPage, icon: 'contacts' },
-      { title: 'Mis Publicaciones', component: MisPublicacionesPage, icon: 'search' },
-      { title: 'Todas las Publicaciones', component: PublicacionesPage, icon: 'switch' }
-
-      /* { title: 'List', component: ListPage } */
     ];
 
   }
@@ -70,12 +68,13 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    /* this.nav.setRoot(page.component); */
+    this.nav.push(page.component);
   }
 
-  logout(){
+  logout() {
     localStorage.clear(); //becausae i have information from user
-    this.nav.push(LoginPage);
+    this.nav.setRoot(LoginPage);
   }
 
 }
