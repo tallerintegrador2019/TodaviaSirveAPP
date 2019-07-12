@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ToastController, ItemSliding } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController, ItemSliding, AlertController } from 'ionic-angular';
 import { PublicacionProvider } from '../../providers/publicacion/publicacion';
 import { DetallePage } from '../detalle/detalle';
 import { EditarpublicacionPage } from '../editarpublicacion/editarpublicacion';
 import { PasosdepublicacionesPage } from '../pasosdepublicaciones/pasosdepublicaciones';
+import { PublicarPage } from '../publicar/publicar';
 
 
 
@@ -24,6 +25,7 @@ export class PublicacionesPage {
     public publicacionProvider: PublicacionProvider,
     public loadingCtrl: LoadingController,
     public toastCtrl: ToastController,
+    public alertCtrl: AlertController
   ) {
   }
 
@@ -90,5 +92,35 @@ export class PublicacionesPage {
       refresher.complete();
     }, 500);
   }
+
+
+  mostrarConfirmacion(id, slidingItem: ItemSliding) {
+    const confirm = this.alertCtrl.create({
+      title: '¿Realmente quiere borrar la publicación?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: () => {
+            slidingItem.close();
+            console.log('Cancelar clicked');
+          }
+        },
+        {
+          text: 'Borrar',
+          handler: () => {
+            this.borrarPublicacion(id);
+            console.log('Borrar clicked');
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+  irAPublicar(){
+    this.navCtrl.push(PublicarPage);
+  }
+
+
 
 }

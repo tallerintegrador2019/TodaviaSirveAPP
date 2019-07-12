@@ -3,8 +3,8 @@ import { IonicPage, NavController, NavParams,LoadingController } from 'ionic-ang
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { YtProvider } from "../../providers/yt/yt";
 import { PasoProvider } from '../../providers/paso/paso';
-import {UsuarioProvider} from "../../providers/usuario/usuario";
-import {PublicacionProvider} from "../../providers/publicacion/publicacion";
+import { UsuarioProvider } from "../../providers/usuario/usuario";
+import { PublicacionProvider } from "../../providers/publicacion/publicacion";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ComenUsu } from '../models/comenUsu.model';
 import { ComentarioCantidad } from '../models/ComentarioCantidad.model';
@@ -21,13 +21,13 @@ export class DetallePage {
   imagenURL: string = "https://todaviasirve.azurewebsites.net/Content/Images/";
   videosEncontrados: any;
   signupform: FormGroup;
-  valor : string = null ; 
+  valor: string = null;
   comentario = "";
   usuario;
   comentarioCantidad
   cantidad 
   listadoComentarios
-  valor2 : ComentarioCantidad
+  valor2: ComentarioCantidad
   pasos
   loading: any;
   realizoComentario: boolean = false
@@ -40,11 +40,11 @@ export class DetallePage {
     public usuarioProv : UsuarioProvider,
     public publicacionProvider : PublicacionProvider,
     public loadingCtrl: LoadingController
+
   ) {
     this.publicacion = navParams.get("publi");
     this.pasoProvider.getPasosDePublicacion(this.publicacion.id)
       .subscribe(res => this.pasos = res)
-
       this.publicacionProvider.obtenerComentarioPublicacion(this.publicacion.id)
       .subscribe(res => {
         this.valor2 = res
@@ -54,10 +54,11 @@ export class DetallePage {
         console.log(this.listadoComentarios);
       });
      
-      
+
 
     //this.comentarioCantidad = this.listadoComentarios.cantidad;
     //this.listadoComentarios = this.listadoComentarios.comentarioUsuarios;
+  
     // API PARA TRAER LOS VIDEOS DE YOUTUBE
     /* this.ytProvider.obtenerVideos(this.publicacion.titulo).subscribe(res => this.videosEncontrados = res['items']); */
     this.usuario = this.usuarioProv.obtenerUsuarioLogueado();
@@ -91,18 +92,19 @@ export class DetallePage {
     else{
       this.valor = null
     }
-    
+
   }
 
   submitComentario(){
     this.loading = this.loadingCtrl.create({ content: " espere por favor..." });
     this.loading.present();
      let pathURL = "http://localhost:55081/Api/Publicacion/subirComentario"
+
     // let pathURL = "http://todaviasirve.azurewebsites.net/Api/Usuario"
 
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    headers.append('enctype', 'multipart/form-data;charset=UTF-16'); 
+    headers.append('enctype', 'multipart/form-data;charset=UTF-16');
     headers.append('Accept-Charset', 'utf-8');
     headers.append('Access-Control-Allow-Origin', '*');
     headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
@@ -122,9 +124,10 @@ export class DetallePage {
         (err) => {
           this.loading.dismiss();
            alert("failed"); }
+
       );
 
     console.log(formData);
-    console.log("Comentario"+this.comentario+ " IdPublicacion: "+this.publicacion.id + " IdUsuario: "+ this.usuario.id);
+    console.log("Comentario" + this.comentario + " IdPublicacion: " + this.publicacion.id + " IdUsuario: " + this.usuario.id);
   }
 } // cierre DetallePage

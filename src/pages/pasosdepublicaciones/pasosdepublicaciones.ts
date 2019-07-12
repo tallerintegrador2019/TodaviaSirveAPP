@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController, ItemSliding, AlertController } from 'ionic-angular';
 import { PasoProvider } from '../../providers/paso/paso';
 import { Publicacion } from '../models/publicacion.model';
 import { EditarpasoPage } from '../editarpaso/editarpaso';
+import { PasosPage } from '../pasos/pasos';
 
 
 @IonicPage()
@@ -23,6 +24,7 @@ export class PasosdepublicacionesPage {
     public loadingCtrl: LoadingController,
     public toastCtrl: ToastController,
     public pasoProvider: PasoProvider,
+    public alertCtrl: AlertController
     ) {
 
       this.publicacion = navParams.get("publi");
@@ -55,6 +57,10 @@ export class PasosdepublicacionesPage {
     console.log("Se borro el paso:" + idPaso);
     
   }
+
+  irACrearPaso(){
+    this.navCtrl.push(PasosPage, {"idPubli": this.publicacion.id})
+  }
   
 
   presentToast(msj: string) {
@@ -75,4 +81,26 @@ export class PasosdepublicacionesPage {
     }, 500);
   }
 
-}
+
+  mostrarConfirmacion(id, slidingItem: ItemSliding) {
+    const confirm = this.alertCtrl.create({
+      title: '¿Realmente quiere borrar este paso?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: () => {
+            slidingItem.close();
+          }
+        },
+        {
+          text: 'Borrar',
+          handler: () => {
+            this.borrarPaso(id);
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+} // cierre clase
