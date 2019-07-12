@@ -27,7 +27,7 @@
       </ion-item>
 
       <ion-item-options side="right">
-        <button ion-button color="danger" (click)="borrarPublicacion(publicacion.id)">
+        <button ion-button color="danger" (click)="mostrarConfirmacion(publicacion.id, slidingItem)">
           <ion-icon name="trash"></ion-icon>
           Eliminar
         </button>
@@ -45,5 +45,10 @@
 
     </ion-item-sliding>
   </ion-list>
+
+  <div text-center padding-bottom>
+    <button ion-button round  color="verdeTodavia" (click)="irAPublicar()">Agregar publicacion</button>
+  </div>
+
 
 </ion-content>

@@ -46,7 +46,6 @@ export class PasosPage {
     }
   }
 
-  
 
   irAHome(){
     this.publicacionProvider.subirPaso(this.paso, this.idPublicacion);

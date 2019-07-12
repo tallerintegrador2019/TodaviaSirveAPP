@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar color="verdeTodavia">
-  <ion-title>Pasos de la Publicacion</ion-title>
+    <ion-title>Pasos de la Publicacion</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -11,7 +11,7 @@
   </ion-refresher>
 
   <ion-list>
-    <ion-item-sliding *ngFor="let paso of pasos">
+    <ion-item-sliding *ngFor="let paso of pasos" #slidingItem>
 
       <ion-item (click)="irAEditarPaso(paso)">
         <ion-thumbnail item-start class="itemClass">
@@ -22,7 +22,7 @@
       </ion-item>
 
       <ion-item-options side="right">
-        <button ion-button color="danger" (click)="borrarPaso(paso.id)">
+        <button ion-button color="danger" (click)="mostrarConfirmacion(paso.id, slidingItem)">
           <ion-icon name="trash"></ion-icon>
           Eliminar
         </button>
@@ -32,6 +32,10 @@
 
     </ion-item-sliding>
   </ion-list>
+
+  <div text-center padding-bottom>
+    <button ion-button round color="verdeTodavia" (click)="irACrearPaso()">Agregar paso</button>
+  </div>
 
 
 </ion-content>
