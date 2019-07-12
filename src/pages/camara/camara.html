@@ -52,8 +52,8 @@
   
    <div class="contentButton" *ngIf="image">
 
-      <button ion-button round full text-center *ngFor="let item of encontrado" (click)="buscarPublicacion(item.name)">
-        {{item.name}}
+      <button ion-button round full text-center *ngFor="let item of encontrado" (click)="buscarPublicacion(item)">
+        {{item}}
       </button>
     </div>
 
