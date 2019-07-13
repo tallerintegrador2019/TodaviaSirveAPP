@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Select, AlertController } from 'ionic-angular';
 
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -15,6 +15,8 @@ import { PublicacionProvider } from '../../providers/publicacion/publicacion';
   templateUrl: 'camara.html',
 })
 export class CamaraPage {
+
+  @ViewChild(Select) select: Select;
 
   image: string = null;
   loading
@@ -34,43 +36,44 @@ export class CamaraPage {
     private http: HttpClient,
     public loadingCtrl: LoadingController,
     public publicacionService: PublicacionProvider,
+    private alertCtrl: AlertController
   ) {
   }
 
-  ionViewDidLoad() {  }
+  ionViewDidLoad() { }
 
   buscarPublicacion(item) {
-    this.publicaciones = this.publicacionService.buscarPublicacion(item);    
+    this.publicaciones = this.publicacionService.buscarPublicacion(item);
   }
 
   irADetalle(publi) {
     this.navCtrl.push(DetallePage, { publi });
   }
 
-  
 
-/*       
-    // DESDE LA CAMARA DEL CELULAR ----------------
-    getPicture() {
+
+  /*       
+      // DESDE LA CAMARA DEL CELULAR ----------------
+      getPicture() {
+      
+          const options: CameraOptions = {
+            quality: 75,
+            destinationType: this.camera.DestinationType.DATA_URL,
+            encodingType: this.camera.EncodingType.JPEG,
+            mediaType: this.camera.MediaType.PICTURE
+          }
+      
+          this.camera.getPicture(options).then((imageData) => {
+            // imageData is either a base64 encoded string or a file URI
+            // If it's base64 (DATA_URL):
+            this.image = 'data:image/jpeg;base64,' + imageData;
+          }, (err) => {
+            // Handle error
+          });
     
-        const options: CameraOptions = {
-          quality: 75,
-          destinationType: this.camera.DestinationType.DATA_URL,
-          encodingType: this.camera.EncodingType.JPEG,
-          mediaType: this.camera.MediaType.PICTURE
-        }
-    
-        this.camera.getPicture(options).then((imageData) => {
-          // imageData is either a base64 encoded string or a file URI
-          // If it's base64 (DATA_URL):
-          this.image = 'data:image/jpeg;base64,' + imageData;
-        }, (err) => {
-          // Handle error
-        });
-  
-        this.subirAAPI();
-    
-      } */
+          this.subirAAPI();
+      
+        } */
 
 
   // DESDE ARCHIVO ----------------------
@@ -80,17 +83,17 @@ export class CamaraPage {
     reader.onload = (event: any) => {
       this.image = event.target.result;
     }
-    if(this.image){
+    if (this.image) {
       reader.readAsDataURL(event.target.files[0]);
       this.subirAAPI();
     }
-    
+
   }
 
 
   subirAAPI() {
 
-    this.loading = this.loadingCtrl.create({ content: " espere por favor..."});
+    this.loading = this.loadingCtrl.create({ content: " espere por favor..." });
     this.loading.present();
 
     let pathURL = "https://brazilsouth.api.cognitive.microsoft.com/vision/v1.0/analyze?language=es&visualFeatures=tags"
@@ -108,10 +111,45 @@ export class CamaraPage {
     this.http.post(pathURL, formData, { headers: headers })
       .subscribe(res => {
         this.loading.dismiss();
-        this.encontrado = res['tags']
-      });
+        this.encontrado = res['tags'];
 
+        /*    setTimeout(() => {
+             this.select.open();
+           }, 150);
+    */
+
+/*         setTimeout(() => {
+          this.presentPrompt(this.encontrado);
+        }, 150);
+ */
+
+      });
   }
+
+/* 
+  presentPrompt(objetos) {
+
+
+    let alert = this.alertCtrl.create();
+    alert.setTitle("Encontrados")
+
+    objetos.forEach(element => {
+      alert.addButton({
+        role: 'cancel',
+        handler: (res) => {
+          console.log(String(res));
+        }
+      });
+    });
+
+
+    alert.present();
+  } */
+
+
+
+
+
 
 
 } // cierre clase
