@@ -8,7 +8,7 @@ import { LoadingController } from 'ionic-angular';
 import { DetallePage } from '../detalle/detalle';
 import { PublicacionProvider } from '../../providers/publicacion/publicacion';
 import { ToastController } from 'ionic-angular/components/toast/toast-controller';
-import {storage,initializeApp } from 'firebase';
+import {storage,initializeApp, apps } from 'firebase';
 import { FIREBASE_CONFIG } from "../../app/firebase.config";
 
 @IonicPage()
@@ -40,10 +40,14 @@ export class CamaraPage {
     public toast : ToastController,
     public publicacionService: PublicacionProvider,
   ) {
-           initializeApp(FIREBASE_CONFIG);
+            if(!apps.length){
+              initializeApp(FIREBASE_CONFIG);
+            }
+          //  initializeApp(FIREBASE_CONFIG);
   }
 
-  ionViewDidLoad() {  }
+  ionViewDidLoad() { 
+   }
 
   buscarPublicacion(item) {
     this.publicaciones = this.publicacionService.buscarPublicacion(item);    
@@ -109,9 +113,23 @@ subirApiJson(res)
         var jsonString = JSON.stringify({url: res});
         this.http.post(pathURL, jsonString, { headers: headers })
           .subscribe(res => {
-            this.encontrado = res['tags']
-            this.mostrarToast("Sin errores", 6000);
-            this.loading.dismiss();
+            this.encontrado1 = res['tags']
+          // Solo trae 3 resultados de nombres menores a 12 caracteres(1 palabra) o mas resultados
+          //   si la palabra aun no esta en la lista y es una palabra clave/filtro(relacionado al reciclado)
+            var listado = new Array();
+            var cantidad = 0;
+            for (let item of this.encontrado1){
+              if(cantidad < 3){
+                  if(item.name.length < 12){
+                    listado.push(item.name);
+                    cantidad++;
+                  }
+              }else if (this.variables.includes(item.name)){
+                    listado.push(item.name);
+              }            
+            }
+             this.encontrado = listado;
+             this.loading.dismiss();
           }, (err) => {
             this.loading.dismiss();
             this.mostrarToast(err.status+" error code: "+err.code, 4000);
@@ -119,31 +137,6 @@ subirApiJson(res)
       
 }
       
-
-
-/*       
-    // DESDE LA CAMARA DEL CELULAR ----------------
-    getPicture() {
-    
-        const options: CameraOptions = {
-          quality: 75,
-          destinationType: this.camera.DestinationType.DATA_URL,
-          encodingType: this.camera.EncodingType.JPEG,
-          mediaType: this.camera.MediaType.PICTURE
-        }
-    
-        this.camera.getPicture(options).then((imageData) => {
-          // imageData is either a base64 encoded string or a file URI
-          // If it's base64 (DATA_URL):
-          this.image = 'data:image/jpeg;base64,' + imageData;
-        }, (err) => {
-          // Handle error
-        });
-  
-        this.subirAAPI();
-    
-      } */
-
 
   // DESDE ARCHIVO ----------------------
   getPicture(event) {
@@ -184,7 +177,6 @@ subirApiJson(res)
           // Solo trae 3 resultados de nombres menores a 12 caracteres(1 palabra) o mas resultados
           //   si la palabra aun no esta en la lista y es una palabra clave/filtro(relacionado al reciclado)
         var listado = new Array();
-        var listadoAux = new Array();
         var cantidad = 0;
         for (let item of this.encontrado1){
           if(cantidad < 3){

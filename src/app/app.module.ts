@@ -39,7 +39,10 @@ import { PublicacionesPageModule } from '../pages/publicaciones/publicaciones.mo
 import { EditarpublicacionPageModule } from '../pages/editarpublicacion/editarpublicacion.module';
 import { PasosdepublicacionesPageModule } from '../pages/pasosdepublicaciones/pasosdepublicaciones.module';
 import { EditarpasoPageModule } from '../pages/editarpaso/editarpaso.module';
-
+import {FavoritosPageModule} from '../pages/favoritos/favoritos.module';
+// import {initializeApp } from 'firebase';
+// import { FIREBASE_CONFIG } from "./../app/firebase.config";
+// import { AngularFireModule } from '@angular/fire';
 
 @NgModule({
   declarations: [
@@ -68,6 +71,8 @@ import { EditarpasoPageModule } from '../pages/editarpaso/editarpaso.module';
     EditarpublicacionPageModule,
     PasosdepublicacionesPageModule,
     EditarpasoPageModule,
+    FavoritosPageModule,
+   // AngularFireModule.initializeApp(FIREBASE_CONFIG)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -85,7 +90,7 @@ import { EditarpasoPageModule } from '../pages/editarpaso/editarpaso.module';
     LoginProvider,
     ReconoProvider,
     Camera,
-    PasoProvider
+    PasoProvider,
   ]
 })
 export class AppModule {}
