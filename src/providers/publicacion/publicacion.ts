@@ -85,6 +85,32 @@ export class PublicacionProvider {
     return this.http.post(pathURL, formData, { headers: headers });
   }
 
+        // SUBIR PUBLICACION Fix para subir publicacion y usuario
+  //  subirPublicacion(publi: Publicacion) {
+  //   let pathURL = "http://todaviasirve.azurewebsites.net/Api/Publicacion/";
+  //   /* let pathURL = "http://localhost:55081/Api/Publicacion/";  */
+
+  //   const headers = new HttpHeaders()
+  //     .set('enctype', 'multipart/form-data;charset=UTF-8')
+  //     .set('Access-Control-Allow-Origin', '*')
+  //     .set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT')
+  //     .set('Accept-Charset', 'utf-8')
+
+  //   var formData = new FormData();
+  //   formData.append("titulo", publi.titulo);
+  //   formData.append("subtitulo", publi.subtitulo);
+  //   formData.append("descripcion", publi.descripcion);
+  //   formData.append("fechaSubida", publi.fechaSubida);
+  //   formData.append("imagenPortada", publi.imagenPortada);
+  //   formData.append("usuarioPublicacion", publi.idUsuario);
+  //   /* this.http.post(pathURL, formData, { headers: headers })
+  //     .subscribe(res => { alert("success " + res); },
+  //       (err) => { alert("failed"); }
+  //     ); */
+
+  //   return this.http.post(pathURL, formData, { headers: headers });
+  // }
+
 
   // SUBIR PASOS
   subirPaso(paso: Paso, idPublicacion) {
@@ -130,7 +156,8 @@ export class PublicacionProvider {
 
   obtenerComentarioPublicacion(idPublicacion){
     console.log("buscar comentarios de esta publicacion "+ idPublicacion);
-    return this.http.get<ComentarioCantidad>("http://localhost:55081/Api/Publicacion/obtenerComentarioPublicacion/"+idPublicacion)
+    return this.http.get<ComentarioCantidad>("https://todaviasirve.azurewebsites.net/Api/Publicacion/obtenerComentarioPublicacion/"+idPublicacion)    
+    // return this.http.get<ComentarioCantidad>("http://localhost:55081/Api/Publicacion/obtenerComentarioPublicacion/"+idPublicacion)
   }
 
   // obtenerTodasPublicaciones2() {

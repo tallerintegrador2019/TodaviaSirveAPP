@@ -5,4 +5,5 @@ export interface Publicacion{
     descripcion
     fechaSubida
     imagenPortada
+    idUsuario
 }

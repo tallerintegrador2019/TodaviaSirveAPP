@@ -30,7 +30,7 @@ export class MisPublicacionesPage {
 
     this.usuario = this.usuarioProvider.obtenerUsuarioLogueado();
     this.publicaciones =  this.publicacionProvider.obtenerPublicacionesUsuario(this.usuario.id);
-    this.valor = this.publicacionProvider.obtenerPublicacionesUsuario(this.usuario.id);
+    //this.valor = this.publicacionProvider.obtenerPublicacionesUsuario(this.usuario.id);
   }
 
   openMenu(publicacionClickeada) {

@@ -31,6 +31,7 @@ export class DetallePage {
   pasos
   loading: any;
   realizoComentario: boolean = false
+  cargarColor : string = null;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -69,6 +70,15 @@ export class DetallePage {
     this.signupform = new FormGroup({
       comentario: new FormControl('', [Validators.required,Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])
     });
+    console.log(this.cargarColor);
+  }
+
+  cargarFavorito(){
+    if(this.cargarColor == null){
+        this.cargarColor = "Cargar";
+    }else{
+      this.cargarColor = null;
+    }
   }
 
   cargarPublicacion(){
