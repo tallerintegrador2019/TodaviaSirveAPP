@@ -25,7 +25,13 @@
       <img src="../../assets/imgs/detectionEye.png" />
     </label>
     <input id="file-input" type="file" accept="image/*" (change)="getPicture($event)" />
+    <ion-fab>
+      <button ion-fab color="default" (click)="getPictureCam()">
+        <ion-icon name="camera"></ion-icon>
+      </button>
+    </ion-fab>
   </div>
+ 
 
   <ion-card class="cardClass">
     <img *ngIf="image" [src]="image" />
@@ -40,7 +46,10 @@
 
 
 
-
+      <button ion-button round full text-center *ngFor="let item of encontrado" (click)="buscarPublicacion(item)">
+        {{item}}
+      </button>
+    </div>
 
 
   <ion-list class="card-background-page">

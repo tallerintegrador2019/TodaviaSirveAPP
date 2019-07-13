@@ -42,20 +42,37 @@
       <ion-col>
         <button ion-button icon-start clear small (click)="cargarPublicacion()">
           <ion-icon name="text"></ion-icon>
-          <div> Comentarios</div>
+          <div *ngIf="this.cantidad">
+            {{cantidad}}  Comentarios
+          </div>
+          
         </button>
       </ion-col>
       <ion-col align-self-center text-center>
+            <div *ngIf="cargarColor; else elseBlock">
+                  <button ion-button icon-start clear small color="dark" (click)="cargarFavorito()">
+                    <ion-icon name="star" color="dark"></ion-icon>
+                    <div>Favorito</div>
+                  </button>
+            </div>
+            <ng-template #elseBlock>
+                <button ion-button icon-start clear small  (click)="cargarFavorito()">
+                  <ion-icon name="star"></ion-icon>
+                  <div>Favorito</div>
+                </button>
+            </ng-template>
+    </ion-col>
+      <!-- <ion-col align-self-center text-center>
         <ion-note>
           Hace 11h
         </ion-note>
-      </ion-col>
+      </ion-col> -->
     </ion-row>
     <div *ngIf="valor">         
 
         <!-- Disabled and readonly textarea in an item with a stacked label --> 
      <!-- <ion-list *ngFor="let listadoComentarios of comentarioCantidad"> -->
-          <ion-list *ngFor="let comenUsu of comentarioCantidad.comentarioUsuarios"> 
+          <ion-list *ngFor="let comenUsu of listadoComentarios"> 
               <ion-item>
                   <ion-avatar item-start>
                       <img src="{{imagenURL}}{{comenUsu.imagen}}">
@@ -68,6 +85,7 @@
                   </ion-textarea>
                 </ion-item> 
           </ion-list>
+          
      <!-- </ion-list> -->
         
         <ion-list> 
@@ -75,11 +93,31 @@
           <form novalidate (ngSubmit)="submitComentario()" [formGroup]="signupform">
             <ion-item>
               <ion-label position="floating">Comenta</ion-label>
-              <ion-textarea placeholder="Que te parecio esta publicacion!!!" [(ngModel)]="comentario" 
-              formControlName="comentario"></ion-textarea>
+                <ion-textarea placeholder="Que te parecio esta publicacion?" [(ngModel)]="comentario" 
+                  formControlName="comentario"  
+                  [class.error1]="!signupform.controls.comentario.valid && signupform.controls.comentario.dirty">
+                </ion-textarea>
             </ion-item>
+            <ion-item no-lines
+                  *ngIf="( signupform.get('comentario').hasError('minlength') || signupform.get('comentario').hasError('maxlength') ||
+                  signupform.get('comentario').hasError('pattern') ||
+                  signupform.get('comentario').hasError('required') ) && signupform.get('comentario').touched">
+                  <div class="error" *ngIf="signupform.get('comentario').hasError('required') && signupform.get('comentario').touched">
+                    Ingrese su comentario
+                  </div>
+                  <div class="error" *ngIf="signupform.get('comentario').hasError('minlength') && signupform.get('comentario').touched">
+                    Minimo 4 caracteres
+                  </div>
+                  <div class="error" *ngIf="signupform.get('comentario').hasError('maxlength') && signupform.get('comentario').touched">
+                    Maximo 30 caracteres
+                  </div>
+                  <div class="error" *ngIf="signupform.get('comentario').hasError('pattern') && signupform.get('comentario').touched">
+                    Solo use caracteres del alfabeto
+                  </div>
+              </ion-item>
+            
             <div style="text-align: center;">
-                <button type="submit" ion-button round color="primary">Comentar</button>
+                <button type="submit" ion-button round color="primary" [disabled]="signupform.invalid">Comentar</button>
             </div>
           </form>
 

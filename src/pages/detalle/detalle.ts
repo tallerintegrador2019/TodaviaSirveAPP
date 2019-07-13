@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,LoadingController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { YtProvider } from "../../providers/yt/yt";
 import { PasoProvider } from '../../providers/paso/paso';
@@ -25,28 +25,37 @@ export class DetallePage {
   comentario = "";
   usuario;
   comentarioCantidad
+  cantidad 
   listadoComentarios
   valor2: ComentarioCantidad
   pasos
+  loading: any;
+  realizoComentario: boolean = false
+  cargarColor : string = null;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public ytProvider: YtProvider,
     public pasoProvider: PasoProvider,
     public http: HttpClient,
-    public usuarioProv: UsuarioProvider,
-    public publicacionProvider: PublicacionProvider
-  ) {
+    public usuarioProv : UsuarioProvider,
+    public publicacionProvider : PublicacionProvider,
+    public loadingCtrl: LoadingController
 
+  ) {
     this.publicacion = navParams.get("publi");
     this.pasoProvider.getPasosDePublicacion(this.publicacion.id)
       .subscribe(res => this.pasos = res)
-    this.publicacionProvider.obtenerComentarioPublicacion(this.publicacion.id)
-      .subscribe(res => this.comentarioCantidad = res);
+      this.publicacionProvider.obtenerComentarioPublicacion(this.publicacion.id)
+      .subscribe(res => {
+        this.valor2 = res
+        this.listadoComentarios = res.comentarioUsuarios
+        this.cantidad = this.valor2.cantidad
+        console.log(this.cantidad);
+        console.log(this.listadoComentarios);
+      });
+     
 
-    this.valor2 = this.comentarioCantidad
-    console.log(this.comentarioCantidad);
-    console.log(this.comentarioCantidad);
 
     //this.comentarioCantidad = this.listadoComentarios.cantidad;
     //this.listadoComentarios = this.listadoComentarios.comentarioUsuarios;
@@ -57,26 +66,50 @@ export class DetallePage {
     console.log(this.videosEncontrados);
   }
 
-  ionViewDidLoad() { }
+  ionViewDidLoad() {
+    this.signupform = new FormGroup({
+      comentario: new FormControl('', [Validators.required,Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])
+    });
+    console.log(this.cargarColor);
+  }
 
-  cargarPublicacion() {
-    if (this.valor == null) {
-      this.valor = "Cargado";
-      console.log(this.valor);
-      this.signupform = new FormGroup({
-        comentario: new FormControl('', [Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])
+  cargarFavorito(){
+    if(this.cargarColor == null){
+        this.cargarColor = "Cargar";
+    }else{
+      this.cargarColor = null;
+    }
+  }
+
+  cargarPublicacion(){
+    if(this.valor == null){
+       this.valor = "Cargado";
+       console.log(this.valor);
+    // this.publicacionProvider.obtenerComentarioPublicacion(this.publicacion.id)
+    // .subscribe(res => this.listadoComentarios = res);
+    console.log(this.listadoComentarios);
+    }else if (this.realizoComentario) {
+      this.publicacionProvider.obtenerComentarioPublicacion(this.publicacion.id)
+      .subscribe(res => {
+        this.valor2 = res
+        this.listadoComentarios = res.comentarioUsuarios
+        this.cantidad = this.valor2.cantidad
+        console.log(this.cantidad);
+        console.log(this.listadoComentarios);
       });
-      // this.publicacionProvider.obtenerComentarioPublicacion(this.publicacion.id)
-      // .subscribe(res => this.listadoComentarios = res);
-      console.log(this.listadoComentarios);
-    } else {
+      this.realizoComentario = false
+    }
+    else{
       this.valor = null
     }
 
   }
 
-  submitComentario() {
-    let pathURL = "http://localhost:55081/Api/Publicacion/subirComentario"
+  submitComentario(){
+    this.loading = this.loadingCtrl.create({ content: " espere por favor..." });
+    this.loading.present();
+     let pathURL = "http://localhost:55081/Api/Publicacion/subirComentario"
+
     // let pathURL = "http://todaviasirve.azurewebsites.net/Api/Usuario"
 
     let headers = new HttpHeaders();
@@ -91,9 +124,17 @@ export class DetallePage {
     formData.append("idUsuario", this.usuario.id);
     formData.append("idPublicacion", this.publicacion.id);
 
-    this.http.post(pathURL, formData, { headers: headers })
-      .subscribe(res => { alert("success " + res); },
-        (err) => { alert("failed"); }
+    this.http.post( pathURL, formData, { headers: headers } )
+      .subscribe(res => {
+        this.loading.dismiss();
+        this.realizoComentario = true
+        this.cargarPublicacion();
+        //  alert("success " + res); 
+        },
+        (err) => {
+          this.loading.dismiss();
+           alert("failed"); }
+
       );
 
     console.log(formData);
