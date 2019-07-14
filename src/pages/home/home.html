@@ -58,11 +58,11 @@
   <h4 class="titulo">Publicaciones recientes</h4>
   <hr />
 
-  <ion-list>
+  <ion-list text-wrap>
     <button ion-item *ngFor="let publicacion of publicaciones" (click)="irADetalle(publicacion)">
-      <ion-avatar item-start class="avatarClass">
+      <ion-thumbnail item-start class="avatarClass">
         <img src="{{prefixURL}}{{publicacion.imagenPortada}}">
-      </ion-avatar>
+      </ion-thumbnail>
       <h2>{{publicacion.titulo}}</h2>
       <p>{{publicacion.subtitulo}}</p>
     </button>

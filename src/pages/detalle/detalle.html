@@ -34,16 +34,16 @@
 
     <ion-row>
       <ion-col>
-          <div *ngIf="cargarLike; else elseLike">
-            <button ion-button icon-start clear small color="dark" (click)="cargarLike()">
-              <ion-icon name="thumbs-up" color="dark"></ion-icon>
-              <div>12 Like</div>
+          <div *ngIf="meGusta; else elseLike">
+            <button ion-button icon-start clear small (click)="cargarLike()">
+              <ion-icon name="thumbs-up" ></ion-icon>
+              <div>{{cantLike}} MG</div>
             </button>
           </div>
           <ng-template #elseLike>
-              <button ion-button icon-start clear small  (click)="cargarLike()">
-                <ion-icon name="thumbs-up"></ion-icon>
-                <div>12 Like</div>
+              <button ion-button icon-start clear small color="dark"  (click)="cargarLike()">
+                <ion-icon name="thumbs-up" color="dark"></ion-icon>
+                <div>{{cantLike}} MG</div>
               </button>
           </ng-template>
       </ion-col>

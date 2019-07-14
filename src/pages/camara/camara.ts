@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Select, AlertController } from 'ionic-angular';
 
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -8,7 +8,7 @@ import { LoadingController } from 'ionic-angular';
 import { DetallePage } from '../detalle/detalle';
 import { PublicacionProvider } from '../../providers/publicacion/publicacion';
 import { ToastController } from 'ionic-angular/components/toast/toast-controller';
-import {storage,initializeApp, apps } from 'firebase';
+import { storage, initializeApp, apps } from 'firebase';
 import { FIREBASE_CONFIG } from "../../app/firebase.config";
 
 @IonicPage()
@@ -18,6 +18,8 @@ import { FIREBASE_CONFIG } from "../../app/firebase.config";
 })
 export class CamaraPage {
 
+  @ViewChild(Select) select: Select;
+
   image: string = null;
   loading
   encontrado
@@ -25,7 +27,6 @@ export class CamaraPage {
   acaUrl
   datos = ["Planta", "Botella", "Maceta", "ddddddd", "eeeeee", "ffffff"]   // ejemplos
   variables = "botella revista carton frasco diario vaso";
- 
   publicaciones: any = "";
   publicacionAux: any = null;
   prefixURL: string = "https://todaviasirve.azurewebsites.net/Content/Images/";
@@ -37,106 +38,114 @@ export class CamaraPage {
     private camera: Camera,
     private http: HttpClient,
     public loadingCtrl: LoadingController,
-    public toast : ToastController,
+    public toast: ToastController,
     public publicacionService: PublicacionProvider,
+    private alertCtrl: AlertController
   ) {
-            if(!apps.length){
-              initializeApp(FIREBASE_CONFIG);
-            }
-          //  initializeApp(FIREBASE_CONFIG);
+    if (!apps.length) {
+      initializeApp(FIREBASE_CONFIG);
+    }
+    //  initializeApp(FIREBASE_CONFIG);
   }
 
-  ionViewDidLoad() { 
-   }
+  ionViewDidLoad() {
+  }
 
   buscarPublicacion(item) {
-    this.publicaciones = this.publicacionService.buscarPublicacion(item);    
+    this.publicaciones = this.publicacionService.buscarPublicacion(item);
   }
 
   irADetalle(publi) {
     this.navCtrl.push(DetallePage, { publi });
   }
 
-  
-     //  DESDE LA CAMARA DEL CELULAR ----------------
-    
-async getPictureCam() 
-{
-              const options: CameraOptions = {
-                quality: 60,
-                targetHeight: 600,
-                targetWidth: 600,
-                destinationType: this.camera.DestinationType.DATA_URL,
-                encodingType: this.camera.EncodingType.JPEG,
-                mediaType: this.camera.MediaType.PICTURE,
-                //saveToPhotoAlbum: true
-              } 
-      
-        try{
-      
-                const resultado = await this.camera.getPicture(options); 
-                //this.image  =  'data:image/jpeg;base64,' + resultado;
-                const imagen = `data:image/jpeg;base64,${resultado}`;
-                const pictures = storage().ref('pictures/miFoto');
-                this.image = imagen;
-                pictures.putString(imagen, 'data_url');
-                // const task1 =  pictures.putString(imagen, 'data_url').then(res => {
-                //   //this.acaUrl  = res.downloadURL;
-                //   //this.mostrarToast ("deberia url"+this.acaUrl,7000);
-                //   // otroalgo.downloadURL();
-                // });
-                //pictures.putString(imagen, 'data_url');
-                pictures.getDownloadURL().then(res => {
-                  this.acaUrl = res;    
-                  this.subirApiJson(res);
-                })
-          
-        } catch (error) {
-                 this.mostrarToast("Dato"+error.message, 3000);
-        }
-} 
 
-subirApiJson(res) 
-{     
-        this.loading = this.loadingCtrl.create({ content: "Espere por favor..."});
-        this.loading.present();
-            
-        let pathURL = "https://brazilsouth.api.cognitive.microsoft.com/vision/v1.0/analyze?language=es&visualFeatures=tags"
-        let apiKey = "a84d243e248d4e67aee85fce8cace729";
-      
-        const headers = new HttpHeaders()
-          .set('Ocp-Apim-Subscription-Key', apiKey)
-          .set('Content-Type', 'application/json;charset=UTF-8')
-          .set('Access-Control-Allow-Origin', '*')
-          .set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT')
-      
-        var jsonString = JSON.stringify({url: res});
-        this.http.post(pathURL, jsonString, { headers: headers })
-          .subscribe(res => {
-            this.encontrado1 = res['tags']
-          // Solo trae 3 resultados de nombres menores a 12 caracteres(1 palabra) o mas resultados
-          //   si la palabra aun no esta en la lista y es una palabra clave/filtro(relacionado al reciclado)
-            var listado = new Array();
-            var cantidad = 0;
-            for (let item of this.encontrado1){
-              if(cantidad < 3){
-                  if(item.name.length < 12){
-                    listado.push(item.name);
-                    cantidad++;
-                  }
-              }else if (this.variables.includes(item.name)){
-                    listado.push(item.name);
-              }            
+  //  DESDE LA CAMARA DEL CELULAR ----------------
+
+  async getPictureCam() {
+    const options: CameraOptions = {
+      quality: 60,
+      targetHeight: 600,
+      targetWidth: 600,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      //saveToPhotoAlbum: true
+    }
+
+    try {
+
+      const resultado = await this.camera.getPicture(options);
+      //this.image  =  'data:image/jpeg;base64,' + resultado;
+      const imagen = `data:image/jpeg;base64,${resultado}`;
+      const pictures = storage().ref('pictures/miFoto');
+      this.image = imagen;
+      pictures.putString(imagen, 'data_url');
+      // const task1 =  pictures.putString(imagen, 'data_url').then(res => {
+      //   //this.acaUrl  = res.downloadURL;
+      //   //this.mostrarToast ("deberia url"+this.acaUrl,7000);
+      //   // otroalgo.downloadURL();
+      // });
+      //pictures.putString(imagen, 'data_url');
+      pictures.getDownloadURL().then(res => {
+        this.acaUrl = res;
+        this.subirApiJson(res);
+      })
+
+    } catch (error) {
+      this.mostrarToast("Dato" + error.message, 3000);
+    }
+  }
+
+  subirApiJson(res) {
+    this.loading = this.loadingCtrl.create({ content: "Espere por favor..." });
+    this.loading.present();
+
+    let pathURL = "https://brazilsouth.api.cognitive.microsoft.com/vision/v1.0/analyze?language=es&visualFeatures=tags"
+    let apiKey = "a84d243e248d4e67aee85fce8cace729";
+
+    const headers = new HttpHeaders()
+      .set('Ocp-Apim-Subscription-Key', apiKey)
+      .set('Content-Type', 'application/json;charset=UTF-8')
+      .set('Access-Control-Allow-Origin', '*')
+      .set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT')
+
+    var jsonString = JSON.stringify({ url: res });
+    this.http.post(pathURL, jsonString, { headers: headers })
+      .subscribe(res => {
+        this.encontrado1 = res['tags']
+        // Solo trae 3 resultados de nombres menores a 12 caracteres(1 palabra) o mas resultados
+        //   si la palabra aun no esta en la lista y es una palabra clave/filtro(relacionado al reciclado)
+        var listado = new Array();
+        var cantidad = 0;
+        for (let item of this.encontrado1) {
+          if (cantidad < 3) {
+            if (item.name.length < 12) {
+              listado.push(item.name);
+              cantidad++;
             }
-             this.encontrado = listado;
-             this.loading.dismiss();
-          }, (err) => {
-            this.loading.dismiss();
-            this.mostrarToast(err.status+" error code: "+err.code, 4000);
-          });
-      
-}
-      
+          } else if (this.variables.includes(item.name)) {
+            listado.push(item.name);
+          }
+        }
+        this.encontrado = listado;
+        this.loading.dismiss();
+      }, (err) => {
+        this.loading.dismiss();
+        this.mostrarToast(err.status + " error code: " + err.code, 4000);
+      });
+
+  }
+
+
+  //Funcion para mostrar mensaje de error recibe mensaje de error y la duración de el mensaje
+  mostrarToast(mensaje: string, duracion: number) {
+    this.toast.create({
+      message: mensaje,
+      duration: duracion
+    }).present();
+  }
+
 
   // DESDE ARCHIVO ----------------------
   getPicture(event) {
@@ -145,17 +154,17 @@ subirApiJson(res)
     reader.onload = (event: any) => {
       this.image = event.target.result;
     }
-    if(this.image){
+    if (this.image) {
       reader.readAsDataURL(event.target.files[0]);
       this.subirAAPI();
     }
-    
+
   }
 
 
   subirAAPI() {
 
-    this.loading = this.loadingCtrl.create({ content: " espere por favor..."});
+    this.loading = this.loadingCtrl.create({ content: " espere por favor..." });
     this.loading.present();
 
     let pathURL = "https://brazilsouth.api.cognitive.microsoft.com/vision/v1.0/analyze?language=es&visualFeatures=tags"
@@ -173,20 +182,26 @@ subirApiJson(res)
     this.http.post(pathURL, formData, { headers: headers })
       .subscribe(res => {
         this.loading.dismiss();
+        /*    this.encontrado = res['tags']; */
+
+        /*    setTimeout(() => {
+             this.select.open();
+           }, 150);
+    */
         this.encontrado1 = res['tags']
-          // Solo trae 3 resultados de nombres menores a 12 caracteres(1 palabra) o mas resultados
-          //   si la palabra aun no esta en la lista y es una palabra clave/filtro(relacionado al reciclado)
+        // Solo trae 3 resultados de nombres menores a 12 caracteres(1 palabra) o mas resultados
+        //   si la palabra aun no esta en la lista y es una palabra clave/filtro(relacionado al reciclado)
         var listado = new Array();
         var cantidad = 0;
-        for (let item of this.encontrado1){
-          if(cantidad < 3){
-              if(item.name.length < 12){
-                listado.push(item.name);
-                cantidad++;
-              }
-           }else if (this.variables.includes(item.name)){
-                 listado.push(item.name);
-           }            
+        for (let item of this.encontrado1) {
+          if (cantidad < 3) {
+            if (item.name.length < 12) {
+              listado.push(item.name);
+              cantidad++;
+            }
+          } else if (this.variables.includes(item.name)) {
+            listado.push(item.name);
+          }
         }
         this.encontrado = listado;
         // if(listado.length <= 4){
@@ -194,15 +209,35 @@ subirApiJson(res)
         // } 
       });
 
-  }
+    /*         setTimeout(() => {
+              this.presentPrompt(this.encontrado);
+            }, 150);
+     */
 
-     //Funcion para mostrar mensaje de error recibe mensaje de error y la duración de el mensaje
-     mostrarToast(mensaje: string, duracion: number) {
-      this.toast.create({
-        message: mensaje,
-        duration: duracion
-      }).present();
-    }
+  };
+
+/* 
+  presentPrompt(objetos) {
+
+
+    let alert = this.alertCtrl.create();
+    alert.setTitle("Encontrados")
+
+    objetos.forEach(element => {
+      alert.addButton({
+        role: 'cancel',
+        handler: (res) => {
+          console.log(String(res));
+        }
+      });
+    });
+
+
+    alert.present();
+  } 
+  
+  */
+
   
 
 } // cierre clase

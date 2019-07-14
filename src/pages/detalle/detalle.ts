@@ -34,6 +34,8 @@ export class DetallePage {
   esFavorito : boolean = false;
   respuesta;
   comentario;
+  cantLike
+  meGusta : boolean = false;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -56,6 +58,8 @@ export class DetallePage {
         this.listadoComentarios = res.comentarioUsuarios
         this.cantidad = this.valor2.cantidad
         this.esFavorito = this.valor2.favorito
+        this.cantLike = this.valor2.cantLike
+        this.meGusta = this.valor2.meGusta
         console.log(this.cantidad);
         console.log(this.esFavorito);
         console.log(this.listadoComentarios);
@@ -81,7 +85,6 @@ export class DetallePage {
   cargarFavorito(){
     if(!this.esFavorito){
       console.log("va a setear");
-      this.cargarColor = "Cargar"; 
         this.publicacionProvider.seleccionarFavorito(this.publicacion.id,this.usuario.id).subscribe(
           res => {
               this.respuesta = res;
@@ -100,7 +103,27 @@ export class DetallePage {
   }
 
   cargarLike(){
-
+    if(!this.meGusta){
+      console.log("Da like");
+      this.cantLike = this.cantLike + 1;
+      console.log(this.cantLike);
+        this.publicacionProvider.seleccionarLike(this.publicacion.id,this.usuario.id).subscribe(
+          res => {
+              this.respuesta = res;
+              console.log(this.respuesta);
+          });
+        this.meGusta = true;
+    }else{
+      console.log("va a quitar el like");
+      this.meGusta = false;
+      this.cantLike = this.cantLike - 1 ; 
+      console.log(this.cantLike);
+      this.publicacionProvider.eliminarLike(this.publicacion.id,this.usuario.id).subscribe(
+       res => {
+            var resultado = res;
+            console.log(resultado);
+       });
+    }
   }
 
   cargarPublicacion(){
