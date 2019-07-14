@@ -43,7 +43,7 @@ export class EditarpublicacionPage {
 
   editarPublicacion(){
     this.publicacionProvider.editarPublicacion(this.publicacion);
-    this.navCtrl.pop();
+      this.navCtrl.pop();
   }
 
 } // cierre clase

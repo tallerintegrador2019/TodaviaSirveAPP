@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Select, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Select, ActionSheetController } from 'ionic-angular';
 
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -41,7 +41,7 @@ export class CamaraPage {
     public loadingCtrl: LoadingController,
     public toast: ToastController,
     public publicacionService: PublicacionProvider,
-    private alertCtrl: AlertController
+    public actionsheetCtrl: ActionSheetController
   ) {
     if (!apps.length) {
       initializeApp(FIREBASE_CONFIG);
@@ -205,40 +205,44 @@ export class CamaraPage {
           }
         }
         this.encontrado = listado;
+        this.openMenu(listado);
         // if(listado.length <= 4){
         //   this.encontrado = listado;
         // } 
       });
 
-    /*         setTimeout(() => {
-              this.presentPrompt(this.encontrado);
-            }, 150);
-     */
-
   };
 
-/* 
-  presentPrompt(objetos) {
 
-
-    let alert = this.alertCtrl.create();
-    alert.setTitle("Encontrados")
-
-    objetos.forEach(element => {
-      alert.addButton({
-        role: 'cancel',
-        handler: (res) => {
-          console.log(String(res));
+  createButtons(listado) {
+    let buttons = [];
+    for (let index in listado) {
+      let button = {
+        text: listado[index],
+        handler: () => {
+          this.buscarPublicacion(listado[index])
+          return true;
         }
-      });
+        
+      }
+
+      buttons.push(button);
+    }
+    return buttons;
+  }
+  
+
+  openMenu(listButtons) {
+    let actionSheet = this.actionsheetCtrl.create({
+      title: 'Resultados',
+      cssClass: 'action-sheets-basic-page',
+      buttons: this.createButtons(listButtons)
+
     });
+    actionSheet.present();
+  }
 
 
-    alert.present();
-  } 
-  
-  */
 
-  
 
 } // cierre clase

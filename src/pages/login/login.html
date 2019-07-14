@@ -22,14 +22,15 @@
         <ion-col col-12>
           <ion-item>
             <ion-input text-center type="text" placeholder="Email" [(ngModel)]="userData.email" formControlName="email"
-              [class.error1]="!signupform.controls.email.valid && signupform.controls.email.dirty"></ion-input>
+              [class.error1]="!signupform.controls.email.valid && signupform.controls.email.dirty">
+            </ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col col-12>
-          <ion-item>
+          <ion-item no-lines>
             <ion-input text-center type="password" placeholder="Contraseña" [(ngModel)]="userData.password"
               formControlName="password"
               [class.error1]="!signupform.controls.password.valid && signupform.controls.password.dirty"></ion-input>
@@ -39,10 +40,8 @@
 
       <ion-row>
         <ion-col col-12>
-          <div style="text-align: center;">
-            <button type="submit" ion-button round color="verdeTodavia"
-              [disabled]="signupform.invalid">Loguearse</button>
-          </div>
+          <!-- <button type="submit" ion-button full round color="verdeTodavia"[disabled]="signupform.invalid">Loguearse</button> -->
+          <button class="botonLoguearse" type="submit" ion-button full round color="verdeTodavia">Loguearse</button>
         </ion-col>
       </ion-row>
 
@@ -50,7 +49,7 @@
 
     <ion-row>
       <ion-col col-12>
-        <div style="text-align: center;">
+        <div>
           <p class="textoBlanco">
             ¿No tienes una cuenta? <a (click)="irARegistrar()">Registrate</a>
           </p>

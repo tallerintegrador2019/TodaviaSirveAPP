@@ -31,25 +31,25 @@
       </button>
     </ion-fab>
   </div>
- 
+
 
   <ion-card class="cardClass">
     <img *ngIf="image" [src]="image" />
   </ion-card>
 
 
-  <div class="contentButton" *ngIf="image">
+<!--   <div class="contentButton" *ngIf="image">
     <button ion-button text-center *ngFor="let item of encontrado" (click)="buscarPublicacion(item.name)">
       {{item.name}}
     </button>
-  </div>
+  </div> -->
 
-
-
-      <button ion-button round full text-center *ngFor="let item of encontrado" (click)="buscarPublicacion(item)">
-        {{item}}
-      </button>
-    </div>
+<!-- 
+  <div>
+    <button ion-button round full text-center *ngFor="let item of encontrado" (click)="buscarPublicacion(item)">
+      {{item}}
+    </button>
+  </div> -->
 
 
   <ion-list class="card-background-page">
