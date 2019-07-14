@@ -6,6 +6,10 @@ import { DetallePage } from '../detalle/detalle';
 import { UsuarioProvider } from "../../providers/usuario/usuario"; // para llamar al usuario logueado
 import { Usuario } from '../models/usuario.model';  // para cargar en la interface usuario
 
+import { PopoverController } from 'ionic-angular';
+import { PerfilPage } from '../perfil/perfil';
+import { CamaraPage } from '../camara/camara';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -17,11 +21,13 @@ export class HomePage {
 
   userLog: Usuario;
   loading: any;
+
   
   constructor(  public navCtrl: NavController, 
                 public publicacion: PublicacionProvider,
                 public usuarioProvider: UsuarioProvider,
-                public loadingCtrl: LoadingController
+                public loadingCtrl: LoadingController,
+                public popoverCtrl: PopoverController
               ) {
       this.userLog = this.usuarioProvider.obtenerUsuarioLogueado()
   }
@@ -32,14 +38,40 @@ export class HomePage {
 
     this.publicacion.obtenerTodasPublicaciones()
       .subscribe(
-        (data) => { this.loading.dismiss(); this.publicaciones = data; },
-        (error) => { this.loading.dismiss(); console.log(error); }
+        (data) => { 
+          this.publicaciones = data;
+          this.loading.dismiss(); 
+        },
+        (error) => { 
+          this.loading.dismiss(); 
+          console.log(error); 
+        }
       )
   }
 
   irADetalle(publi){
     this.navCtrl.push(DetallePage, {publi});
    }
+
+
+   presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create(PerfilPage);
+    popover.present({
+      ev: myEvent
+    });
+  }
+
+  irACamara(){
+    this.navCtrl.push(CamaraPage)
+  }
+
+  doRefresh(refresher) {
+    this.ionViewDidLoad();
+
+    setTimeout(() => {
+      refresher.complete();
+    }, 500);
+  }
 
 
 } // cierre clase HomePage

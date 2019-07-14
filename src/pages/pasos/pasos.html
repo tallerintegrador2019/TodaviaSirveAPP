@@ -12,10 +12,24 @@
   <ion-list>
     <form novalidate (ngSubmit)="submitPaso()">
 
+
+
+      <!--       <ion-card class="cardClass image-upload">
+        <label for="file-input">
+          <img *ngIf="!img" src="../../assets/imgs/imagenNoDisponible.png"/>
+          <img *ngIf="img" [src]="img" />
+        </label>
+        <input type="file" id="file-input" accept="image/*" (change)="cargaArchivo($event)" />
+      </ion-card> -->
+
+
       <ion-item>
-        <ion-label>id Publicacion: </ion-label>
-        <ion-input type="text" value="{{idPublicacion}}"></ion-input>
+        <p>Imagen: </p>
+        <input type="file" accept="image/*" (change)="cargaArchivo($event)" />
       </ion-item>
+
+      <img *ngIf="img" [src]="img" />
+
 
       <ion-item>
         <ion-label>Paso Numero: </ion-label>
@@ -24,21 +38,25 @@
 
       <ion-item>
         <ion-label>Paso Descripcion: </ion-label>
-        <ion-input floating type="text" [(ngModel)]="paso.descripcion" [ngModelOptions]="{standalone: true}"></ion-input>
+        <ion-textarea type="text" [(ngModel)]="paso.descripcion" [ngModelOptions]="{standalone: true}">
+        </ion-textarea>
       </ion-item>
 
-      <br />
-      <ion-item no-lines>
-        <ion-label stacked>Imagen</ion-label>
-        <ion-input type="file" accept="image/*" (change)="cargaArchivo($event)"></ion-input>
-      </ion-item>
 
-      <img *ngIf="img" [src]="img"/>
-
-      <br /><br />
-      <div style="text-align: center;">
-        <button type="submit" ion-button round color="verdeTodavia">Cargar paso</button>
-      </div>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6>
+            <div style="text-align: center;">
+              <button type="submit" ion-button round color="verdeTodavia">Cargar paso</button>
+            </div>
+          </ion-col>
+          <ion-col col-6>
+            <div style="text-align: center;">
+              <a ion-button round color="danger" (click)="irAHome()">Finalizar</a>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
 
     </form>
   </ion-list>

@@ -1,10 +1,22 @@
 page-home {
 
+    .avatarClass img{
+        margin: 0 auto;
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+    }
+
     .cardClass{
         box-shadow: none !important;
-        margin: 0 0 0 0;
+        margin: -1px 0 0 0;
         width: 100%;
     }
+
+    // ACOMODA LAS FOTOS DEL CARRUSEL
+    .cardClass img {
+        object-fit: cover;
+      }
 
     .carrusel{
         height: auto;
@@ -13,6 +25,7 @@ page-home {
 
     .todaviasirve{
         font-family: 'Berlin Sans FB', sans-serif;
+        text-align: center;
     }
 
     .tituloSlide{
@@ -29,7 +42,8 @@ page-home {
     }
 
     .isoLogo{
-        height: 45px;
+        height: 40px;
+        padding: 0 0 0 0 ;
     }
 
     .encabezadoCard{
@@ -39,6 +53,10 @@ page-home {
             color: white;
         }
 
+    }
+
+    .toolbar-md{
+        padding: 0;
     }
 
 }

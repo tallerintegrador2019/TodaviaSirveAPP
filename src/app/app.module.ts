@@ -19,6 +19,7 @@ import { PerfilPageModule } from '../pages/perfil/perfil.module';
 import { LoginPageModule } from '../pages/login/login.module';
 import { EditarusuarioPageModule } from '../pages/editarusuario/editarusuario.module';
 import { PublicarPageModule } from '../pages/publicar/publicar.module';
+import {MisPublicacionesPageModule} from '../pages/mis-publicaciones/mis-publicaciones.module';
 
 import { HttpClientModule, HttpHeaderResponse } from "@angular/common/http";
 
@@ -33,14 +34,22 @@ import { ReconoProvider } from '../providers/recono/recono';
 
 import { Camera } from '@ionic-native/camera';
 import { CamaraPageModule } from '../pages/camara/camara.module';
-
+import { PasoProvider } from '../providers/paso/paso';
+import { PublicacionesPageModule } from '../pages/publicaciones/publicaciones.module';
+import { EditarpublicacionPageModule } from '../pages/editarpublicacion/editarpublicacion.module';
+import { PasosdepublicacionesPageModule } from '../pages/pasosdepublicaciones/pasosdepublicaciones.module';
+import { EditarpasoPageModule } from '../pages/editarpaso/editarpaso.module';
+import {FavoritosPageModule} from '../pages/favoritos/favoritos.module';
+// import {initializeApp } from 'firebase';
+// import { FIREBASE_CONFIG } from "./../app/firebase.config";
+// import { AngularFireModule } from '@angular/fire';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
-    AvatarUserComponent
+    AvatarUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,12 +66,19 @@ import { CamaraPageModule } from '../pages/camara/camara.module';
     PublicarPageModule,
     PasosPageModule,
     CamaraPageModule,
+    MisPublicacionesPageModule,
+    PublicacionesPageModule,
+    EditarpublicacionPageModule,
+    PasosdepublicacionesPageModule,
+    EditarpasoPageModule,
+    FavoritosPageModule,
+   // AngularFireModule.initializeApp(FIREBASE_CONFIG)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
   ],
   providers: [
     StatusBar,
@@ -73,7 +89,8 @@ import { CamaraPageModule } from '../pages/camara/camara.module';
     UsuarioProvider,
     LoginProvider,
     ReconoProvider,
-    Camera
+    Camera,
+    PasoProvider,
   ]
 })
 export class AppModule {}

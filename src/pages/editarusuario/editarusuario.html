@@ -1,28 +1,26 @@
 <ion-header>
   <ion-navbar color="verdeTodavia">
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
     <ion-title>Editar Cuenta</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding style="text-align: center">
 
-  <h4 class="titulo">Completa tus datos</h4>
-  <hr />
-
   <ion-list>
 
     <form novalidate (ngSubmit)="editarUsuario()" [formGroup]="signupform">
 
-<!--       <ion-item>
-        <ion-label>ID </ion-label>
-        <ion-input type="text" value="{{usuario.id}}"></ion-input>
-      </ion-item> -->
+      <ion-card class="cardClass image-upload">
+        <label for="file-input">
+          <img *ngIf="!img" src="{{pathImages}}{{usuario.imagen}}">
+          <img *ngIf="img" [src]="img" />
+        </label>
+        <input id="file-input" type="file" accept="image/*" (change)="onFileChanged($event)" />
+      </ion-card>
+      <p class="pieDeImagen">(toca sobre la imagen para editar)</p>
 
       <ion-item>
-        <ion-label>Nombre </ion-label>
+        <ion-label>Nombre: </ion-label>
         <ion-input type="text" [(ngModel)]="usuario.nombre" formControlName="nombre" value="{{usuario.nombre}}"
           [class.error1]="!signupform.controls.nombre.valid && signupform.controls.nombre.dirty"></ion-input>
       </ion-item>
@@ -130,16 +128,6 @@
         </div>
       </ion-item>
 
-      <ion-avatar class="avatar">
-        <img *ngIf="img" [src]="img"/>
-        <img *ngIf="!img" src="http://todaviasirve.azurewebsites.net/Content/Images/{{usuario.imagen}}">
-      </ion-avatar>
-
-      <ion-item>
-        <ion-label stacked>Foto</ion-label>
-        <ion-input type="file" accept="image/*" (change)="onFileChanged($event)"></ion-input>
-      </ion-item>
-
       <br /><br />
       <div style="text-align: center;">
         <button type="submit" ion-button round color="verdeTodavia" [disabled]="signupform.invalid">Editar</button>
@@ -150,7 +138,3 @@
 
 
 </ion-content>
-
-<style type="text/css">
- 
-</style>
