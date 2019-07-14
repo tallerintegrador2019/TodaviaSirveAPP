@@ -16,6 +16,8 @@ import { CamaraPage } from '../pages/camara/camara';
 import { MisPublicacionesPage } from '../pages/mis-publicaciones/mis-publicaciones';
 import { PublicacionesPage } from '../pages/publicaciones/publicaciones';
 import { FavoritosPage} from '../pages/favoritos/favoritos';
+import { EditarpublicacionPage } from '../pages/editarpublicacion/editarpublicacion';
+import { Usuario } from '../pages/models/usuario.model';
 
 @Component({
   templateUrl: 'app.html'
@@ -24,13 +26,12 @@ export class MyApp {
 
   @ViewChild(Nav) nav: Nav;
 
-  usuario = localStorage.getItem('currentUser');
-
+  usuario: Usuario = JSON.parse(localStorage.getItem('currentUser'));
   rootPage: any;
-
   pages: Array<{ title: string, component: any, icon: string }>;
 
-  constructor(public platform: Platform,
+  constructor(
+    public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
   ) {
@@ -44,19 +45,19 @@ export class MyApp {
       this.rootPage = LoginPage;
     }
 
-
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: TabsPage, icon: 'home' },
       { title: 'Buscador', component: BuscarPage, icon: 'search' },
       { title: 'Camara', component: CamaraPage, icon: 'camera' },
       { title: 'Mis Publicaciones', component: MisPublicacionesPage, icon: 'folder' },
-      { title: 'Editar Publicaciones', component: PublicacionesPage, icon: 'switch' },
+      { title: 'Editar Todas las Publicaciones', component: PublicacionesPage, icon: 'switch' },
       { title: 'Quienes somos', component: AboutPage, icon: 'contacts' },
       {title: 'Favoritos', component: FavoritosPage, icon: 'star'}
     ];
 
-  }
+  } // cierre constructor
+
 
   initializeApp() {
     this.platform.ready().then(() => {
@@ -78,5 +79,11 @@ export class MyApp {
     localStorage.clear(); //becausae i have information from user
     this.nav.setRoot(LoginPage);
   }
+
+  irAEditarPublicaciones(){
+    this.nav.push(PublicacionesPage)
+  }
+
+
 
 }
