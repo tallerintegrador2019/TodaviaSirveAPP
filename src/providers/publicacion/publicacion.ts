@@ -61,7 +61,7 @@ export class PublicacionProvider {
 
   // SUBIR PUBLICACION
   subirPublicacion(publi: Publicacion) {
-     let pathURL = "http://todaviasirve.azurewebsites.net/Api/Publicacion/PostUsuario";
+     let pathURL = "http://todaviasirve.azurewebsites.net/Api/Publicacion/";
     //let pathURL = "http://localhost:55081/Api/Publicacion/PostUsuario"; 
 
     const headers = new HttpHeaders()

@@ -39,17 +39,10 @@
 
 
   <div class="contentButton" *ngIf="image">
-    <button ion-button text-center *ngFor="let item of encontrado" (click)="buscarPublicacion(item.name)">
-      {{item.name}}
-    </button>
-  </div>
-
-
-
-      <button ion-button round full text-center *ngFor="let item of encontrado" (click)="buscarPublicacion(item)">
+     <button ion-button round full text-center *ngFor="let item of encontrado" (click)="buscarPublicacion(item)">
         {{item}}
       </button>
-    </div>
+  </div>
 
 
   <ion-list class="card-background-page">
