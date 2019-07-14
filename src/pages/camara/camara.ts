@@ -27,7 +27,7 @@ export class CamaraPage {
   acaUrl
   datos = ["Planta", "Botella", "Maceta", "ddddddd", "eeeeee", "ffffff"]   // ejemplos
   variables = "botella revista carton frasco diario vaso";
-
+ 
   publicaciones: any = "";
   publicacionAux: any = null;
   prefixURL: string = "https://todaviasirve.azurewebsites.net/Content/Images/";

@@ -36,26 +36,26 @@ export class PublicarPage {
   ionViewDidLoad() {  }
 
 
-  submitPublicacion() {
-    this.publicacion.fechaSubida = this.fechaHoy;
-    this.publicacionProvider.subirPublicacion(this.publicacion,this.usuario.id)
-      .subscribe(res => {
-        this.idPubli = res;
-        this.navCtrl.push(PasosPage, { "idPubli" : this.idPubli});
-        console.log("ID de Publicacion: ",this.idPubli);
-      });
-  }
+  // submitPublicacion() {
+  //   this.publicacion.fechaSubida = this.fechaHoy;
+  //   this.publicacionProvider.subirPublicacion(this.publicacion,this.usuario.id)
+  //     .subscribe(res => {
+  //       this.idPubli = res;
+  //       this.navCtrl.push(PasosPage, { "idPubli" : this.idPubli});
+  //       console.log("ID de Publicacion: ",this.idPubli);
+  //     });
+  // }
         // subir publicacion para fix
-        // submitPublicacion() {
-        //   this.publicacion.fechaSubida = this.fechaHoy;
-        //   this.publicacion.idUsuario= this.usuario.id;
-        //   this.publicacionProvider.subirPublicacion(this.publicacion)
-        //     .subscribe(res => {
-        //       this.idPubli = res;
-        //       this.navCtrl.push(PasosPage, { "idPubli" : this.idPubli});
-        //       console.log("ID de Publicacion: ",this.idPubli);
-        //     });
-        // }
+        submitPublicacion() {
+          this.publicacion.fechaSubida = this.fechaHoy;
+          this.publicacion.idUsuario= this.usuario.id;
+          this.publicacionProvider.subirPublicacion(this.publicacion)
+            .subscribe(res => {
+              this.idPubli = res;
+              this.navCtrl.push(PasosPage, { "idPubli" : this.idPubli});
+              console.log("ID de Publicacion: ",this.idPubli);
+            });
+        }
 
   cargaArchivo(event) {
     this.publicacion.imagenPortada = event.target.files[0];
