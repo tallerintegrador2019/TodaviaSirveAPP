@@ -22,7 +22,6 @@ export class DetallePage {
   videosEncontrados: any;
   signupform: FormGroup;
   valor: string = null;
-  comentario = "";
   usuario;
   comentarioCantidad
   cantidad 
@@ -32,6 +31,9 @@ export class DetallePage {
   loading: any;
   realizoComentario: boolean = false
   cargarColor : string = null;
+  esFavorito : boolean = false;
+  respuesta;
+  comentario;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -44,14 +46,18 @@ export class DetallePage {
 
   ) {
     this.publicacion = navParams.get("publi");
+    this.usuario = this.usuarioProv.obtenerUsuarioLogueado();
     this.pasoProvider.getPasosDePublicacion(this.publicacion.id)
       .subscribe(res => this.pasos = res)
-      this.publicacionProvider.obtenerComentarioPublicacion(this.publicacion.id)
+  
+    this.publicacionProvider.obtenerComentarioPublicacion(this.publicacion.id,this.usuario.id)
       .subscribe(res => {
         this.valor2 = res
         this.listadoComentarios = res.comentarioUsuarios
         this.cantidad = this.valor2.cantidad
+        this.esFavorito = this.valor2.favorito
         console.log(this.cantidad);
+        console.log(this.esFavorito);
         console.log(this.listadoComentarios);
       });
      
@@ -62,23 +68,39 @@ export class DetallePage {
   
     // API PARA TRAER LOS VIDEOS DE YOUTUBE
     /* this.ytProvider.obtenerVideos(this.publicacion.titulo).subscribe(res => this.videosEncontrados = res['items']); */
-    this.usuario = this.usuarioProv.obtenerUsuarioLogueado();
     console.log(this.videosEncontrados);
   }
 
   ionViewDidLoad() {
     this.signupform = new FormGroup({
-      comentario: new FormControl('', [Validators.required,Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])
+      comentario: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])
     });
     console.log(this.cargarColor);
   }
 
   cargarFavorito(){
-    if(this.cargarColor == null){
-        this.cargarColor = "Cargar";
+    if(!this.esFavorito){
+      console.log("va a setear");
+      this.cargarColor = "Cargar"; 
+        this.publicacionProvider.seleccionarFavorito(this.publicacion.id,this.usuario.id).subscribe(
+          res => {
+              this.respuesta = res;
+              console.log(this.respuesta);
+          });
+        this.esFavorito = true;
     }else{
-      this.cargarColor = null;
+      console.log("va a quitar el favorito");
+      this.esFavorito = false;
+      this.publicacionProvider.eliminarFavorito(this.publicacion.id,this.usuario.id).subscribe(
+       res => {
+            var resultado = res;
+            console.log(resultado);
+       });
     }
+  }
+
+  cargarLike(){
+
   }
 
   cargarPublicacion(){
@@ -89,14 +111,15 @@ export class DetallePage {
     // .subscribe(res => this.listadoComentarios = res);
     console.log(this.listadoComentarios);
     }else if (this.realizoComentario) {
-      this.publicacionProvider.obtenerComentarioPublicacion(this.publicacion.id)
+      this.publicacionProvider.obtenerComentarioPublicacion(this.publicacion.id,this.usuario.id)
       .subscribe(res => {
         this.valor2 = res
         this.listadoComentarios = res.comentarioUsuarios
         this.cantidad = this.valor2.cantidad
         console.log(this.cantidad);
-        console.log(this.listadoComentarios);
+        console.log(this.listadoComentarios); 
       });
+      this.signupform.reset();
       this.realizoComentario = false
     }
     else{
@@ -137,7 +160,8 @@ export class DetallePage {
 
       );
 
-    console.log(formData);
+      
+      console.log(formData);
     console.log("Comentario" + this.comentario + " IdPublicacion: " + this.publicacion.id + " IdUsuario: " + this.usuario.id);
   }
 } // cierre DetallePage

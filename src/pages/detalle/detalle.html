@@ -34,30 +34,38 @@
 
     <ion-row>
       <ion-col>
-        <button ion-button icon-start clear small>
-          <ion-icon name="thumbs-up"></ion-icon>
-          <div>12 Me gusta</div>
-        </button>
+          <div *ngIf="cargarLike; else elseLike">
+            <button ion-button icon-start clear small color="dark" (click)="cargarLike()">
+              <ion-icon name="thumbs-up" color="dark"></ion-icon>
+              <div>12 Like</div>
+            </button>
+          </div>
+          <ng-template #elseLike>
+              <button ion-button icon-start clear small  (click)="cargarLike()">
+                <ion-icon name="thumbs-up"></ion-icon>
+                <div>12 Like</div>
+              </button>
+          </ng-template>
       </ion-col>
       <ion-col>
         <button ion-button icon-start clear small (click)="cargarPublicacion()">
           <ion-icon name="text"></ion-icon>
           <div *ngIf="this.cantidad">
-            {{cantidad}}  Comentarios
+            {{cantidad}} Comentarios
           </div>
           
         </button>
       </ion-col>
       <ion-col align-self-center text-center>
-            <div *ngIf="cargarColor; else elseBlock">
-                  <button ion-button icon-start clear small color="dark" (click)="cargarFavorito()">
-                    <ion-icon name="star" color="dark"></ion-icon>
+            <div *ngIf="esFavorito; else elseBlock">
+                  <button ion-button icon-start clear small (click)="cargarFavorito()">
+                    <ion-icon name="star"></ion-icon>
                     <div>Favorito</div>
                   </button>
             </div>
             <ng-template #elseBlock>
-                <button ion-button icon-start clear small  (click)="cargarFavorito()">
-                  <ion-icon name="star"></ion-icon>
+                <button ion-button icon-start clear small color="dark" (click)="cargarFavorito()">
+                  <ion-icon name="star" color="dark"></ion-icon>
                   <div>Favorito</div>
                 </button>
             </ng-template>
