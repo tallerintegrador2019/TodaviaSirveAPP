@@ -61,8 +61,8 @@ export class PublicacionProvider {
 
   // SUBIR PUBLICACION
   subirPublicacion(publi: Publicacion) {
-     let pathURL = "http://todaviasirve.azurewebsites.net/Api/Publicacion/";
-    //let pathURL = "http://localhost:55081/Api/Publicacion/PostUsuario"; 
+    // let pathURL = "http://todaviasirve.azurewebsites.net/Api/Publicacion/PostPublicacion";
+    let pathURL = "http://localhost:55081/Api/Publicacion/PostPublicacion"; 
 
     const headers = new HttpHeaders()
       .set('enctype', 'multipart/form-data;charset=UTF-8')
@@ -165,10 +165,20 @@ export class PublicacionProvider {
       // return this.http.get("https://todaviasirve.azurewebsites.net/Api/Publicacion/seleccionarFavorito/"+idPublicacion+"/"+idUsuario)         
       return this.http.get("http://localhost:55081/Api/Publicacion/seleccionarFavorito/"+idPublicacion+"/"+idUsuario)         
   }
+  seleccionarLike(idPublicacion,idUsuario){
+    console.log("Seleccionar comentarios idPublicacion : "+ idPublicacion+ "Usuario:"+idUsuario);
+    // return this.http.get("https://todaviasirve.azurewebsites.net/Api/Publicacion/seleccionarFavorito/"+idPublicacion+"/"+idUsuario)         
+    return this.http.get("http://localhost:55081/Api/Publicacion/seleccionarLike/"+idPublicacion+"/"+idUsuario)         
+  }
   eliminarFavorito(idPublicacion,idUsuario){
     console.log("Seleccionar comentarios idPublicacion : "+ idPublicacion+ "Usuario:"+idUsuario);
     // return this.http.get("https://todaviasirve.azurewebsites.net/Api/Publicacion/seleccionarFavorito/"+idPublicacion+"/"+idUsuario)         
     return this.http.delete("http://localhost:55081/Api/Publicacion/eliminarFavorito/"+idPublicacion+"/"+idUsuario)         
+  }
+  eliminarLike(idPublicacion,idUsuario){
+    console.log("eliminar like idPublicacion : "+ idPublicacion+ "Usuario:"+idUsuario);
+    // return this.http.get("https://todaviasirve.azurewebsites.net/Api/Publicacion/seleccionarFavorito/"+idPublicacion+"/"+idUsuario)         
+    return this.http.delete("http://localhost:55081/Api/Publicacion/eliminarLike/"+idPublicacion+"/"+idUsuario)         
   }
 
   obtenerFavoritos(idUsuario){
