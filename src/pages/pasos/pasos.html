@@ -31,14 +31,31 @@
       <img *ngIf="img" [src]="img" />
 
 
-      <ion-item>
+      <!--       <ion-item>
         <ion-label>Paso Numero: </ion-label>
         <ion-input floating type="text" [(ngModel)]="paso.numero" [ngModelOptions]="{standalone: true}"></ion-input>
-      </ion-item>
+      </ion-item> -->
+
 
       <ion-item>
-        <ion-label>Paso Descripcion: </ion-label>
-        <ion-textarea type="text" [(ngModel)]="paso.descripcion" [ngModelOptions]="{standalone: true}">
+        <ion-label>Paso N°:</ion-label>
+        <ion-select [(ngModel)]="paso.numero" [ngModelOptions]="{standalone: true}">
+          <ion-option value="1">1</ion-option>
+          <ion-option value="2">2</ion-option>
+          <ion-option value="3">3</ion-option>
+          <ion-option value="4">4</ion-option>
+          <ion-option value="5">5</ion-option>
+          <ion-option value="6">6</ion-option>
+          <ion-option value="7">7</ion-option>
+          <ion-option value="8">8</ion-option>
+          <ion-option value="9">9</ion-option>
+        </ion-select>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-textarea placeholder="Describa el paso" rows="5" type="text" [(ngModel)]="paso.descripcion"
+          [ngModelOptions]="{standalone: true}">
         </ion-textarea>
       </ion-item>
 

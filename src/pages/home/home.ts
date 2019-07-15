@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, LoadingController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, LoadingController, Slides } from 'ionic-angular';
 import { PublicacionProvider } from "../../providers/publicacion/publicacion";
 import { DetallePage } from '../detalle/detalle';
 
@@ -10,13 +10,15 @@ import { PopoverController } from 'ionic-angular';
 import { PerfilPage } from '../perfil/perfil';
 import { CamaraPage } from '../camara/camara';
 import { TipsProvider } from '../../providers/tips/tips';
-import { Tip } from '../models/tip.model';
+
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
+
+  @ViewChild(Slides) slides: Slides;
 
   publicaciones: any;
   prefixURL: string = "https://todaviasirve.azurewebsites.net/Content/Images/" ;
@@ -25,7 +27,6 @@ export class HomePage {
   loading: any;
 
   sabiasque
-
   
   constructor(  public navCtrl: NavController, 
                 public publicacion: PublicacionProvider,
@@ -36,6 +37,10 @@ export class HomePage {
               ) {
       this.userLog = this.usuarioProvider.obtenerUsuarioLogueado()
   }
+
+  ionViewDidEnter() {
+   /*  this.slides.autoplayDisableOnInteraction = true */
+}
 
   ionViewDidLoad(){
     this.loading = this.loadingCtrl.create({ content: " espere por favor..."});
