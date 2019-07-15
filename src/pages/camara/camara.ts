@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Select, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Select, ActionSheetController } from 'ionic-angular';
 
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -10,6 +10,7 @@ import { PublicacionProvider } from '../../providers/publicacion/publicacion';
 import { ToastController } from 'ionic-angular/components/toast/toast-controller';
 import { storage, initializeApp, apps } from 'firebase';
 import { FIREBASE_CONFIG } from "../../app/firebase.config";
+
 
 @IonicPage()
 @Component({
@@ -25,12 +26,14 @@ export class CamaraPage {
   encontrado
   encontrado1
   acaUrl
-  datos = ["Planta", "Botella", "Maceta", "ddddddd", "eeeeee", "ffffff"]   // ejemplos
-  variables = "botella revista carton frasco diario vaso";
-  publicaciones: any = "";
+  variables = "botella revista carton frasco diario vaso caja planta";
+ 
+  publicaciones;
   publicacionAux: any = null;
   prefixURL: string = "https://todaviasirve.azurewebsites.net/Content/Images/";
   titulo: any;
+
+  mostrar = false
 
 
   constructor(public navCtrl: NavController,
@@ -40,7 +43,7 @@ export class CamaraPage {
     public loadingCtrl: LoadingController,
     public toast: ToastController,
     public publicacionService: PublicacionProvider,
-    private alertCtrl: AlertController
+    public actionsheetCtrl: ActionSheetController
   ) {
     if (!apps.length) {
       initializeApp(FIREBASE_CONFIG);
@@ -51,8 +54,18 @@ export class CamaraPage {
   ionViewDidLoad() {
   }
 
+
   buscarPublicacion(item) {
+    this.mostrar = false;
     this.publicaciones = this.publicacionService.buscarPublicacion(item);
+    
+    this.publicaciones.subscribe( res => {
+      if (res["0"] == null) {
+        console.log("no se encontro nada");
+        this.mostrar = true;
+      }
+    })
+
   }
 
   irADetalle(publi) {
@@ -130,6 +143,7 @@ export class CamaraPage {
         }
         this.encontrado = listado;
         this.loading.dismiss();
+
       }, (err) => {
         this.loading.dismiss();
         this.mostrarToast(err.status + " error code: " + err.code, 4000);
@@ -204,40 +218,44 @@ export class CamaraPage {
           }
         }
         this.encontrado = listado;
+        this.openMenu(listado);
         // if(listado.length <= 4){
         //   this.encontrado = listado;
         // } 
       });
 
-    /*         setTimeout(() => {
-              this.presentPrompt(this.encontrado);
-            }, 150);
-     */
-
   };
 
-/* 
-  presentPrompt(objetos) {
 
+  createButtons(listado) {
+    let buttons = [];
+    for (let index in listado) {
+      let button = {
+        text: listado[index],
+        handler: () => {
+          this.buscarPublicacion(listado[index]);
 
-    let alert = this.alertCtrl.create();
-    alert.setTitle("Encontrados")
-
-    objetos.forEach(element => {
-      alert.addButton({
-        role: 'cancel',
-        handler: (res) => {
-          console.log(String(res));
+          return true;
         }
-      });
+        
+      }
+
+      buttons.push(button);
+    }
+    return buttons;
+  }
+  
+
+  openMenu(listButtons) {
+    let actionSheet = this.actionsheetCtrl.create({
+      title: 'Resultados',
+      cssClass: 'action-sheets-basic-page',
+      buttons: this.createButtons(listButtons)
+
     });
+    actionSheet.present();
+  }
 
 
-    alert.present();
-  } 
-  
-  */
-
-  
 
 } // cierre clase

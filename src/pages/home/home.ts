@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, LoadingController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, LoadingController, Slides } from 'ionic-angular';
 import { PublicacionProvider } from "../../providers/publicacion/publicacion";
 import { DetallePage } from '../detalle/detalle';
 
@@ -9,6 +9,8 @@ import { Usuario } from '../models/usuario.model';  // para cargar en la interfa
 import { PopoverController } from 'ionic-angular';
 import { PerfilPage } from '../perfil/perfil';
 import { CamaraPage } from '../camara/camara';
+import { TipsProvider } from '../../providers/tips/tips';
+
 
 @Component({
   selector: 'page-home',
@@ -16,21 +18,29 @@ import { CamaraPage } from '../camara/camara';
 })
 export class HomePage {
 
+  @ViewChild(Slides) slides: Slides;
+
   publicaciones: any;
   prefixURL: string = "https://todaviasirve.azurewebsites.net/Content/Images/" ;
 
   userLog: Usuario;
   loading: any;
 
+  sabiasque
   
   constructor(  public navCtrl: NavController, 
                 public publicacion: PublicacionProvider,
                 public usuarioProvider: UsuarioProvider,
                 public loadingCtrl: LoadingController,
-                public popoverCtrl: PopoverController
+                public popoverCtrl: PopoverController,
+                public tipsProvider: TipsProvider,
               ) {
       this.userLog = this.usuarioProvider.obtenerUsuarioLogueado()
   }
+
+  ionViewDidEnter() {
+   /*  this.slides.autoplayDisableOnInteraction = true */
+}
 
   ionViewDidLoad(){
     this.loading = this.loadingCtrl.create({ content: " espere por favor..."});
@@ -47,6 +57,8 @@ export class HomePage {
           console.log(error); 
         }
       )
+
+    this.obtenerTip();
   }
 
   irADetalle(publi){
@@ -71,6 +83,16 @@ export class HomePage {
     setTimeout(() => {
       refresher.complete();
     }, 500);
+  }
+
+  obtenerTip(){
+    this.tipsProvider.obtenerTip()
+      .subscribe((res) => {
+        this.sabiasque = res["descripcion"];
+      },
+      (error) => {
+        console.log("Error: " + error)
+      })
   }
 
 

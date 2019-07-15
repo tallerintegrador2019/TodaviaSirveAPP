@@ -19,9 +19,14 @@
       <p>{{publicacion.subtitulo}}</p>
     </ion-item>
 
-    <ion-slides class="carrusel">
+    <ion-slides class="carrusel" pager="true">
       <ion-slide center *ngFor="let paso of pasos; index as i">
-          <img class="imgCarrusel" src="{{imagenURL}}{{paso.imagen}}">
+          <div *ngIf="paso.imagen; else elseImagen">
+              <img class="imgCarrusel" src="{{imagenURL}}{{paso.imagen}}">
+         </div>
+         <ng-template #elseImagen>
+            <img class="imgCarrusel" src="{{imagenURL}}{{publicacion.imagenPortada}}">
+         </ng-template>
           <ion-card-content>
             <h4 style="text-align: left;">Paso {{i+1}}:</h4>
             <hr />

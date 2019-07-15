@@ -14,7 +14,7 @@
 
       <ion-card class="cardClass image-upload">
         <label for="file-input">
-          <img *ngIf="!img" src="../../assets/imgs/imagenNoDisponible.png" />
+          <img *ngIf="!img" src="../../assets/imgs/subidaImagen.png" />
           <img *ngIf="img" [src]="img" />
         </label>
         <input id="file-input" type="file" accept="image/*" (change)="cargaArchivo($event)" />

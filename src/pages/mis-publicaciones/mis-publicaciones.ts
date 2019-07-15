@@ -1,15 +1,13 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController,ActionSheetController   } from 'ionic-angular';
-import {PublicacionProvider} from '../../providers/publicacion/publicacion';
-import {Publicacion} from '../models/publicacion.model';
+import { IonicPage, NavController, NavParams, LoadingController, ActionSheetController, AlertController, ItemSliding, ToastController } from 'ionic-angular';
+import { PublicacionProvider } from '../../providers/publicacion/publicacion';
+import { Publicacion } from '../models/publicacion.model';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
-//import { Usuario } from '../models/usuario.model';
-/**
- * Generated class for the MisPublicacionesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { PublicarPage } from '../publicar/publicar';
+import { DetallePage } from '../detalle/detalle';
+import { EditarpublicacionPage } from '../editarpublicacion/editarpublicacion';
+import { PasosdepublicacionesPage } from '../pasosdepublicaciones/pasosdepublicaciones';
+
 
 @IonicPage()
 @Component({
@@ -17,85 +15,115 @@ import { UsuarioProvider } from '../../providers/usuario/usuario';
   templateUrl: 'mis-publicaciones.html',
 })
 export class MisPublicacionesPage {
-  loading: any;
-  usuario ;
-  valor: any = "";
-  publicaciones: any = "";;
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-                public publicacionProvider: PublicacionProvider,
-                public usuarioProvider: UsuarioProvider,
-                public loadingCtrl: LoadingController,
-                public actionsheetCtrl: ActionSheetController
-              ) {
+  
+  usuarioLog;
+  publicaciones: any;
+  imagesPath: string = "https://todaviasirve.azurewebsites.net/Content/Images/";
+  loading;
 
-    this.usuario = this.usuarioProvider.obtenerUsuarioLogueado();
-    this.publicaciones =  this.publicacionProvider.obtenerPublicacionesUsuario(this.usuario.id);
-    //this.valor = this.publicacionProvider.obtenerPublicacionesUsuario(this.usuario.id);
+  constructor(
+    public navCtrl: NavController, public navParams: NavParams,
+    public publicacionProvider: PublicacionProvider,
+    public usuarioProvider: UsuarioProvider,
+    public loadingCtrl: LoadingController,
+    public toastCtrl: ToastController,
+    public alertCtrl: AlertController,
+  ) {
+
+    this.usuarioLog = this.usuarioProvider.obtenerUsuarioLogueado();
   }
 
-  openMenu(publicacionClickeada) {
-    let actionSheet = this.actionsheetCtrl.create({
-      title: 'Acciones',
-      cssClass: 'action-sheets-basic-page',
+  ionViewDidLoad() {
+    this.loading = this.loadingCtrl.create({ content: " espere por favor..." });
+    this.loading.present();
+
+    this.publicacionProvider.obtenerPublicacionesUsuario(this.usuarioLog.id)
+      .subscribe(
+        (data) => {
+          this.publicaciones = data;
+          this.loading.dismiss();
+        },
+        (error) => {
+          console.log(error);
+          this.loading.dismiss();
+        }
+      )
+  }
+
+  irADetalle(publi) {
+    this.navCtrl.push(DetallePage, { publi });
+  }
+
+  borrarPublicacion(idPubli) {
+    this.publicacionProvider.borrarPublicacion(idPubli)
+      .subscribe(res => {
+        this.ionViewDidLoad();
+        this.presentToast("Eliminado Correctamente");
+      },
+        (error) => {
+          this.presentToast("Eliminacion Falló" + error);
+        }
+      );
+    console.log("Se borro la publicacion:" + idPubli);
+
+  }
+
+  irAEditarPublicacion(publi, slidingItem: ItemSliding) {
+    slidingItem.close();
+    this.navCtrl.push(EditarpublicacionPage, { "publi": publi });
+  }
+
+  irAPasosDePublicacion(publi, slidingItem: ItemSliding) {
+    slidingItem.close();
+    this.navCtrl.push(PasosdepublicacionesPage, { "publi": publi });
+  }
+
+  presentToast(msj: string) {
+    const toast = this.toastCtrl.create({
+      message: msj,
+      duration: 3000,
+      position: 'top',
+    });
+
+    toast.present();
+  }
+
+  doRefresh(refresher) {
+    this.ionViewDidLoad();
+
+    setTimeout(() => {
+      refresher.complete();
+    }, 500);
+  }
+
+
+  mostrarConfirmacion(id, slidingItem: ItemSliding) {
+    const confirm = this.alertCtrl.create({
+      title: '¿Realmente quiere borrar la publicación?',
       buttons: [
         {
-          text: 'Borrar',
-          icon: 'trash',
-          handler: () => {
-            console.log(publicacionClickeada.id);
-            console.log('Delete clicked');
-            //this.llamadaEliminarPublicacion(publicacionClickeada.id);
-            this.publicaciones =  this.publicacionProvider.eliminarPublicacion(publicacionClickeada.id,this.usuario.id);
-          }
-        },
-        {
-          text: 'Ver',
-          handler: () => {
-            console.log('Share clicked');
-          }
-        },
-        {
-          text: 'Ranking',
-          handler: () => {
-            console.log('Play clicked');
-          }
-        },
-        {
           text: 'Cancelar',
-          role: 'cancel', // will always sort to be on the botton
           handler: () => {
-            console.log('Cancel clicked');
+            slidingItem.close();
+            console.log('Cancelar clicked');
+          }
+        },
+        {
+          text: 'Borrar',
+          handler: () => {
+            this.borrarPublicacion(id);
+            console.log('Borrar clicked');
           }
         }
       ]
     });
-    actionSheet.present();
-  }
-  
-  // llamadaEliminarPublicacion(id){
-  //   console.log("estoy llamando a elimar");
-  //   this.valor =  this.publicacionProvider.eliminarPublicacion(id);
-  //   this.recargarPublicaciones();
-  // }
-
-  recargarPublicaciones(){
-    //this.publicaciones =  this.publicacionProvider.obtenerPublicacionesUsuario(this.usuario.id);
+    confirm.present();
   }
 
-  ionViewDidLoad() {
-    this.loading = this.loadingCtrl.create({ content: " espere por favor..."});
-    this.loading.present();
-
-    // this.publicacionProvider.obtenerPublicacionesUsuario(this.usuario.id)
-    //   .subscribe(
-    //     (data) => { this.loading.dismiss(); this.publicaciones = data; },
-    //     (error) => { this.loading.dismiss(); console.log(error); }
-    //   )
-    
-    console.log(this.usuario.id);
-    this.loading.dismiss();
-    console.log(this.publicaciones);
-    console.log('ionViewDidLoad MisPublicacionesPage');
+  irAPublicar() {
+    this.navCtrl.push(PublicarPage);
   }
+
+
 
 }

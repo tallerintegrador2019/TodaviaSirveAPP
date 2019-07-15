@@ -9,14 +9,32 @@
 
   <ion-content>
     <ion-list>
+
       <ion-item button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         <ion-icon name={{p.icon}} item-start></ion-icon>
         {{p.title}}
       </ion-item>
+
       <ion-item button menuClose ion-item (click)="logout()">
         <ion-icon name="log-out" item-start></ion-icon>
         Desconectarse
       </ion-item>
+
+      <!-- FUNCIONES DE ADMINISTRADOR -->
+      <div>
+        <ion-item menuClose ion-item></ion-item>
+        <ion-item menuClose ion-item>
+          Funciones Admin
+        </ion-item>
+  
+        <ion-item button menuClose ion-item (click)="irAEditarPublicaciones()">
+          <ion-icon name="switch" item-start></ion-icon>
+          Editar Publicaciones
+        </ion-item>
+      </div>
+
+
+
     </ion-list>
 
   </ion-content>

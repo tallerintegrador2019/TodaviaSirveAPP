@@ -15,29 +15,31 @@ export class PublicacionProvider {
 
   }
 
+  // TRAE TODAS LAS PUBLICACIONES
   obtenerTodasPublicaciones() {
     return this.http.get("https://todaviasirve.azurewebsites.net/api/Publicacion")
     /* return this.http.get("http://localhost:55081/Api/Publicacion")  */
   }
 
+  // TRAE UNA PUBLICACION POR ID
   obtenerPublicacion(id) {
     return this.http.get("https://todaviasirve.azurewebsites.net/api/Publicacion/" + id)
   }
 
+  // BUSCADOR DE PUBLICACIONES
   buscarPublicacion(titulo: string) {
     return this.http.get("https://todaviasirve.azurewebsites.net/api/Publicacion/Buscar/" + titulo)
     /*    return this.http.get("http://localhost:55081/api/Publicacion/Buscar/" + titulo) */
   }
 
-  // BORRAR PUBLICACION
+  // BORRAR PUBLICACION POR ID
   borrarPublicacion(idPubli) {
     return this.http.delete("https://todaviasirve.azurewebsites.net/api/Publicacion/" + idPubli);
     /* return this.http.delete("http://localhost:55081/api/Publicacion/" + idPubli) */
   }
-
+ 
   // EDITAR PUBLICACION
   editarPublicacion(publi: Publicacion) {
-
     let pathURL = "http://todaviasirve.azurewebsites.net/Api/Publicacion/" + publi.id;
     /* let pathURL = "http://localhost:55081/Api/Publicacion/" + publi.id; */
 
@@ -56,14 +58,12 @@ export class PublicacionProvider {
 
     return this.http.put(pathURL, formData, { headers: headers })
     .subscribe(res => res ); 
-
   }
 
   // SUBIR PUBLICACION
   subirPublicacion(publi: Publicacion) {
-    // let pathURL = "http://todaviasirve.azurewebsites.net/Api/Publicacion/PostPublicacion";
-    let pathURL = "http://localhost:55081/Api/Publicacion/PostPublicacion"; 
-
+    //let pathURL = "http://localhost:55081/Api/Publicacion/PostPublicacion"; 
+    let pathURL = "http://todaviasirve.azurewebsites.net/Api/Publicacion/PostUsuario"; 
     const headers = new HttpHeaders()
       .set('enctype', 'multipart/form-data;charset=UTF-8')
       .set('Access-Control-Allow-Origin', '*')
@@ -77,39 +77,9 @@ export class PublicacionProvider {
     formData.append("fechaSubida", publi.fechaSubida);
     formData.append("imagenPortada", publi.imagenPortada);
     formData.append("usuarioPublicacion", publi.idUsuario);
-    /* this.http.post(pathURL, formData, { headers: headers })
-      .subscribe(res => { alert("success " + res); },
-        (err) => { alert("failed"); }
-      ); */
 
     return this.http.post(pathURL, formData, { headers: headers });
   }
-
-        // SUBIR PUBLICACION Fix para subir publicacion y usuario
-  //  subirPublicacion(publi: Publicacion) {
-  //   let pathURL = "http://todaviasirve.azurewebsites.net/Api/Publicacion/";
-  //   /* let pathURL = "http://localhost:55081/Api/Publicacion/";  */
-
-  //   const headers = new HttpHeaders()
-  //     .set('enctype', 'multipart/form-data;charset=UTF-8')
-  //     .set('Access-Control-Allow-Origin', '*')
-  //     .set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT')
-  //     .set('Accept-Charset', 'utf-8')
-
-  //   var formData = new FormData();
-  //   formData.append("titulo", publi.titulo);
-  //   formData.append("subtitulo", publi.subtitulo);
-  //   formData.append("descripcion", publi.descripcion);
-  //   formData.append("fechaSubida", publi.fechaSubida);
-  //   formData.append("imagenPortada", publi.imagenPortada);
-  //   formData.append("usuarioPublicacion", publi.idUsuario);
-  //   /* this.http.post(pathURL, formData, { headers: headers })
-  //     .subscribe(res => { alert("success " + res); },
-  //       (err) => { alert("failed"); }
-  //     ); */
-
-  //   return this.http.post(pathURL, formData, { headers: headers });
-  // }
 
 
   // SUBIR PASOS
@@ -133,10 +103,10 @@ export class PublicacionProvider {
       .subscribe(res => {
         console.log("Subido: " + res);
       },
-        (error) => {
+/*         (error) => {
           console.log(error);
-          alert("Se ha producido un error: " + error);
-        }
+          alert("Se ha producido un error al subir el paso: " + error);
+        } */
       );
 
   }
@@ -145,19 +115,19 @@ export class PublicacionProvider {
   //OBTENER LAS PUBLICACIONES DE UN USUARIO
   obtenerPublicacionesUsuario(id) {
     //return this.http.get("https://todaviasirve.azurewebsites.net/Api/Publicacion/PublicacionesUsuario/" + id)
-     return this.http.get("http://localhost:55081/Api/Publicacion/PublicacionesUsuario/" + id) 
+     return this.http.get("https://todaviasirve.azurewebsites.net/Api/Publicacion/PublicacionesUsuario/" + id) 
   }
 
-  eliminarPublicacion(idPublicacion, idUsuario) {
-    console.log("por eliminar publicacion con este id : " + idPublicacion);
-    return this.http.delete("http://localhost:55081/Api/Publicacion/PublicacionesUsuario/" + idUsuario)
-    /* return this.http.get("http://localhost:55081/Api/Publicacion/DeletePublicacionUsuario/"+idPublicacion+"/"+idUsuario)  */
-  }
+  // eliminarPublicacion(idPublicacion, idUsuario) {
+  //   console.log("por eliminar publicacion con este id : " + idPublicacion);
+  //   return this.http.delete("http://localhost:55081/Api/Publicacion/PublicacionesUsuario/" + idUsuario)
+  //   /* return this.http.get("http://localhost:55081/Api/Publicacion/DeletePublicacionUsuario/"+idPublicacion+"/"+idUsuario)  */
+  // }
 
   obtenerComentarioPublicacion(idPublicacion,idUsuario){
     console.log("buscar comentarios de esta publicacion "+ idPublicacion);
     // return this.http.get<ComentarioCantidad>("https://todaviasirve.azurewebsites.net/Api/Publicacion/obtenerComentarioPublicacion/"+idPublicacion+"/"+idUsuario)    
-   return this.http.get<ComentarioCantidad>("http://localhost:55081/Api/Publicacion/obtenerComentarioPublicacion/"+idPublicacion+"/"+idUsuario)
+   return this.http.get<ComentarioCantidad>("https://todaviasirve.azurewebsites.net/Api/Publicacion/obtenerComentarioPublicacion/"+idPublicacion+"/"+idUsuario)
   }
 
   seleccionarFavorito(idPublicacion,idUsuario){
