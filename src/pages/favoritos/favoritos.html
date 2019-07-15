@@ -14,7 +14,6 @@
 </ion-header>
 
 <ion-content padding>
-    <h4 class="titulo">Mis Publicaciones</h4>
     <hr />
     <ion-list>
       <button ion-item *ngFor="let publicacion of publicaciones | async" block (click)="irADetalle(publicacion)">

@@ -49,7 +49,7 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: TabsPage, icon: 'home' },
       { title: 'Buscador', component: BuscarPage, icon: 'search' },
-      { title: 'Camara', component: CamaraPage, icon: 'camera' },
+      { title: 'Reconocimiento', component: CamaraPage, icon: 'camera' },
       { title: 'Mis Publicaciones', component: MisPublicacionesPage, icon: 'folder' },
       { title: 'Quienes somos', component: AboutPage, icon: 'contacts' },
       {title: 'Favoritos', component: FavoritosPage, icon: 'star'}
