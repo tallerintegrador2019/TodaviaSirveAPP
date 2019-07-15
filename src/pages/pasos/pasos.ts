@@ -50,8 +50,12 @@ export class PasosPage {
 
 
   irAHome(){
-    this.publicacionProvider.subirPaso(this.paso, this.idPublicacion);
-    this.navCtrl.setRoot(TabsPage);
+    if(this.paso.descripcion != null && this.paso.descripcion.length > 5){
+         this.publicacionProvider.subirPaso(this.paso, this.idPublicacion);
+          this.navCtrl.setRoot(TabsPage);
+    }else{
+      this.navCtrl.setRoot(TabsPage);
+    }
   }
 
 } // cierre clase

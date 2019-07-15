@@ -37,7 +37,7 @@ export class PublicacionProvider {
     return this.http.delete("https://todaviasirve.azurewebsites.net/api/Publicacion/" + idPubli);
     /* return this.http.delete("http://localhost:55081/api/Publicacion/" + idPubli) */
   }
-
+ 
   // EDITAR PUBLICACION
   editarPublicacion(publi: Publicacion) {
     let pathURL = "http://todaviasirve.azurewebsites.net/Api/Publicacion/" + publi.id;
