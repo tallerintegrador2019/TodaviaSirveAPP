@@ -40,6 +40,7 @@ import { EditarpublicacionPageModule } from '../pages/editarpublicacion/editarpu
 import { PasosdepublicacionesPageModule } from '../pages/pasosdepublicaciones/pasosdepublicaciones.module';
 import { EditarpasoPageModule } from '../pages/editarpaso/editarpaso.module';
 import {FavoritosPageModule} from '../pages/favoritos/favoritos.module';
+import { TipsProvider } from '../providers/tips/tips';
 // import {initializeApp } from 'firebase';
 // import { FIREBASE_CONFIG } from "./../app/firebase.config";
 // import { AngularFireModule } from '@angular/fire';
@@ -91,6 +92,7 @@ import {FavoritosPageModule} from '../pages/favoritos/favoritos.module';
     ReconoProvider,
     Camera,
     PasoProvider,
+    TipsProvider,
   ]
 })
 export class AppModule {}

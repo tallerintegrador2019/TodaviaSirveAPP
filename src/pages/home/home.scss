@@ -59,5 +59,29 @@ page-home {
         padding: 0;
     }
 
+    ion-card.sabiasque{
+        background-color:coral;
+        margin-bottom: 30px;
+    }
+
+    ion-card-header.card-header {
+        padding: 10px;
+        padding-left: 16px;
+
+        h3{
+            font-size: 15px;
+            color: white;
+        }
+    }
+
+    ion-card-content.card-content{
+        p {
+            color: white;
+        }
+
+    }
+
+
+
 }
 

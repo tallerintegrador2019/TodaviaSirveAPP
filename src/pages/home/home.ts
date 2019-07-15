@@ -9,6 +9,8 @@ import { Usuario } from '../models/usuario.model';  // para cargar en la interfa
 import { PopoverController } from 'ionic-angular';
 import { PerfilPage } from '../perfil/perfil';
 import { CamaraPage } from '../camara/camara';
+import { TipsProvider } from '../../providers/tips/tips';
+import { Tip } from '../models/tip.model';
 
 @Component({
   selector: 'page-home',
@@ -22,12 +24,15 @@ export class HomePage {
   userLog: Usuario;
   loading: any;
 
+  sabiasque
+
   
   constructor(  public navCtrl: NavController, 
                 public publicacion: PublicacionProvider,
                 public usuarioProvider: UsuarioProvider,
                 public loadingCtrl: LoadingController,
-                public popoverCtrl: PopoverController
+                public popoverCtrl: PopoverController,
+                public tipsProvider: TipsProvider,
               ) {
       this.userLog = this.usuarioProvider.obtenerUsuarioLogueado()
   }
@@ -47,6 +52,8 @@ export class HomePage {
           console.log(error); 
         }
       )
+
+    this.obtenerTip();
   }
 
   irADetalle(publi){
@@ -71,6 +78,16 @@ export class HomePage {
     setTimeout(() => {
       refresher.complete();
     }, 500);
+  }
+
+  obtenerTip(){
+    this.tipsProvider.obtenerTip()
+      .subscribe((res) => {
+        this.sabiasque = res["descripcion"];
+      },
+      (error) => {
+        console.log("Error: " + error)
+      })
   }
 
 
