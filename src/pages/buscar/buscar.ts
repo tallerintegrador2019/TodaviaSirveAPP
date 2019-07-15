@@ -15,6 +15,8 @@ export class BuscarPage {
   prefixURL: string = "https://todaviasirve.azurewebsites.net/Content/Images/";
   titulo: any;
 
+  mostrar = false
+
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public publicacionService: PublicacionProvider,
@@ -25,7 +27,15 @@ export class BuscarPage {
   }
 
   buscarPublicacion() {
+    this.mostrar = false;
     this.publicaciones = this.publicacionService.buscarPublicacion(this.titulo);
+
+    this.publicaciones.subscribe( res => {
+      if (res["0"] == null) {
+        console.log("no se encontro nada");
+        this.mostrar = true;
+      }
+    })
   }
 
   irADetalle(publi) {

@@ -22,15 +22,15 @@
 
 
 
-<ion-content class="fondoWsp">
-
+<ion-content>
 
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
   <ion-card class="cardClass">
-    <ion-slides *ngIf="publicaciones" autoplay="4000" loop="true" speed="2000">
+    <ion-slides *ngIf="publicaciones" autoplay="4000" loop="true" speed="2000" pager="true"
+      autoplayDisableOnInteraction="false">
       <ion-slide *ngFor="let publicacion of publicaciones" (click)="irADetalle(publicacion)">
 
         <ion-item class="encabezadoCard">
@@ -52,7 +52,6 @@
       </ion-slide>
     </ion-slides>
   </ion-card>
-
 
 
   <h4 class="titulo">Publicaciones recientes</h4>
@@ -77,8 +76,10 @@
 
   <ion-card class="sabiasque">
     <ion-card-header>
-        
-      <h3><ion-icon name="attach"></ion-icon>&nbsp;Sabias que...</h3>
+
+      <h3>
+        <ion-icon name="attach"></ion-icon>&nbsp;Sabias que...
+      </h3>
     </ion-card-header>
     <ion-card-content>
       <p>{{sabiasque}}</p>

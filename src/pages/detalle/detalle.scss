@@ -28,5 +28,14 @@ page-detalle {
         }
     }
 
+    div.swiper-pagination {
+        top: 10px;
+        bottom: inherit;
+     }
+
+     .swiper-pagination-bullet{
+        background: white;
+    }
+
 
 }

@@ -9,17 +9,6 @@
 
 <ion-content padding>
 
-
-  <!--   <button ion-button block (click)="getPicture()">Toma una foto</button> -->
-
-
-
-  <!-- <ion-item>
-    <p>Imagen: </p>
-    <input type="file" accept="image/*" (change)="getPicture($event)" />
-  </ion-item>
- -->
-
   <div class="image-upload" text-center>
     <label for="file-input">
       <img src="../../assets/imgs/detectionEye.png" />
@@ -38,21 +27,7 @@
   </ion-card>
 
 
-<!--   <div class="contentButton" *ngIf="image">
-    <button ion-button text-center *ngFor="let item of encontrado" (click)="buscarPublicacion(item.name)">
-      {{item.name}}
-    </button>
-  </div> -->
-
-<!-- 
-  <div>
-    <button ion-button round full text-center *ngFor="let item of encontrado" (click)="buscarPublicacion(item)">
-      {{item}}
-    </button>
-  </div> -->
-
-
-  <ion-list class="card-background-page">
+  <ion-list  *ngIf="image" class="card-background-page">
     <ion-item button *ngFor="let publicacion of publicaciones | async" (click)="irADetalle(publicacion)">
       <ion-card>
         <img src="{{prefixURL}}{{publicacion.imagenPortada}}" />
@@ -61,5 +36,9 @@
       </ion-card>
     </ion-item>
   </ion-list>
+
+  <ion-item [hidden]="!mostrar" text-center>
+    <p>Sin resultados :(</p>
+  </ion-item>
 
 </ion-content>

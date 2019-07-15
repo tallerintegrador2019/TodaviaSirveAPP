@@ -128,7 +128,7 @@ export class PublicacionProvider {
   obtenerComentarioPublicacion(idPublicacion,idUsuario){
     console.log("buscar comentarios de esta publicacion "+ idPublicacion);
     // return this.http.get<ComentarioCantidad>("https://todaviasirve.azurewebsites.net/Api/Publicacion/obtenerComentarioPublicacion/"+idPublicacion+"/"+idUsuario)    
-   return this.http.get<ComentarioCantidad>("http://localhost:55081/Api/Publicacion/obtenerComentarioPublicacion/"+idPublicacion+"/"+idUsuario)
+   return this.http.get<ComentarioCantidad>("https://todaviasirve.azurewebsites.net/Api/Publicacion/obtenerComentarioPublicacion/"+idPublicacion+"/"+idUsuario)
   }
 
   seleccionarFavorito(idPublicacion,idUsuario){

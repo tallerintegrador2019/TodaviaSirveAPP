@@ -11,6 +11,7 @@ import { ToastController } from 'ionic-angular/components/toast/toast-controller
 import { storage, initializeApp, apps } from 'firebase';
 import { FIREBASE_CONFIG } from "../../app/firebase.config";
 
+
 @IonicPage()
 @Component({
   selector: 'page-camara',
@@ -25,13 +26,14 @@ export class CamaraPage {
   encontrado
   encontrado1
   acaUrl
-  datos = ["Planta", "Botella", "Maceta", "ddddddd", "eeeeee", "ffffff"]   // ejemplos
-  variables = "botella revista carton frasco diario vaso";
+  variables = "botella revista carton frasco diario vaso caja planta";
  
-  publicaciones: any = "";
+  publicaciones;
   publicacionAux: any = null;
   prefixURL: string = "https://todaviasirve.azurewebsites.net/Content/Images/";
   titulo: any;
+
+  mostrar = false
 
 
   constructor(public navCtrl: NavController,
@@ -52,8 +54,18 @@ export class CamaraPage {
   ionViewDidLoad() {
   }
 
+
   buscarPublicacion(item) {
+    this.mostrar = false;
     this.publicaciones = this.publicacionService.buscarPublicacion(item);
+    
+    this.publicaciones.subscribe( res => {
+      if (res["0"] == null) {
+        console.log("no se encontro nada");
+        this.mostrar = true;
+      }
+    })
+
   }
 
   irADetalle(publi) {
@@ -131,6 +143,7 @@ export class CamaraPage {
         }
         this.encontrado = listado;
         this.loading.dismiss();
+
       }, (err) => {
         this.loading.dismiss();
         this.mostrarToast(err.status + " error code: " + err.code, 4000);
@@ -220,7 +233,8 @@ export class CamaraPage {
       let button = {
         text: listado[index],
         handler: () => {
-          this.buscarPublicacion(listado[index])
+          this.buscarPublicacion(listado[index]);
+
           return true;
         }
         
@@ -241,7 +255,6 @@ export class CamaraPage {
     });
     actionSheet.present();
   }
-
 
 
 

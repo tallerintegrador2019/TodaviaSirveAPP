@@ -19,7 +19,7 @@
       <p>{{publicacion.subtitulo}}</p>
     </ion-item>
 
-    <ion-slides class="carrusel">
+    <ion-slides class="carrusel" pager="true">
       <ion-slide center *ngFor="let paso of pasos; index as i">
           <img class="imgCarrusel" src="{{imagenURL}}{{paso.imagen}}">
           <ion-card-content>
