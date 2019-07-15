@@ -118,11 +118,11 @@ export class PublicacionProvider {
      return this.http.get("https://todaviasirve.azurewebsites.net/Api/Publicacion/PublicacionesUsuario/" + id) 
   }
 
-  eliminarPublicacion(idPublicacion, idUsuario) {
-    console.log("por eliminar publicacion con este id : " + idPublicacion);
-    return this.http.delete("http://localhost:55081/Api/Publicacion/PublicacionesUsuario/" + idUsuario)
-    /* return this.http.get("http://localhost:55081/Api/Publicacion/DeletePublicacionUsuario/"+idPublicacion+"/"+idUsuario)  */
-  }
+  // eliminarPublicacion(idPublicacion, idUsuario) {
+  //   console.log("por eliminar publicacion con este id : " + idPublicacion);
+  //   return this.http.delete("http://localhost:55081/Api/Publicacion/PublicacionesUsuario/" + idUsuario)
+  //   /* return this.http.get("http://localhost:55081/Api/Publicacion/DeletePublicacionUsuario/"+idPublicacion+"/"+idUsuario)  */
+  // }
 
   obtenerComentarioPublicacion(idPublicacion,idUsuario){
     console.log("buscar comentarios de esta publicacion "+ idPublicacion);
