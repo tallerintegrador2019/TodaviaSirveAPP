@@ -40,7 +40,10 @@ export class PasosdepublicacionesPage {
   }
 
   irAEditarPaso(paso){
-    this.navCtrl.push(EditarpasoPage, { paso })
+    this.navCtrl.push(EditarpasoPage, {
+      paso: paso,
+      portada : this.publicacion.imagenPortada
+    })
   }
 
 

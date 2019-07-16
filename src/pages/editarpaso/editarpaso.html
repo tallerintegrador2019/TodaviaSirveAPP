@@ -11,8 +11,15 @@
 
       <ion-card class="cardClass image-upload">
         <label for="file-input">
-          <img *ngIf="!img" src="{{imagesPath}}{{paso.imagen}}">
-          <img *ngIf="img" [src]="img" />
+          <div *ngIf="paso.imagen; else elsePortada">
+              <img *ngIf="!img" src="{{imagesPath}}{{paso.imagen}}">
+              <img *ngIf="img" [src]="img" />
+          </div>
+          <ng-template #elsePortada>
+              <img *ngIf="!img" src="{{imagesPath}}{{portada}}">
+              <img *ngIf="img" [src]="img" />
+          </ng-template>
+          
         </label>
         <input id="file-input" type="file" accept="image/*" (change)="onFileChanged($event)" />
       </ion-card>
