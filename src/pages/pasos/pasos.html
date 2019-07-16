@@ -12,8 +12,6 @@
   <ion-list>
     <form novalidate (ngSubmit)="submitPaso()">
 
-
-
       <ion-card class="cardClass image-upload">
         <label for="{{nombreIncremento}}">
           <img *ngIf="!img" src="../../assets/imgs/subidaImagen.png">
@@ -23,13 +21,15 @@
       </ion-card>
       <p class="pieDeImagen">(toca sobre la imagen para editar)</p>
 
-      <!-- <ion-item>
+<!-- 
+      <ion-item>
         <p>Imagen: </p>
         <input type="file" accept="image/*" (change)="onFileChanged($event)" />
       </ion-item>
 
-      <img *ngIf="img" [src]="img" /> -->
+      <img *ngIf="img" [src]="img" />
 
+ -->
       <ion-item>
         <ion-label>Paso N°:</ion-label>
         <ion-select [(ngModel)]="paso.numero" [ngModelOptions]="{standalone: true}">

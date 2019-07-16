@@ -12,7 +12,7 @@ import { TabsPage } from '../tabs/tabs';
 })
 export class PasosPage {
 
-  img="";
+  img;
   paso: Paso = <Paso>{};
   idPublicacion// id traido de publicacion
   pasoNro: number;
