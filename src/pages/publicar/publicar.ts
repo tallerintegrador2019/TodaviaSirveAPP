@@ -41,7 +41,7 @@ export class PublicarPage {
     this.publicacionProvider.subirPublicacion(this.publicacion)
       .subscribe(res => {
         this.idPubli = res;
-        this.navCtrl.push(PasosPage, { "idPubli": this.idPubli });
+        this.navCtrl.push(PasosPage, { "idPubli": this.idPubli, "numPaso" : 2 });
         console.log("ID de Publicacion: ", this.idPubli);
       });
   }

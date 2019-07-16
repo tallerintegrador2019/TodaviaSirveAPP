@@ -18,7 +18,9 @@ export class PasosPage {
   pasoNro: number;
 
   numeros = [1,2,3,4,5,6,7,8,9,10];
-
+  numeropaso;
+  pasoAux
+  nombreIncremento
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -26,15 +28,19 @@ export class PasosPage {
   ) {
 
     this.idPublicacion = navParams.get("idPubli");
-
+    this.pasoAux = navParams.get("numPaso");
+    console.log("numero de paso: "+ this.pasoAux);
+    this.nombreIncremento = "file-input"+this.pasoAux
+    console.log(this.nombreIncremento);
   }
 
   ionViewDidLoad() {  }
 
 
   submitPaso() {
+    this.pasoAux = this.pasoAux +1;
     this.publicacionProvider.subirPaso(this.paso, this.idPublicacion);
-    this.navCtrl.push(PasosPage, { "idPubli": this.idPublicacion })
+    this.navCtrl.push(PasosPage, { "idPubli": this.idPublicacion, "numPaso" : this.pasoAux })
   }
 
   onFileChanged(event) {

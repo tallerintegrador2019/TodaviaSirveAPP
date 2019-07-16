@@ -17,6 +17,8 @@ export class PasosdepublicacionesPage {
   pasos: any;
   imagesPath: string = "https://todaviasirve.azurewebsites.net/Content/Images/";
   loading;
+  pasoAux
+  cantPasos=0;
 
   constructor(
     public navCtrl: NavController,
@@ -32,7 +34,12 @@ export class PasosdepublicacionesPage {
 
   ionViewDidEnter() {
     this.pasoProvider.getPasosDePublicacion(this.publicacion.id)
-      .subscribe(res => this.pasos = res);
+      .subscribe(res =>{ 
+        this.pasos = res
+        for (let item in this.pasos){
+              this.cantPasos = this.cantPasos+1;
+        }
+      });
   }
 
   irAEditarPaso(paso){
@@ -58,7 +65,7 @@ export class PasosdepublicacionesPage {
   }
 
   irACrearPaso(){
-    this.navCtrl.push(PasosPage, {"idPubli": this.publicacion.id})
+    this.navCtrl.push(PasosPage, {"idPubli": this.publicacion.id,"numPaso" : this.cantPasos})
   }
   
 
