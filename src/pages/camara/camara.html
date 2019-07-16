@@ -10,15 +10,18 @@
 <ion-content padding>
 
   <div class="image-upload" text-center>
+    
     <label for="file-input">
       <img src="../../assets/imgs/detectionEye.png" />
     </label>
     <input id="file-input" type="file" accept="image/*" (change)="getPicture($event)" />
+    
     <ion-fab>
       <button ion-fab color="default" (click)="getPictureCam()">
         <ion-icon name="camera"></ion-icon>
       </button>
     </ion-fab>
+
   </div>
 
 
@@ -27,11 +30,11 @@
   </ion-card>
 
 
-  <div class="contentButton" *ngIf="image">
+<!--   <div class="contentButton" *ngIf="image">
      <button ion-button round full text-center *ngFor="let item of encontrado" (click)="buscarPublicacion(item)">
         {{item}}
       </button>
-  </div>
+  </div> -->
 
   <ion-list  *ngIf="image" class="card-background-page">
     <ion-item button *ngFor="let publicacion of publicaciones | async" (click)="irADetalle(publicacion)">

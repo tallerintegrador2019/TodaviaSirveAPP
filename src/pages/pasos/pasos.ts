@@ -12,7 +12,7 @@ import { TabsPage } from '../tabs/tabs';
 })
 export class PasosPage {
 
-  img
+  img="";
   paso: Paso = <Paso>{};
   idPublicacion// id traido de publicacion
   pasoNro: number;
@@ -37,7 +37,7 @@ export class PasosPage {
     this.navCtrl.push(PasosPage, { "idPubli": this.idPublicacion })
   }
 
-  cargaArchivo(event) {
+  onFileChanged(event) {
     this.paso.imagen = event.target.files[0];
     let reader = new FileReader();
     reader.onload = (event: any) => {

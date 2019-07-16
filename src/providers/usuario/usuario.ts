@@ -9,11 +9,10 @@ import { convertFormatToKey } from 'ionic-angular/umd/util/datetime-util';
 @Injectable()
 export class UsuarioProvider {
 
-  private estaElUsuarioLogueado;  // para saber si el usuario esta logueado
+  public estaElUsuarioLogueado;  // para saber si el usuario esta logueado
   public usuarioLogueado: Usuario;   // el usuario que se logueo
 
   constructor(public http: HttpClient) {
-    console.log('Hello UsuarioProvider Provider');
 
     this.estaElUsuarioLogueado = false;  // la aplicacion empieza con ningun usuario logueado
   }

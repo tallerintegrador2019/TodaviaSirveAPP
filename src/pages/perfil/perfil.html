@@ -11,7 +11,8 @@
   <ion-list>
 
     <ion-avatar class="avatarClass">
-      <img src="http://todaviasirve.azurewebsites.net/Content/Images/{{usuarioLogueado.imagen}}">
+      <img *ngIf="!imagenLS" src="http://todaviasirve.azurewebsites.net/Content/Images/{{usuarioLogueado.imagen}}">
+      <img *ngIf="imagenLS" [src]="imagenLS">
     </ion-avatar>
 
     <ion-item text-center>

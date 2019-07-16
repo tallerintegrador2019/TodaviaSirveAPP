@@ -15,7 +15,7 @@ import { PasosdepublicacionesPage } from '../pasosdepublicaciones/pasosdepublica
   templateUrl: 'mis-publicaciones.html',
 })
 export class MisPublicacionesPage {
-  
+
   usuarioLog;
   publicaciones: any;
   imagesPath: string = "https://todaviasirve.azurewebsites.net/Content/Images/";
@@ -34,9 +34,7 @@ export class MisPublicacionesPage {
   }
 
   ionViewDidLoad() {
-    this.loading = this.loadingCtrl.create({ content: " espere por favor..." });
-    this.loading.present();
-
+    this.presentLoading();
     this.publicacionProvider.obtenerPublicacionesUsuario(this.usuarioLog.id)
       .subscribe(
         (data) => {
@@ -124,6 +122,14 @@ export class MisPublicacionesPage {
     this.navCtrl.push(PublicarPage);
   }
 
+
+  // LOADING...
+  presentLoading() {
+    this.loading = this.loadingCtrl.create({
+      content: "espere por favor...",
+    });
+    this.loading.present();
+  }
 
 
 }

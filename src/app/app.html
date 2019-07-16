@@ -11,12 +11,12 @@
     <ion-list>
 
       <ion-item button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        <ion-icon name={{p.icon}} item-start></ion-icon>
+        <ion-icon class="colorIconMenu" name={{p.icon}} item-start></ion-icon>
         {{p.title}}
       </ion-item>
 
       <ion-item button menuClose ion-item (click)="logout()">
-        <ion-icon name="log-out" item-start></ion-icon>
+        <ion-icon class="colorIconMenu" name="log-out" item-start></ion-icon>
         Desconectarse
       </ion-item>
 
@@ -28,7 +28,7 @@
         </ion-item>
   
         <ion-item button menuClose ion-item (click)="irAEditarPublicaciones()">
-          <ion-icon name="switch" item-start></ion-icon>
+          <ion-icon class="colorIconMenu" name="switch" item-start></ion-icon>
           Editar Publicaciones
         </ion-item>
       </div>

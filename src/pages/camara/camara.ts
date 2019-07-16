@@ -27,7 +27,7 @@ export class CamaraPage {
   encontrado1
   acaUrl
   variables = "botella revista carton frasco diario vaso caja planta";
- 
+
   publicaciones;
   publicacionAux: any = null;
   prefixURL: string = "https://todaviasirve.azurewebsites.net/Content/Images/";
@@ -56,14 +56,17 @@ export class CamaraPage {
 
 
   buscarPublicacion(item) {
+    this.presentLoading();
     this.mostrar = false;
-    this.publicaciones = this.publicacionService.buscarPublicacion(item);
     
-    this.publicaciones.subscribe( res => {
+    this.publicaciones = this.publicacionService.buscarPublicacion(item);
+
+    this.publicaciones.subscribe(res => {
       if (res["0"] == null) {
         console.log("no se encontro nada");
         this.mostrar = true;
       }
+      this.loading.dismiss();
     })
 
   }
@@ -111,8 +114,7 @@ export class CamaraPage {
   }
 
   subirApiJson(res) {
-    this.loading = this.loadingCtrl.create({ content: "Espere por favor..." });
-    this.loading.present();
+    this.presentLoading();
 
     let pathURL = "https://brazilsouth.api.cognitive.microsoft.com/vision/v1.0/analyze?language=es&visualFeatures=tags"
     let apiKey = "a84d243e248d4e67aee85fce8cace729";
@@ -163,6 +165,7 @@ export class CamaraPage {
 
   // DESDE ARCHIVO ----------------------
   getPicture(event) {
+    this.publicaciones = null;
     this.image = event.target.files[0];
     let reader = new FileReader();
     reader.onload = (event: any) => {
@@ -178,8 +181,7 @@ export class CamaraPage {
 
   subirAAPI() {
 
-    this.loading = this.loadingCtrl.create({ content: " espere por favor..." });
-    this.loading.present();
+    this.presentLoading();
 
     let pathURL = "https://brazilsouth.api.cognitive.microsoft.com/vision/v1.0/analyze?language=es&visualFeatures=tags"
     let apiKey = "a84d243e248d4e67aee85fce8cace729";
@@ -237,14 +239,14 @@ export class CamaraPage {
 
           return true;
         }
-        
+
       }
 
       buttons.push(button);
     }
     return buttons;
   }
-  
+
 
   openMenu(listButtons) {
     let actionSheet = this.actionsheetCtrl.create({
@@ -256,6 +258,14 @@ export class CamaraPage {
     actionSheet.present();
   }
 
+
+  // LOADING...
+  presentLoading() {
+    this.loading = this.loadingCtrl.create({
+      content: "espere por favor...",
+    });
+    this.loading.present();
+  }
 
 
 } // cierre clase

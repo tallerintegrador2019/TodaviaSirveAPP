@@ -77,7 +77,7 @@ export class DetallePage {
 
   ionViewDidLoad() {
     this.signupform = new FormGroup({
-      comentario: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])
+      comentario: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(150)])
     });
     console.log(this.cargarColor);
   }
@@ -154,8 +154,7 @@ export class DetallePage {
   submitComentario(){
     this.loading = this.loadingCtrl.create({ content: " espere por favor..." });
     this.loading.present();
-    // let pathURL = "http://localhost:55081/Api/Publicacion/subirComentario"
-
+     /* let pathURL = "http://localhost:55081/Api/Publicacion/subirComentario" */
     let pathURL = "https://todaviasirve.azurewebsites.net/Api/Publicacion/subirComentario"
 
     let headers = new HttpHeaders();

@@ -30,13 +30,9 @@ export class PasosdepublicacionesPage {
       this.publicacion = navParams.get("publi");
   }
 
-  ionViewDidLoad() {
-/*     this.loading = this.loadingCtrl.create({ content: " espere por favor..."});
-    this.loading.present(); */
-
+  ionViewDidEnter() {
     this.pasoProvider.getPasosDePublicacion(this.publicacion.id)
-    .subscribe(res => this.pasos = res);
-    console.log("Publicacion: " +this.publicacion.id)
+      .subscribe(res => this.pasos = res);
   }
 
   irAEditarPaso(paso){
@@ -50,7 +46,7 @@ export class PasosdepublicacionesPage {
   borrarPaso(idPaso) {
     this.pasoProvider.borrarPaso(idPaso)
       .subscribe(res => {
-        this.ionViewDidLoad();
+        this.ionViewDidEnter();
         this.presentToast("Eliminado Correctamente");
       },
         (error) => {
@@ -77,7 +73,7 @@ export class PasosdepublicacionesPage {
   }
 
   doRefresh(refresher) {
-    this.ionViewDidLoad();
+    this.ionViewDidEnter();
 
     setTimeout(() => {
       refresher.complete();

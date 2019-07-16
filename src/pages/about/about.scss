@@ -1,7 +1,8 @@
 page-about {
 
     .aboutPage{
-        background-color: green
+        background-image: url(../../assets/imgs/fondoAcercaDe.jpg);
+        background-size: cover;
     }
 
     .imgLogo{
@@ -13,6 +14,7 @@ page-about {
         color: white;
         font-family: 'Berlin Sans FB', sans-serif;
         text-align: justify;
+        text-shadow: 2px 1px black;
     }
 
 

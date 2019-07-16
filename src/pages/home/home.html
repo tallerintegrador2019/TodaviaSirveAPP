@@ -4,17 +4,17 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-item no-lines style="background: none;">
-      <ion-title class="todaviasirve">
-        <img class="isoLogo" src="../../assets/imgs/isologo.png">
-      </ion-title>
 
+    <ion-item no-lines style="background: none;" text-center>
+      <span class="todaviasirve">
+        <img class="isoLogo" src="../../assets/imgs/isologo.png">
+      </span>
       <ion-avatar class="avatarClass" item-end>
         <a (click)="presentPopover($event)">
-          <img src="{{prefixURL}}{{userLog.imagen}}">
+          <img *ngIf="!imagenLS" src="{{prefixURL}}{{userLog.imagen}}">
+          <img *ngIf="imagenLS" [src]="imagenLS">
         </a>
       </ion-avatar>
-
     </ion-item>
 
   </ion-navbar>
@@ -76,7 +76,6 @@
 
   <ion-card class="sabiasque">
     <ion-card-header>
-
       <h3>
         <ion-icon name="attach"></ion-icon>&nbsp;Sabias que...
       </h3>

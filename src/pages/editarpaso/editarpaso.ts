@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Paso } from '../models/paso.model';
 import { PasoProvider } from '../../providers/paso/paso';
-import { PasosdepublicacionesPage } from '../pasosdepublicaciones/pasosdepublicaciones';
 
 
 @IonicPage()
@@ -47,7 +46,7 @@ export class EditarpasoPage {
   editarPaso(){
     this.pasoProvider.editarPaso(this.paso);
     console.log("el id del paso es: " + this.paso.id)
-    this.navCtrl.popTo(PasosdepublicacionesPage);
+    this.navCtrl.pop();
   }
 
 

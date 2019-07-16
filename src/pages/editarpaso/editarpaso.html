@@ -23,33 +23,28 @@
         </label>
         <input id="file-input" type="file" accept="image/*" (change)="onFileChanged($event)" />
       </ion-card>
+
       <p class="pieDeImagen">(toca sobre la imagen para editar)</p>
 
-      <!-- <ion-item>
-        <ion-label floating>Numero de paso</ion-label>
-        <ion-input type="text" [(ngModel)]="paso.numero" [ngModelOptions]="{standalone: true}"
-          value="{{paso.numero}}"></ion-input>
-      </ion-item> -->
+      <ion-item>
+        <ion-label>Paso N°:</ion-label>
+        <ion-select [(ngModel)]="paso.numero" [ngModelOptions]="{standalone: true}">
+          <ion-option value="1">1</ion-option>
+          <ion-option value="2">2</ion-option>
+          <ion-option value="3">3</ion-option>
+          <ion-option value="4">4</ion-option>
+          <ion-option value="5">5</ion-option>
+          <ion-option value="6">6</ion-option>
+          <ion-option value="7">7</ion-option>
+          <ion-option value="8">8</ion-option>
+          <ion-option value="9">9</ion-option>
+        </ion-select>
+      </ion-item>
 
       <ion-item>
-          <ion-label>Paso N°:</ion-label>
-          <ion-select [(ngModel)]="paso.numero" [ngModelOptions]="{standalone: true}">
-            <ion-option value="1">1</ion-option>
-            <ion-option value="2">2</ion-option>
-            <ion-option value="3">3</ion-option>
-            <ion-option value="4">4</ion-option>
-            <ion-option value="5">5</ion-option>
-            <ion-option value="6">6</ion-option>
-            <ion-option value="7">7</ion-option>
-            <ion-option value="8">8</ion-option>
-            <ion-option value="9">9</ion-option>
-          </ion-select>
-        </ion-item>
-
-      <ion-item>
-        <ion-label floating>Descripcion</ion-label>
-        <ion-input type="text" [(ngModel)]="paso.descripcion" [ngModelOptions]="{standalone: true}"
-          value="{{paso.descripcion}}"></ion-input>
+        <ion-textarea placeholder="Describa el paso" rows="5" type="text" [(ngModel)]="paso.descripcion"
+          [ngModelOptions]="{standalone: true}">
+        </ion-textarea>
       </ion-item>
 
       <br /><br />

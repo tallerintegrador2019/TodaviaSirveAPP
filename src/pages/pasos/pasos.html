@@ -14,28 +14,21 @@
 
 
 
-      <!--       <ion-card class="cardClass image-upload">
+      <ion-card class="cardClass image-upload">
         <label for="file-input">
-          <img *ngIf="!img" src="../../assets/imgs/imagenNoDisponible.png"/>
+          <img *ngIf="!img" src="../../assets/imgs/subidaImagen.png">
           <img *ngIf="img" [src]="img" />
         </label>
-        <input type="file" id="file-input" accept="image/*" (change)="cargaArchivo($event)" />
-      </ion-card> -->
+        <input id="file-input" type="file" accept="image/*" (change)="onFileChanged($event)" />
+      </ion-card>
+      <p class="pieDeImagen">(toca sobre la imagen para editar)</p>
 
-
-      <ion-item>
+      <!-- <ion-item>
         <p>Imagen: </p>
-        <input type="file" accept="image/*" (change)="cargaArchivo($event)" />
+        <input type="file" accept="image/*" (change)="onFileChanged($event)" />
       </ion-item>
 
-      <img *ngIf="img" [src]="img" />
-
-
-      <!--       <ion-item>
-        <ion-label>Paso Numero: </ion-label>
-        <ion-input floating type="text" [(ngModel)]="paso.numero" [ngModelOptions]="{standalone: true}"></ion-input>
-      </ion-item> -->
-
+      <img *ngIf="img" [src]="img" /> -->
 
       <ion-item>
         <ion-label>Paso N°:</ion-label>
