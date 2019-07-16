@@ -21,79 +21,93 @@ export class HomePage {
   @ViewChild(Slides) slides: Slides;
 
   publicaciones: any;
-  prefixURL: string = "https://todaviasirve.azurewebsites.net/Content/Images/" ;
+  prefixURL: string = "https://todaviasirve.azurewebsites.net/Content/Images/";
 
-  userLog: Usuario;
+  userLog: Usuario
   loading: any;
 
   sabiasque
-  
-  constructor(  public navCtrl: NavController, 
-                public publicacion: PublicacionProvider,
-                public usuarioProvider: UsuarioProvider,
-                public loadingCtrl: LoadingController,
-                public popoverCtrl: PopoverController,
-                public tipsProvider: TipsProvider,
-              ) {
-      this.userLog = this.usuarioProvider.obtenerUsuarioLogueado()
+
+  imagenLS
+
+  constructor(public navCtrl: NavController,
+    public publicacion: PublicacionProvider,
+    public usuarioProvider: UsuarioProvider,
+    public loadingCtrl: LoadingController,
+    public popoverCtrl: PopoverController,
+    public tipsProvider: TipsProvider,
+  ) {
+    this.userLog = this.usuarioProvider.obtenerUsuarioLogueado()
+
+
+
   }
 
-  ionViewDidEnter() {
-   /*  this.slides.autoplayDisableOnInteraction = true */
-}
+  /*   ionViewDidEnter() {
+     this.slides.autoplayDisableOnInteraction = true 
+  } */
 
-  ionViewDidLoad(){
-    this.loading = this.loadingCtrl.create({ content: " espere por favor..."});
-    this.loading.present();
+
+  ionViewDidEnter() {
+    this.presentLoading();
+
+    this.imagenLS = localStorage.getItem("imagenTemp"); //  GUARDA TEMPORALMENTE LA IMAGEN EN LOCALSTORAGE
 
     this.publicacion.obtenerTodasPublicaciones()
       .subscribe(
-        (data) => { 
+        (data) => {
           this.publicaciones = data;
-          this.loading.dismiss(); 
+          this.loading.dismiss();
         },
-        (error) => { 
-          this.loading.dismiss(); 
-          console.log(error); 
+        (error) => {
+          this.loading.dismiss();
+          console.log(error);
         }
       )
 
     this.obtenerTip();
   }
 
-  irADetalle(publi){
-    this.navCtrl.push(DetallePage, {publi});
-   }
+  irADetalle(publi) {
+    this.navCtrl.push(DetallePage, { publi });
+  }
 
 
-   presentPopover(myEvent) {
+  presentPopover(myEvent) {
     let popover = this.popoverCtrl.create(PerfilPage);
     popover.present({
       ev: myEvent
     });
   }
 
-  irACamara(){
+  irACamara() {
     this.navCtrl.push(CamaraPage)
   }
 
   doRefresh(refresher) {
-    this.ionViewDidLoad();
+    this.ionViewDidEnter();
 
     setTimeout(() => {
       refresher.complete();
     }, 500);
   }
 
-  obtenerTip(){
+  obtenerTip() {
     this.tipsProvider.obtenerTip()
       .subscribe((res) => {
         this.sabiasque = res["descripcion"];
       },
-      (error) => {
-        console.log("Error: " + error)
-      })
+        (error) => {
+          console.log("Error: " + error)
+        })
   }
 
+  // LOADING...
+  presentLoading() {
+    this.loading = this.loadingCtrl.create({
+      content: "espere por favor...",
+    });
+    this.loading.present();
+  }
 
 } // cierre clase HomePage

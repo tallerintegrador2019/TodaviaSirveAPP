@@ -17,24 +17,28 @@ export class PerfilPage {
   usuarioLogueado
   loading
 
-  constructor(  public navCtrl: NavController, 
-                public navParams: NavParams, 
-                public usuarioProvider: UsuarioProvider,
-                public viewCtrl: ViewController  // se agrego por el popover
-              ) {
-                
+  imagenLS
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public usuarioProvider: UsuarioProvider,
+    public viewCtrl: ViewController  // se agrego por el popover
+  ) {
+    
     this.usuarioLogueado = this.usuarioProvider.obtenerUsuarioLogueado();
-    console.log(this.usuarioLogueado);
   }
 
-  ionViewDidLoad() {  }
+  ionViewDidEnter() {
+    this.imagenLS = localStorage.getItem("imagenTemp"); // IMAGEN TEMP
+  }
 
-  irAEditarUsuario(){
+  irAEditarUsuario() {
     this.navCtrl.push(EditarusuarioPage);
     this.viewCtrl.dismiss() // se agrego por el popover
   }
 
-  cerrarSesion(){
+  cerrarSesion() {
     localStorage.clear(); //becausae i have information from user
     this.navCtrl.setRoot(LoginPage);
   }

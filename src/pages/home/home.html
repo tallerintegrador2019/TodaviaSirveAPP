@@ -11,7 +11,8 @@
 
       <ion-avatar class="avatarClass" item-end>
         <a (click)="presentPopover($event)">
-          <img src="{{prefixURL}}{{userLog.imagen}}">
+          <img *ngIf="!imagenLS" src="{{prefixURL}}{{userLog.imagen}}">
+          <img *ngIf="imagenLS" [src]="imagenLS">
         </a>
       </ion-avatar>
 

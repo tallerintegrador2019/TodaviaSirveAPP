@@ -20,6 +20,8 @@ export class EditarusuarioPage implements OnInit {
   signupform: FormGroup;
   img
 
+
+
   pathImages = "http://todaviasirve.azurewebsites.net/Content/Images/"
 
   constructor(public navCtrl: NavController,
@@ -33,7 +35,7 @@ export class EditarusuarioPage implements OnInit {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad EditarusuarioPage');
+    this.img = localStorage.getItem("imagenTemp"); // IMAGEN TEMP
   }
 
   ngOnInit(): void {
@@ -52,8 +54,8 @@ export class EditarusuarioPage implements OnInit {
 
   editarUsuario() {
     this.usuarioProvider.editarUsuario(this.usuario.id, this.usuario)
-    /* localStorage.setItem('currentUser', JSON.stringify(this.usuario)); */
     this.usuarioProvider.setearUsuarioLogueado(this.usuario);
+    localStorage.setItem("imagenTemp", this.img);    // GUARDA LA IMAGEN TEMPORALMENTE
     this.presentToast("Vuelva a Iniciar Sesion para efectuar los cambios");
     this.navCtrl.popTo(HomePage);
 
@@ -75,7 +77,7 @@ export class EditarusuarioPage implements OnInit {
   presentToast(msj: string) {
     const toast = this.toastCtrl.create({
       message: msj,
-      duration: 3000,
+      duration: 2500,
       position: 'top',      
     });
 

@@ -5,6 +5,7 @@ import { DetallePage } from '../detalle/detalle';
 import { EditarpublicacionPage } from '../editarpublicacion/editarpublicacion';
 import { PasosdepublicacionesPage } from '../pasosdepublicaciones/pasosdepublicaciones';
 import { PublicarPage } from '../publicar/publicar';
+import { HomePage } from '../home/home';
 
 
 
@@ -30,10 +31,8 @@ export class PublicacionesPage {
   }
 
 
-  ionViewDidLoad() {
-    this.loading = this.loadingCtrl.create({ content: " espere por favor..."});
-    this.loading.present();
-
+  ionViewDidEnter() {
+    this.presentLoading();
     this.publicacionProvider.obtenerTodasPublicaciones()
       .subscribe(
         (data) => {
@@ -43,8 +42,7 @@ export class PublicacionesPage {
         (error) => {
           console.log(error);
           this.loading.dismiss(); 
-        }
-      )
+        }) 
   }
 
   irADetalle(publi) {
@@ -54,7 +52,7 @@ export class PublicacionesPage {
   borrarPublicacion(idPubli) {
     this.publicacionProvider.borrarPublicacion(idPubli)
       .subscribe(res => {
-        this.ionViewDidLoad();
+        this.ionViewDidEnter();
         this.presentToast("Eliminado Correctamente");
       },
         (error) => {
@@ -85,12 +83,21 @@ export class PublicacionesPage {
     toast.present();
   }
 
+  // REFRESH
   doRefresh(refresher) {
-    this.ionViewDidLoad();
+    this.ionViewDidEnter();
 
     setTimeout(() => {
       refresher.complete();
     }, 500);
+  }
+
+  // LOADING...
+  presentLoading() {
+    this.loading = this.loadingCtrl.create({
+      content: "espere por favor...",
+    });
+    this.loading.present();
   }
 
 
@@ -120,7 +127,6 @@ export class PublicacionesPage {
   irAPublicar(){
     this.navCtrl.push(PublicarPage);
   }
-
 
 
 }
