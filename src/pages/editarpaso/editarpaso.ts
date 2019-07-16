@@ -11,6 +11,7 @@ import { PasoProvider } from '../../providers/paso/paso';
 })
 export class EditarpasoPage {
 
+  portada;
   paso: Paso;
   img
   imagesPath = "https://todaviasirve.azurewebsites.net/Content/Images/"
@@ -23,6 +24,8 @@ export class EditarpasoPage {
     ) {
 
       this.paso = navParams.get("paso");
+      this.portada = navParams.get("portada");
+      console.log(this.portada);
   }
 
   ionViewDidLoad() {

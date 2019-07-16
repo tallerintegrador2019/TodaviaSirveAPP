@@ -155,9 +155,7 @@ export class DetallePage {
     this.loading = this.loadingCtrl.create({ content: " espere por favor..." });
     this.loading.present();
      /* let pathURL = "http://localhost:55081/Api/Publicacion/subirComentario" */
-     let pathURL = "https://todaviasirve.azurewebsites.net/Api/Publicacion/subirComentario"
-
-    // let pathURL = "http://todaviasirve.azurewebsites.net/Api/Usuario"
+    let pathURL = "https://todaviasirve.azurewebsites.net/Api/Publicacion/subirComentario"
 
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');

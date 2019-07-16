@@ -13,11 +13,11 @@
     <form novalidate (ngSubmit)="submitPaso()">
 
       <ion-card class="cardClass image-upload">
-        <label for="file-input2">
+        <label for="{{nombreIncremento}}">
           <img *ngIf="!img" src="../../assets/imgs/subidaImagen.png">
           <img *ngIf="img" [src]="img" />
-        </label>
-        <input id="file-input2" type="file" accept="image/*" (change)="onFileChanged($event)" />
+        </label> 
+        <input id="{{nombreIncremento}}" type="file" accept="image/*" (change)="onFileChanged($event)" />
       </ion-card>
       <p class="pieDeImagen">(toca sobre la imagen para editar)</p>
 
