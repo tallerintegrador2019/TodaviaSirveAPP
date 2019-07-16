@@ -35,8 +35,6 @@ export class MisPublicacionesPage {
 
   ionViewDidLoad() {
     this.presentLoading();
-
-
     this.publicacionProvider.obtenerPublicacionesUsuario(this.usuarioLog.id)
       .subscribe(
         (data) => {

@@ -37,5 +37,27 @@ page-detalle {
         background: white;
     }
 
+    .imagenComentario img {
+        object-fit: cover;
+
+    }
+
+
+    .item-inner {
+        border-bottom-color: transparent !important;
+        box-shadow: none !important;
+    }
+
+    .botonComentar{
+        padding-bottom: 10px;
+    }
+
+    .inputComentarAqui{
+        padding-top: 15px;
+
+        ion-input.input ::placeholder{
+            font-style: italic;
+        }
+    }
 
 }

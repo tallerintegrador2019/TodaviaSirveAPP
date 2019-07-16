@@ -26,6 +26,10 @@ page-home {
     .todaviasirve{
         font-family: 'Berlin Sans FB', sans-serif;
         text-align: center;
+
+        img {
+            object-fit: scale-down;
+        }
     }
 
     .tituloSlide{
@@ -60,7 +64,11 @@ page-home {
     }
 
     ion-card.sabiasque{
-        background-color:coral;
+        /* background-color:coral; */
+        background-image: url(../../assets/imgs/sabiasQue.jpg);
+        background-repeat: no-repeat;
+        background-position: center bottom; 
+        background-size: cover;
         margin-bottom: 30px;
     }
 
@@ -70,13 +78,16 @@ page-home {
 
         h3{
             font-size: 15px;
-            color: white;
+            color: green;
+            text-shadow: 2px 1px white;
         }
     }
 
     ion-card-content.card-content{
         p {
-            color: white;
+            color: green;
+            text-shadow: 1px 1px white;
+            font: bold;
         }
 
     }

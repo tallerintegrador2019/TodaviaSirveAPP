@@ -76,7 +76,7 @@ export class PublicacionProvider {
     formData.append("descripcion", publi.descripcion);
     formData.append("fechaSubida", publi.fechaSubida);
     formData.append("imagenPortada", publi.imagenPortada);
-    formData.append("usuarioPublicacion", publi.idUsuario);
+    formData.append("idUsuario", publi.idUsuario);
 
     return this.http.post(pathURL, formData, { headers: headers });
   }
