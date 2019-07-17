@@ -30,7 +30,7 @@ export class FavoritosPage {
     this.usuario = this.usuarioProvider.obtenerUsuarioLogueado();
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
 
     this.presentLoading();
 
@@ -59,7 +59,7 @@ export class FavoritosPage {
   }
 
   doRefresh(refresher) {
-    this.ionViewDidLoad();
+    this.ionViewDidEnter();
 
     setTimeout(() => {
       refresher.complete();
