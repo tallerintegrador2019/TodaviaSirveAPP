@@ -29,7 +29,7 @@ export class PasosPage {
 
     this.idPublicacion = navParams.get("idPubli");
     this.pasoAux = navParams.get("numPaso");
-    console.log("numero de paso: "+ this.pasoAux);
+    console.log("numero de paso Aux: "+ this.pasoAux);
     this.nombreIncremento = "file-input"+this.pasoAux
     console.log(this.nombreIncremento);
   }
@@ -38,7 +38,10 @@ export class PasosPage {
 
 
   submitPaso() {
+    this.paso.numero = this.pasoAux -1;
+    console.log("numero de paso :"+ this.paso.numero);
     this.pasoAux = this.pasoAux +1;
+    console.log("paso Aux siguiente: "+ this.pasoAux);
     this.publicacionProvider.subirPaso(this.paso, this.idPublicacion);
     this.navCtrl.push(PasosPage, { "idPubli": this.idPublicacion, "numPaso" : this.pasoAux })
   }
@@ -57,6 +60,8 @@ export class PasosPage {
 
   irAHome(){
     if(this.paso.descripcion != null && this.paso.descripcion.length > 5){
+      this.paso.numero = this.pasoAux -1;
+    console.log("numero de paso :"+ this.paso.numero);
          this.publicacionProvider.subirPaso(this.paso, this.idPublicacion);
           this.navCtrl.setRoot(TabsPage);
     }else{
