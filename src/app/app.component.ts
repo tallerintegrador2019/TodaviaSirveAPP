@@ -18,6 +18,7 @@ import { PublicacionesPage } from '../pages/publicaciones/publicaciones';
 import { FavoritosPage} from '../pages/favoritos/favoritos';
 import { EditarpublicacionPage } from '../pages/editarpublicacion/editarpublicacion';
 import { Usuario } from '../pages/models/usuario.model';
+import { UsuarioProvider } from "./../providers/usuario/usuario";
 
 @Component({
   templateUrl: 'app.html'
@@ -29,22 +30,38 @@ export class MyApp {
   usuario: Usuario = JSON.parse(localStorage.getItem('currentUser'));
   rootPage: any;
   pages: Array<{ title: string, component: any, icon: string }>;
+  admin
+  usuAux
 
   constructor(
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
+    public usuProv : UsuarioProvider
   ) {
     
     this.initializeApp();
-
     // si hay usuario va al Home sino va al Login
     if (this.usuario) {
       this.rootPage = TabsPage;
     } else {
       this.rootPage = LoginPage;
     }
-
+    console.log("pasando");
+    this.usuProv.getUserObservable().subscribe(
+      (data) => {
+        this.usuAux = data;
+        if(this.usuAux && this.usuAux.id == 99)
+        {
+          this.admin = true;
+        }else{
+          this.admin = false;
+        }
+        console.log(this.usuAux)
+     }, (error) => {
+         console.log(error);
+     });
+    
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: TabsPage, icon: 'home' },
@@ -65,6 +82,14 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+
+    if(this.usuario && this.usuario.id == 99)
+    {
+      this.admin = true;
+    }else{
+      this.admin = false;
+    }
+    console.log("pasando");
   }
 
   openPage(page) {

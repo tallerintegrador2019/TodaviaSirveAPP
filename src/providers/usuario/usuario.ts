@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Usuario } from '../../pages/models/usuario.model';
 import { Content } from 'ionic-angular';
 import { convertFormatToKey } from 'ionic-angular/umd/util/datetime-util';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 
 @Injectable()
@@ -11,7 +12,8 @@ export class UsuarioProvider {
 
   public estaElUsuarioLogueado;  // para saber si el usuario esta logueado
   public usuarioLogueado: Usuario;   // el usuario que se logueo
-
+  public usuarioAux : Usuario
+  private userSubject = new BehaviorSubject(this.usuarioAux);
   constructor(public http: HttpClient) {
 
     this.estaElUsuarioLogueado = false;  // la aplicacion empieza con ningun usuario logueado
@@ -36,8 +38,21 @@ export class UsuarioProvider {
     this.estaElUsuarioLogueado = true;
     this.usuarioLogueado = usuario;
     localStorage.setItem('currentUser', JSON.stringify(usuario));
+    this.userSubject.next(this.usuarioLogueado);
   }
 
+    // Lo demas componentes se ponen a la esucha de cambio
+    // a través de esté método
+    getUserObservable(): Observable<Usuario> {
+      return this.userSubject.asObservable();
+    }
+
+     // Este método se usa para enviar los cambios a todos los componentes a la escucha
+    //   private setUser(user: Usuario) {
+    //     this.usuarioAux = user;
+    //     // Refrescar user en los observables
+    //     this.userSubject.next(this.usuarioAux);
+    // }
 
   // obtenemos datos del usuario logueado, en localStorage
   obtenerUsuarioLogueado() {

@@ -9,6 +9,7 @@ import { TabsPage } from '../tabs/tabs';
 import { UsuarioProvider } from "../../providers/usuario/usuario";
 import { Usuario } from '../models/usuario.model';
 import { RegistrarPage } from '../registrar/registrar';
+import { MyApp } from '../../app/app.component';
 
 
 @IonicPage()
@@ -68,8 +69,13 @@ export class LoginPage implements OnInit {
         this.presentToast("USUARIO INCORRECTO");
       },
       () => this.navCtrl.push(TabsPage)
+     
     );
 
+      let active = this.navCtrl.getActive(); // or getByIndex(int) if you know it
+      console.log(active.index);
+      // this.navCtrl.remove(active.index);
+      // this.navCtrl.push(active.component);
 
   } // cierre metodo
 
