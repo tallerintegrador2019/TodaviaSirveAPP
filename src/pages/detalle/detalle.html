@@ -42,13 +42,13 @@
         <div *ngIf="meGusta; else elseLike">
           <button ion-button icon-start clear small (click)="cargarLike()">
             <ion-icon name="thumbs-up"></ion-icon>
-            <div>{{cantLike}} MG</div>
+            <div>{{cantLike}}</div>
           </button>
         </div>
         <ng-template #elseLike>
           <button ion-button icon-start clear small color="dark" (click)="cargarLike()">
             <ion-icon name="thumbs-up" color="dark"></ion-icon>
-            <div>{{cantLike}} MG</div>
+            <div>{{cantLike}}</div>
           </button>
         </ng-template>
       </ion-col>
@@ -56,7 +56,7 @@
         <button ion-button icon-start clear small (click)="cargarPublicacion()">
           <ion-icon name="text"></ion-icon>
           <div *ngIf="this.cantidad">
-            {{cantidad}} Comentarios
+            {{cantidad}}Comentarios
           </div>
 
         </button>

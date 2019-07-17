@@ -143,10 +143,9 @@ export class CamaraPage {
             listado.push(item.name);
           }
         }
-        this.encontrado = listado;
-        this.openMenu(listado);
+        //this.encontrado = listado;
         this.loading.dismiss();
-
+        this.openMenu(listado);
       }, (err) => {
         this.loading.dismiss();
         this.mostrarToast(err.status + " error code: " + err.code, 4000);
