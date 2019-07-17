@@ -30,11 +30,11 @@
   </ion-card>
 
 
-<!--   <div class="contentButton" *ngIf="image">
+  <div class="contentButton" *ngIf="image">
      <button ion-button round full text-center *ngFor="let item of encontrado" (click)="buscarPublicacion(item)">
         {{item}}
       </button>
-  </div> -->
+  </div>
 
   <ion-list  *ngIf="image" class="card-background-page">
     <ion-item button *ngFor="let publicacion of publicaciones | async" (click)="irADetalle(publicacion)">

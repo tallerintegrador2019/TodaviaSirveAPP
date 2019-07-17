@@ -220,7 +220,7 @@ export class CamaraPage {
           }
         }
         this.encontrado = listado;
-        this.openMenu(listado);
+        /* this.openMenu(listado); */ // ABRE MENU 
         // if(listado.length <= 4){
         //   this.encontrado = listado;
         // } 
