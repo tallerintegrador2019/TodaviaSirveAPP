@@ -64,7 +64,7 @@ export class RegistrarPage implements OnInit {
     formData.append("imagen", this.imagen);
 
     this.http.post( pathURL, formData, { headers: headers } )
-      .subscribe(res => { alert("success " + res); },
+      .subscribe(res => res,
         (err) => { alert("failed"); }
       );
 
