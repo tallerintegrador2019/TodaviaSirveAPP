@@ -71,8 +71,7 @@ export class DetallePage {
     //this.listadoComentarios = this.listadoComentarios.comentarioUsuarios;
   
     // API PARA TRAER LOS VIDEOS DE YOUTUBE
-    // this.ytProvider.obtenerVideos(this.publicacion.titulo).subscribe(res => this.videosEncontrados = res['items']);
-    console.log(this.videosEncontrados);
+ /*    this.ytProvider.obtenerVideos(this.publicacion.titulo).subscribe(res => this.videosEncontrados = res['items']); */
   }
 
   ionViewDidLoad() {

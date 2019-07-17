@@ -32,6 +32,7 @@ export class EditarusuarioPage implements OnInit {
   ) {
 
     this.usuario = this.usuarioProvider.obtenerUsuarioLogueado();
+    
   }
 
   ionViewDidLoad() {
@@ -55,7 +56,9 @@ export class EditarusuarioPage implements OnInit {
   editarUsuario() {
     this.usuarioProvider.editarUsuario(this.usuario.id, this.usuario)
     this.usuarioProvider.setearUsuarioLogueado(this.usuario);
-    localStorage.setItem("imagenTemp", this.img);    // GUARDA LA IMAGEN TEMPORALMENTE
+    if (this.img) {
+      localStorage.setItem("imagenTemp", this.img);    // GUARDA LA IMAGEN TEMPORALMENTE
+    }
     this.presentToast("Vuelva a Iniciar Sesion para efectuar los cambios");
     this.navCtrl.popTo(HomePage);
 
