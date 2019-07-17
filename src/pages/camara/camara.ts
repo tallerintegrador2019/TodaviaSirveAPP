@@ -144,6 +144,7 @@ export class CamaraPage {
           }
         }
         this.encontrado = listado;
+        this.openMenu(listado);
         this.loading.dismiss();
 
       }, (err) => {
@@ -220,7 +221,7 @@ export class CamaraPage {
           }
         }
         this.encontrado = listado;
-        /* this.openMenu(listado); */ // ABRE MENU 
+        this.openMenu(listado); // ABRE MENU 
         // if(listado.length <= 4){
         //   this.encontrado = listado;
         // } 

@@ -9,21 +9,28 @@
 
 <ion-content padding>
 
-  <div class="image-upload" text-center>
-    
-    <label for="file-input">
-      <!-- <img src="../../assets/imgs/detectionEye.png" /> -->
-      <img src="../../assets/imgs/iconogal4.png" /> 
-    </label>
-    <input id="file-input" type="file" accept="image/*" (change)="getPicture($event)" />
-    
-    <ion-fab>
-      <button ion-fab color="default" (click)="getPictureCam()">
-        <ion-icon name="camera"></ion-icon>
-      </button>
-    </ion-fab>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6 class="columnaIzq">
+          <div class="image-upload" text-center>
+              <label for="file-input">
+                <!-- <img src="../../assets/imgs/detectionEye.png" /> -->
+                <img src="../../assets/imgs/iconogal4.png" />
+              </label>
+              <input id="file-input" type="file" accept="image/*" (change)="getPicture($event)" />
+            </div>
+      </ion-col>
 
-  </div>
+      <ion-col col-6 text-left>
+          <ion-fab>
+              <button ion-fab color="default" (click)="getPictureCam()">
+                <ion-icon name="camera"></ion-icon>
+              </button>
+            </ion-fab>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 
 
   <ion-card class="cardClass">
@@ -31,13 +38,13 @@
   </ion-card>
 
 
-  <div class="contentButton" *ngIf="image">
+  <!--   <div class="contentButton" *ngIf="image">
      <button ion-button round full text-center *ngFor="let item of encontrado" (click)="buscarPublicacion(item)">
         {{item}}
       </button>
-  </div>
+  </div> -->
 
-  <ion-list  *ngIf="image" class="card-background-page">
+  <ion-list *ngIf="image" class="card-background-page">
     <ion-item button *ngFor="let publicacion of publicaciones | async" (click)="irADetalle(publicacion)">
       <ion-card>
         <img src="{{prefixURL}}{{publicacion.imagenPortada}}" />
