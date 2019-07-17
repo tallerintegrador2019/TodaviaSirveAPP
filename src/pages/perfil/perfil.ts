@@ -29,7 +29,7 @@ export class PerfilPage {
     this.usuarioLogueado = this.usuarioProvider.obtenerUsuarioLogueado();
   }
 
-  ionViewDidEnter() {
+  ionViewDidLoad() {
     this.imagenLS = localStorage.getItem("imagenTemp"); // IMAGEN TEMP
   }
 
